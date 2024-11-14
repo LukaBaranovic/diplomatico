@@ -18,4 +18,3 @@ return $mysqli;
 
 //spajanje na bazu podataka koju ću koristiti u ostalim .php datotekama 
 
-//da
