@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
   $is_invalid = true;
-  
+
 }
 ?>
 
@@ -46,6 +46,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <body>
+
+  <h1> Login </h1>
+
+  <?php if ($is_invalid): ?>
+    <em>Invalid login</em>
+  <?php endif; ?>
+
+  <form method="post">
+    <label for="username">username</label>
+    <input type="text" name="username" id="username">
+
+    <label for="password">password</label>
+    <input type="password" name="password" id="password">
+
+    <button>Log in</button>
+  </form>
 
 
 

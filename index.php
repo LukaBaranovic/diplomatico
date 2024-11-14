@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+print_r($_SESSION);
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
