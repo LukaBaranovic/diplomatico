@@ -40,28 +40,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8">
   <meta http-equiv="X-AU-Combatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/login-style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>diplomatico</title>
 </head>
 
 
-<body>
+<body class="login-page">
 
-  <h1> Login </h1>
+
 
   <?php if ($is_invalid): ?>
     <em>Invalid login</em>
   <?php endif; ?>
 
-  <form method="post">
-    <label for="username">username</label>
-    <input type="text" name="username" id="username">
 
-    <label for="password">password</label>
-    <input type="password" name="password" id="password">
+  <div class="wrapper">
+    <form method="post">
+      <h1> Login </h1>
+      <div class="input-box">
+        <label for="username">username</label>
+        <input type="text" placeholder="username" name="username" id="username">
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <label for="password">password</label>
+        <input type="password" placeholder="password" name="password" id="password">
+        <i class='bx bxs-lock-alt'></i>
+      </div>
 
-    <button>Log in</button>
-  </form>
+      <button type="submit" class="submit-button">Login</button>
+    </form>
+  </div>
 
 
 
