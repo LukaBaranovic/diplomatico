@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       session_regenerate_id();  
       $_SESSION["user_id"] = $users["id"];
       $_SESSION["company_id"] = $users["company_id"];
-      header("Location: home.php");
+      header("Location: index.php");
       exit;
     }
   }
@@ -37,12 +37,51 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta http-equiv="X-AU-Combatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/style.css">
-  <link rel="stylesheet" href="styles/login.php">
+  <link rel="stylesheet" href="styles/login.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Diplomatico</title>
   <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
 </head>
+
 <body>
-  
+    
+
+
+  <div class="login-wrapper">
+    <div class="login-form-container">
+    
+
+
+    <form method="post">
+      
+      <div class="login-input-box">
+        <input type="text" placeholder="Korisničko ime" name="username" id="username" 
+        value="<?= htmlspecialchars($_POST["username"]) ?? "" ?>">
+        <i class="bx bxs-user"></i>
+      </div>
+
+      <div class="login-input-box">
+        <input type="password" placeholder="Lozinka" name="password" id="password">
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+
+      <button class="login-submit-button">Prijavi se</button>
+
+
+
+    </form>
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
