@@ -1,4 +1,5 @@
 <?php
+// #### PHP kod koji služio za Autentikaciju korisnika ####
 
 $is_invalid = false; 
 
@@ -6,8 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mysqli = require __DIR__ . "/database.php";
   $sql = sprintf("SELECT * FROM users WHERE username = '%s'", $mysqli->real_escape_string($_POST["username"]));
-
-  //trazi korisnika koji se poklapa sa unesenim korisnikom
 
   $result = $mysqli->query($sql);
   $users = $result ->fetch_assoc();
@@ -22,10 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       exit;
     }
   }
-
   $is_invalid = true;
-
-  //php kod koji sluzi za prijavu korisnika u bazu podataka
 }
 ?>
 
@@ -45,43 +41,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     
-
-
   <div class="login-wrapper">
     <div class="login-form-container">
-    
+      <img src="photo/company-logo-small.png" alt="company logo">
 
+<!-- #### Dio koda koji se aktivira kada je prijava neuspješna/kriva #### -->
+      <div class="invalid-login">
+          <?php if ($is_invalid): ?>
+            <em>Invalid login</em>
+          <?php endif; ?>
+       </div>
 
-    <form method="post">
-      
-      <div class="login-input-box">
-        <input type="text" placeholder="Korisničko ime" name="username" id="username" 
-        value="<?= htmlspecialchars($_POST["username"]) ?? "" ?>">
-        <i class="bx bxs-user"></i>
-      </div>
+<!-- #### Obrazac za prijavu, pri krivoj prijavi pamti korisničko ime, a lozinku ne #### -->
+      <form class="login-form" method="post">
+        <div class="login-input-box">
+          <input type="text" placeholder="Korisničko ime" name="username" id="username" 
+          value="<?= htmlspecialchars($_POST["username"]) ?? "" ?>">
+          <i class="bx bxs-user"></i>
+        </div>
 
-      <div class="login-input-box">
-        <input type="password" placeholder="Lozinka" name="password" id="password">
-        <i class="bx bxs-lock-alt"></i>
-      </div>
+        <div class="login-input-box">
+          <input type="password" placeholder="Lozinka" name="password" id="password">
+          <i class="bx bxs-lock-alt"></i>
+        </div>
 
-      <button class="login-submit-button">Prijavi se</button>
-
-
-
-    </form>
-
-
+        <button class="login-submit-button">Prijavi se</button>
+      </form>
     </div>
   </div>
-
-
-
-
-
-
-
-
 
 </body>
 </html>
