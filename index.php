@@ -78,14 +78,6 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-
-
-
-
-
-
-
-
 <!-- #################################################################################################################################-->
 
 <!-- Početak obrasca koji koristimo za dodavanje novih kategorija -->
@@ -97,7 +89,7 @@ if (isset($_SESSION["user_id"])) {
 
         <div class="modal-header">
           <div class="title">Unesi novu kategoriju</div>
-          <button type="button" data-close-button class="close-button">&times;</button>
+          <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
         </div>
 
         <div class="modal-body">
@@ -126,7 +118,7 @@ if (isset($_SESSION["user_id"])) {
     <div>
       <div class="modal" id="edit-modal">
 
-       
+        <input type="hidden" id="category_id_fetched" name="update_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
 
         <div class="modal-header">
           <div class="title">Uredi naziv kategorije</div>
@@ -135,7 +127,7 @@ if (isset($_SESSION["user_id"])) {
 
         <div class="modal-body">
           <div class="input-box">
-            <input type="text" id="category_name" name="category_name" placeholder="Nova kategorija" >
+            <input type="text" id="category_name_fetched" name="category_name" placeholder="Nova kategorija" >  
           </div>
         </div>
 
@@ -162,8 +154,8 @@ if (isset($_SESSION["user_id"])) {
     }).get();
     console.log(data);
 
-    $('#category_id').val(data[0]);
-    $('#category_name').val(data[1]);
+    $('#category_id_fetched').val(data[0]);
+    $('#category_name_fetched').val(data[1]);
 
 
 
