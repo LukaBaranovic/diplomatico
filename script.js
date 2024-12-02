@@ -39,3 +39,36 @@ function closeModal(modal) {
 
 // ##################################################################################################################################
 
+// AJAX i JS kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
+
+$(document).ready(function (){
+  $('.update-button').on('click', function() {
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+    console.log(data);
+
+    $('#edit_category_id_fetched').val(data[0]);
+    $('#edit_category_name_fetched').val(data[1]);
+  });
+});
+
+// AJAX i JS kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši'
+
+$(document).ready(function (){
+  $('.delete-button').on('click', function() {
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+    console.log(data);
+
+    $('#delete_category_id_fetched').val(data[0]);
+    $('#delete_category_name_fetched').text(data[1]);
+  });
+});
+
+

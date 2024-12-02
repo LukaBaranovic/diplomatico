@@ -9,7 +9,7 @@ $company_id = (int)$_SESSION['company_id'];
 
 // Provjerava jesu li vrijednosti 'user_id' i 'company_id' upisane u sesiju.
 if (!isset($_SESSION['user_id']) || empty($_SESSION['company_id'])) {
-    die("Session user_ or company_id is not set or is invalid.");
+    die("Session user_id or company_id is not set or is invalid.");
 }
 
 // Provjerava jesmo li uopće išta unijeli u obrazac
@@ -50,7 +50,7 @@ if (isset($_POST['add_category']) && !empty($_POST['category_name'])) {
 }
 ?>
 
-<!-- #### Ovaj .php datoteka se koristi za unos vrijednosti u bazu podataka, tablica category u bazi diplomatico,
+<!-- #### Ova .php datoteka se koristi za unos vrijednosti u bazu podataka, tablica category u bazi diplomatico,
  koju korisnik unosi prilikom dodavanje nove kategorije. Vrši se provjera je li unos duplikat već postojeće
  kategorije, je li unos prazan, i ako je sve u redu unosi podatke u bazu podataka.
 

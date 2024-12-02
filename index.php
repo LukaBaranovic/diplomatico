@@ -38,7 +38,6 @@ if (isset($_SESSION["user_id"])) {
   <button type="button" class="button" data-modal-target="#add-modal">Dodaj novu kategoriju</button> <!-- new category button -->
 
   <table>
-
     <thead>
       <tr>
         <th>ID</th>
@@ -64,14 +63,13 @@ if (isset($_SESSION["user_id"])) {
           <td><?php echo $row['category_id'];  ?></td>
           <td><?php echo $row['category_name'];  ?></td>
           <td><button type="button" class="button update-button" data-modal-target="#edit-modal">Uredi</button></td>
-          <td><button type="button" class="button delete-button">Izbriši</button></td>
+          <td><button type="button" class="button delete-button" data-modal-target="#delete-modal">Izbriši</button></td>
         </tr>
           <?php
         }
       }
       ?>
     </tbody>
-
   </table>
 
 
@@ -113,12 +111,12 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za uređivanje kategorija -->
 
-<form action="edit-category.php" method="post">
+  <form action="edit-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="edit-modal">
 
-        <input type="hidden" id="category_id_fetched" name="update_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
+        <input type="hidden" id="edit_category_id_fetched" name="category_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
 
         <div class="modal-header">
           <div class="title">Uredi naziv kategorije</div>
@@ -127,7 +125,7 @@ if (isset($_SESSION["user_id"])) {
 
         <div class="modal-body">
           <div class="input-box">
-            <input type="text" id="category_name_fetched" name="category_name" placeholder="Nova kategorija" >  
+            <input type="text" id="edit_category_name_fetched" name="category_name" placeholder="Izmjeni kategoriju">  
           </div>
         </div>
 
@@ -142,27 +140,40 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Kraj obrasca koji koristimo za uređivanje kategorija -->
 
+<!-- #################################################################################################################################-->
+
+<!-- Početak obrasca koji koristimo za brisanje kategorije -->
+
+  <form action="delete-category.php" method="post">
+    <div id="overlay"></div>
+    <div>
+      <div class="modal" id="delete-modal">
+
+        <input type="hidden" id="delete_category_id_fetched" name="category_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
+
+        <div class="modal-header">
+          <div class="title">Jeste li sigurni da želite izbrisati:</div>
+          <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
+        </div>
+
+        <div class="modal-body">
+          
+          <h5 id="delete_category_name_fetched"></h5>
+    
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="button save-button" name="delete_category_name" value="Da, izbriši">    <!-- save button -->
+          <button type="button" data-close-button class="button cancel-button">Zatvori</button>  <!-- cancel button -->
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+<!-- Kraj obrasca koji koristimo za brisanje kategorije -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-  $(document).ready(function (){
-  $('.update-button').on('click', function() {
-    $tr = $(this).closest('tr');
-
-    var data = $tr.children("td").map(function() {
-      return $(this).text();
-    }).get();
-    console.log(data);
-
-    $('#category_id_fetched').val(data[0]);
-    $('#category_name_fetched').val(data[1]);
-
-
-
-  });
-});
-
-</script>
-
 </body>
 </html>
