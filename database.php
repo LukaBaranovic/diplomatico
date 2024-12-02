@@ -16,4 +16,13 @@ if ($mysqli->connect_error) {
 
 return $mysqli;
 
-//spajanje na bazu podataka koju ću koristiti u ostalim .php datotekama 
+// #### Ova .php datoteka se koristi za spajanje na bazu podataka 'diplomatico', koju ćemo koristiti kroz cijeli projekt više puta.
+// ####
+// #### Host:            "localhost"
+// #### Naziv baze:      "diplomatico"
+// #### Korisnik:        "root"
+// #### Lozinka:         ""
+// ####
+// #### Napravljeno:     28.11.2024.
+// #### Zadnja promjena: 2.12.2024.
+// #### Napravio: Luka Baranović

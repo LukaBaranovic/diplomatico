@@ -103,7 +103,6 @@
   color: #fff;
 }
 
-/* Specific button styles */
 .cancel-button {
   background: red;
 }
@@ -118,4 +117,16 @@
 
 .delete-button {
   background: red;
+}
+
+/*  Do ovjde je CSS korišten za obrazac/formular   */
+
+#category_name_fetched {
+  display: block; 
+  color: black;
+}
+
+p {
+  display: block;
+  color: black;
 }

@@ -34,3 +34,8 @@ function closeModal(modal) {
   modal.classList.remove('active')
   overlay.classList.remove('active')
 }
+
+// JS kod do ovdje je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
+
+// ##################################################################################################################################
+

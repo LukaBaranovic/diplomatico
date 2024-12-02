@@ -13,7 +13,7 @@ if (isset($_SESSION["user_id"])) {
   $result = $mysqli->query($sql);
   $users = $result->fetch_assoc();
 }
-//dohvaca koji user je prijavljen, koji je potreban da znamo za koju firmu user moze raditi promjene
+//Dohvaća koji user je prijavljen, koji je potreban da znamo za koju firmu user moze raditi promjene.
 ?>
 <?php include('database.php'); ?>
 
@@ -30,11 +30,12 @@ if (isset($_SESSION["user_id"])) {
   <title>Diplomatico</title>
   <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
   <script defer src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
     
-  <button type="button" data-modal-target="#add-modal">Dodaj novu kategoriju</button> <!-- new category button -->
+  <button type="button" class="button" data-modal-target="#add-modal">Dodaj novu kategoriju</button> <!-- new category button -->
 
   <table>
 
@@ -46,7 +47,7 @@ if (isset($_SESSION["user_id"])) {
         <th>Izbriši</th>
       </tr>
     </thead>
-
+    
     <tbody>
       <?php
       $query = "SELECT * FROM category WHERE company_id = $company_id";
@@ -59,20 +60,18 @@ if (isset($_SESSION["user_id"])) {
       else {
         while($row = mysqli_fetch_assoc($result)){
           ?>
-
         <tr>
           <td><?php echo $row['category_id'];  ?></td>
           <td><?php echo $row['category_name'];  ?></td>
-          <td><button class="update-button" type="button"  data-category-name="<?php echo $row['category_name'];?>"
-           data-category-id="<?php echo $row['category_id'];?>" data-modal-target="#edit-modal">Uredi</button></td>
-          <td><button type="button" class="delete-button">Izbriši</button></td>
+          <td><button type="button" class="button update-button" data-modal-target="#edit-modal">Uredi</button></td>
+          <td><button type="button" class="button delete-button">Izbriši</button></td>
         </tr>
-
           <?php
         }
       }
       ?>
     </tbody>
+
   </table>
 
 
@@ -87,9 +86,7 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-
-
-
+<!-- #################################################################################################################################-->
 
 <!-- Početak obrasca koji koristimo za dodavanje novih kategorija -->
 
@@ -120,8 +117,63 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Kraj obrasca koji koristimo za dodavanje novih kategorija -->
 
+<!-- #################################################################################################################################-->
+
+<!-- Početak obrasca koji koristimo za uređivanje kategorija -->
+
+<form action="edit-category.php" method="post">
+    <div id="overlay"></div>
+    <div>
+      <div class="modal" id="edit-modal">
+
+       
+
+        <div class="modal-header">
+          <div class="title">Uredi naziv kategorije</div>
+          <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
+        </div>
+
+        <div class="modal-body">
+        <h5 id="category_name_fetched">da</h5>
+          <div class="input-box">
+            <input type="text" id="category_name_fetched"  name="category_name" placeholder="Nova kategorija" >
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="button save-button" name="edit_category" value="Spremi">    <!-- save button -->
+          <button type="button" data-close-button class="button cancel-button">Zatvori</button>  <!-- cancel button -->
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+<!-- Kraj obrasca koji koristimo za uređivanje kategorija -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function (){
+  $('.update-button').on('click', function() {
+    $('#edit-modal').show();
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+    console.log(data);
+
+    $('#category_id_fetched').text(data[0]);
+    $('#category_name_fetched').text(data[1]);
+
+    console.log($('#category_name_fetched').val());
 
 
+  });
+});
+
+</script>
 
 </body>
 </html>
