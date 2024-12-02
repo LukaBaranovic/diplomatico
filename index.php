@@ -134,9 +134,8 @@ if (isset($_SESSION["user_id"])) {
         </div>
 
         <div class="modal-body">
-        <h5 id="category_name_fetched">da</h5>
           <div class="input-box">
-            <input type="text" id="category_name_fetched"  name="category_name" placeholder="Nova kategorija" >
+            <input type="text" id="category_name" name="category_name" placeholder="Nova kategorija" >
           </div>
         </div>
 
@@ -156,7 +155,6 @@ if (isset($_SESSION["user_id"])) {
 <script>
   $(document).ready(function (){
   $('.update-button').on('click', function() {
-    $('#edit-modal').show();
     $tr = $(this).closest('tr');
 
     var data = $tr.children("td").map(function() {
@@ -164,10 +162,9 @@ if (isset($_SESSION["user_id"])) {
     }).get();
     console.log(data);
 
-    $('#category_id_fetched').text(data[0]);
-    $('#category_name_fetched').text(data[1]);
+    $('#category_id').val(data[0]);
+    $('#category_name').val(data[1]);
 
-    console.log($('#category_name_fetched').val());
 
 
   });
