@@ -46,11 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <img src="photo/company-logo-small.png" alt="company logo">
 
 <!-- #### Dio koda koji se aktivira kada je prijava neuspješna/kriva #### -->
+
       <div class="invalid-login">
           <?php if ($is_invalid): ?>
             <em>Invalid login</em>
           <?php endif; ?>
-       </div>
+      </div>
 
 <!-- #### Obrazac za prijavu, pri krivoj prijavi pamti korisničko ime, a lozinku ne #### -->
       <form class="login-form" method="post">
