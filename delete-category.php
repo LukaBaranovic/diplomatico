@@ -42,7 +42,7 @@ if (isset($_POST['category_id'])) {
  Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti brisanja iz baze podataka, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
 
- Napravljeno: 2.12.2024.
+ Napravljeno: 27.11.2024.
  Zadnja promjena: 2.12.2024
  Napravio: Luka Baranović
 -->

@@ -182,7 +182,7 @@ if (isset($_SESSION["user_id"])) {
           <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body" style="margin: 0;">
           <h5 id="delete_category_name_fetched"></h5>
         </div>
 
@@ -218,11 +218,12 @@ if (isset($_SESSION["user_id"])) {
          </div>
 
           <div class="input-box">
-            <input type="text" name="item_price" placeholder="Cijena artikla">
+            <input type="number" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
           </div>
 
+          <div class="input-box">
             <div class="dropdown-selector">
-              <input type="text" class="text-box" placeholder="Odaberi kategoriju" readonly>
+              <input type="text" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
               <div class="category-option">
 
                 <?php
@@ -242,7 +243,7 @@ if (isset($_SESSION["user_id"])) {
                   ?>
               </div>
             </div>
-
+          </div>
         </div>
 
         <div class="modal-footer">

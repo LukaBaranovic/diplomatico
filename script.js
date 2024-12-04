@@ -1,6 +1,7 @@
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
+const dropdown = document.querySelector('.dropdown-selector');
 
 openModalButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -29,10 +30,14 @@ function openModal(modal) {
   overlay.classList.add('active')
 }
 
+
+// dropdown.classList.remove('selectorActive'); -- kad zatvorimo modal, dropdown ostane otvoren ako ga nismo zatvorili. Ovo to rješava.
 function closeModal(modal) {
   if (modal == null) return
   modal.classList.remove('active')
   overlay.classList.remove('active')
+
+  dropdown.classList.remove('selectorActive');
 }
 
 // JS kod do ovdje je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
@@ -78,8 +83,6 @@ $(document).ready(function (){
 function showCategory(selected){
   document.querySelector('.text-box').value = selected;
 }
-
-let dropdown = document.querySelector('.dropdown-selector');
 dropdown.onclick = function() {
   dropdown.classList.toggle('selectorActive');
 }

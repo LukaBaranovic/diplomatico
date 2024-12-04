@@ -71,7 +71,7 @@ if (isset($_POST['edit_category']) && !empty($_POST['category_name'])) {
  Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti unosa u bazu podatak, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
 
- Napravljeno: 2.12.2024.
+ Napravljeno: 26.11.2024.
  Zadnja promjena: 2.12.2024
  Napravio: Luka Baranović
 -->

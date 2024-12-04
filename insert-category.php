@@ -4,13 +4,13 @@
 session_start();
 $mysqli = require_once __DIR__ . "/database.php";
 
-$user_id = (int)$_SESSION['user_id'];
-$company_id = (int)$_SESSION['company_id'];
-
 // Provjerava jesu li vrijednosti 'user_id' i 'company_id' upisane u sesiju.
 if (!isset($_SESSION['user_id']) || empty($_SESSION['company_id'])) {
     die("Session user_id or company_id is not set or is invalid.");
 }
+
+$user_id = (int)$_SESSION['user_id'];
+$company_id = (int)$_SESSION['company_id'];
 
 // Provjerava jesmo li uopće išta unijeli u obrazac
 if (isset($_POST['add_category']) && !empty($_POST['category_name'])) {
@@ -62,7 +62,7 @@ if (isset($_POST['add_category']) && !empty($_POST['category_name'])) {
  Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti unosa u bazu podatak, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
 
- Napravljeno: 2.12.2024.
+ Napravljeno: 25.11.2024.
  Zadnja promjena: 2.12.2024
  Napravio: Luka Baranović
 -->
