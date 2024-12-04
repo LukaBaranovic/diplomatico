@@ -34,9 +34,10 @@ if (isset($_SESSION["user_id"])) {
 </head>
 
 <body>
-    
-  <button type="button" class="button" data-modal-target="#add-modal">Dodaj novu kategoriju</button> <!-- new category button -->
-
+  
+  <button type="button" class="button" data-modal-target="#add-category-modal">Dodaj novu kategoriju</button> <!-- new category button -->
+  <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
+  
   <table>
     <thead>
       <tr>
@@ -49,21 +50,20 @@ if (isset($_SESSION["user_id"])) {
     
     <tbody>
       <?php
-      $query = "SELECT * FROM category WHERE company_id = $company_id";
+      $displayCategoryQuery = "SELECT * FROM category WHERE company_id = $company_id";
+      $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
 
-      $result = mysqli_query($mysqli, $query);
-
-      if(!$result){
+      if(!$displayCategoryResult){
         die("Query failed".mysqli_error($mysqli));
       }
       else {
-        while($row = mysqli_fetch_assoc($result)){
+        while($row = mysqli_fetch_assoc($displayCategoryResult)){
           ?>
         <tr>
           <td><?php echo $row['category_id'];  ?></td>
           <td><?php echo $row['category_name'];  ?></td>
-          <td><button type="button" class="button update-button" data-modal-target="#edit-modal">Uredi</button></td>
-          <td><button type="button" class="button delete-button" data-modal-target="#delete-modal">Izbriši</button></td>
+          <td><button type="button" class="button update-button" data-modal-target="#edit-category-modal">Uredi</button></td>
+          <td><button type="button" class="button delete-button" data-modal-target="#delete-category-modal">Izbriši</button></td>
         </tr>
           <?php
         }
@@ -71,6 +71,32 @@ if (isset($_SESSION["user_id"])) {
       ?>
     </tbody>
   </table>
+
+<!-- #################################################################################################################################-->
+  <hr>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -83,7 +109,7 @@ if (isset($_SESSION["user_id"])) {
   <form action="insert-category.php" method="post">
     <div id="overlay"></div>
     <div>
-      <div class="modal" id="add-modal">
+      <div class="modal" id="add-category-modal">
 
         <div class="modal-header">
           <div class="title">Unesi novu kategoriju</div>
@@ -114,7 +140,7 @@ if (isset($_SESSION["user_id"])) {
   <form action="edit-category.php" method="post">
     <div id="overlay"></div>
     <div>
-      <div class="modal" id="edit-modal">
+      <div class="modal" id="edit-category-modal">
 
         <input type="hidden" id="edit_category_id_fetched" name="category_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
 
@@ -147,7 +173,7 @@ if (isset($_SESSION["user_id"])) {
   <form action="delete-category.php" method="post">
     <div id="overlay"></div>
     <div>
-      <div class="modal" id="delete-modal">
+      <div class="modal" id="delete-category-modal">
 
         <input type="hidden" id="delete_category_id_fetched" name="category_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
 
@@ -157,9 +183,7 @@ if (isset($_SESSION["user_id"])) {
         </div>
 
         <div class="modal-body">
-          
           <h5 id="delete_category_name_fetched"></h5>
-    
         </div>
 
         <div class="modal-footer">
@@ -172,6 +196,70 @@ if (isset($_SESSION["user_id"])) {
   </form>
 
 <!-- Kraj obrasca koji koristimo za brisanje kategorije -->
+
+<!-- #################################################################################################################################-->
+
+<!-- Početak obrasca koji koristimo za dodavanje artikla -->
+
+<form action="insert-item.php" method="post">
+    
+    <div>
+      <div class="modal" id="insert-item-modal">
+
+        <div class="modal-header">
+          <div class="title">Dodaj novi artikal</div>
+          <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
+        </div>
+
+        <div class="modal-body">
+
+          <div class="input-box">
+            <input type="text" name="item_name" placeholder="Nova kategorija">
+         </div>
+
+          <div class="input-box">
+            <input type="text" name="item_price" placeholder="Cijena artikla">
+          </div>
+
+            <div class="dropdown-selector">
+              <input type="text" class="text-box" placeholder="Odaberi kategoriju" readonly>
+              <div class="category-option">
+
+                <?php
+                  $displayCategoryQuery = "SELECT * FROM category WHERE company_id = $company_id";
+                  $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
+
+                  if(!$displayCategoryResult){
+                    die("Query failed".mysqli_error($mysqli));
+                  }
+                  else {
+                    while($row = mysqli_fetch_assoc($displayCategoryResult)){
+                      ?>
+                    <div onclick="showCategory('<?php echo $row['category_name'];  ?>')"><?php echo $row['category_name'];  ?></div>
+                      <?php
+                    }
+                  }
+                  ?>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="button save-button" name="add_item" value="Spremi">    <!-- save button -->
+          <button type="button" data-close-button class="button cancel-button">Zatvori</button>  <!-- cancel button -->
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+
+
+
+
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -71,4 +71,15 @@ $(document).ready(function (){
   });
 });
 
+// ####################################################################################################################################
 
+// JS korišten za dropdown selector
+
+function showCategory(selected){
+  document.querySelector('.text-box').value = selected;
+}
+
+let dropdown = document.querySelector('.dropdown-selector');
+dropdown.onclick = function() {
+  dropdown.classList.toggle('selectorActive');
+}

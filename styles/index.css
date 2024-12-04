@@ -1,3 +1,5 @@
+/* CSS korišten za obrazac/formular */
+
 .modal {
   position: fixed;
   top: 50%;
@@ -40,11 +42,11 @@
 
 .modal-body {
   padding: 10px 15px;
-  border-bottom: 1px solid black;
 }
 
 .modal-footer {
   padding: 10px 15px;
+  border-top: 1px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,15 +68,6 @@
   opacity: 1;
   pointer-events: all;
 }
-
-
-.box1{
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 
 .input-box {
   position: relative;
@@ -121,3 +114,77 @@
 
 /*  Do ovjde je CSS korišten za obrazac/formular   */
 
+/* CSS korišten za selector kategorija */
+
+.dropdown-selector {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+.dropdown-selector::before {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 10000;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #333;
+  border-top: 2px solid rgb(237, 237, 237);
+  border-right: 2px solid rgb(237, 237, 237);
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+.dropdown-selector.selectorActive::before {
+  top: 22px;
+  transform: rotate(-225deg);
+}
+
+.dropdown-selector input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: rgb(237, 237, 237);
+  border: none;
+  outline: none;
+  padding: 20px 45px 20px 20px;
+  border-radius: 10px;
+}
+
+.dropdown-selector.selectorActive input{
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
+.dropdown-selector .category-option {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  background-color: rgb(237, 237, 237);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+.dropdown-selector.selectorActive .category-option {
+  display: block;
+
+}
+
+.dropdown-selector .category-option div {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.dropdown-selector .category-option div:hover {
+  background-color: aquamarine;
+}
+
+/* Do ovdje je CSS korišten za selector kategorija */

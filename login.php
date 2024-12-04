@@ -1,5 +1,5 @@
 <?php
-// #### PHP kod koji služio za Autentikaciju korisnika ####
+// PHP kod koji služio za autentikaciju korisnika 
 
 $is_invalid = false; 
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="login-form-container">
       <img src="photo/company-logo-small.png" alt="company logo">
 
-<!-- #### Dio koda koji se aktivira kada je prijava neuspješna/kriva #### -->
+<!-- Dio koda koji se aktivira kada je prijava neuspješna/kriva -->
 
       <div class="invalid-login">
           <?php if ($is_invalid): ?>
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <?php endif; ?>
       </div>
 
-<!-- #### Obrazac za prijavu, pri krivoj prijavi pamti korisničko ime, a lozinku ne #### -->
+<!-- Obrazac za prijavu, pri krivoj prijavi pamti korisničko ime, a lozinku ne -->
       <form class="login-form" method="post">
         <div class="login-input-box">
           <input type="text" placeholder="Korisničko ime" name="username" id="username" 
