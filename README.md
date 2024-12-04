@@ -1,19 +1,7 @@
 # diplomatico
 
+  1. Korak
 
-
-$(document).ready(function (){
-  $('.update-button').on('click', function() {
-    $tr = $(this).closest('tr');
-
-    var data = $tr.children("td").map(function() {
-      return $(this).text();
-    }).get();
-    console.log(data);
-
-    $('#category_id_fetched').val(data[0]);
-    $('#category_name_fetched').val(data[1]);
-
-
-  });
-});
+Izrada stranice za login, username i password se dobiva od admina/vlasnika programa Diplomatico Master.
+Fotografija izgleda stranice za prijavu korisnika. 
+![login page](page-photo/login.png)
