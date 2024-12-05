@@ -7,10 +7,12 @@ $mysqli = require_once __DIR__ . "/database.php";
 $category_id = $_POST['category_id'];
 $category_id = mysqli_real_escape_string($mysqli, $category_id);
 
+echo $category_id;
+
 // Pripremamo query za brisanje.
 $query = "DELETE FROM `category` WHERE `category_id` = ?";
 
-echo $category_id;
+echo '2';
 
 // Provjerava imamo li category_id
 if (isset($_POST['category_id'])) {
@@ -21,15 +23,19 @@ if (isset($_POST['category_id'])) {
 
   // Brisanje.
   if ($stmt->execute()) {
+    echo '4';
     header('Location: index.php?message=success');
   } else {
+    echo '5';
     header('Location: index.php?message=error');
   }
   $stmt->close();
-  } 
-  } else {
-    header('Location: index.php?message=error');
+  }
+  echo '3';
 }
+  else {
+  header('Location: index.php?message=error');
+} 
 ?>
 
 <!-- #### Ova .php datoteka se koristi za brisanje kategorija. U script.js datoteci dobavljamo
@@ -38,6 +44,7 @@ if (isset($_POST['category_id'])) {
  Poruke:
  ?message=succes: ako je brisanje uspješno.
  ?message=error: ako je brisanje neuspješno.
+ ?message=error-dependency: ako postoji artikli pod ovom kategorijom 
 
  Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti brisanja iz baze podataka, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.

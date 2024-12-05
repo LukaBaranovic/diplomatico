@@ -47,7 +47,7 @@ function closeModal(modal) {
 // AJAX i JS kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
 
 $(document).ready(function (){
-  $('.update-button').on('click', function() {
+  $('.edit-category').on('click', function() {
     $tr = $(this).closest('tr');
 
     var data = $tr.children("td").map(function() {
@@ -60,10 +60,10 @@ $(document).ready(function (){
   });
 });
 
-// AJAX i JS kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši'
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši'
 
 $(document).ready(function (){
-  $('.delete-button').on('click', function() {
+  $('.delete-category').on('click', function() {
     $tr = $(this).closest('tr');
 
     var data = $tr.children("td").map(function() {
@@ -86,3 +86,21 @@ function showCategory(selected){
 dropdown.onclick = function() {
   dropdown.classList.toggle('selectorActive');
 }
+
+// ####################################################################################################################################
+
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
+
+$(document).ready(function (){
+  $('.edit-item').on('click', function() {
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+    console.log(data);
+
+    $('#edit_category_id_fetched').val(data[0]);
+    $('#edit_category_name_fetched').val(data[1]);
+  });
+});

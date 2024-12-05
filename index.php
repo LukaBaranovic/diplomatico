@@ -50,7 +50,7 @@ if (isset($_SESSION["user_id"])) {
     
     <tbody>
       <?php
-      $displayCategoryQuery = "SELECT * FROM category WHERE company_id = $company_id";
+      $displayCategoryQuery = "SELECT * FROM `category` WHERE `company_id` = $company_id";
       $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
 
       if(!$displayCategoryResult){
@@ -62,8 +62,8 @@ if (isset($_SESSION["user_id"])) {
         <tr>
           <td><?php echo $row['category_id'];  ?></td>
           <td><?php echo $row['category_name'];  ?></td>
-          <td><button type="button" class="button update-button" data-modal-target="#edit-category-modal">Uredi</button></td>
-          <td><button type="button" class="button delete-button" data-modal-target="#delete-category-modal">Izbriši</button></td>
+          <td><button type="button" class="button update-button edit-category" data-modal-target="#edit-category-modal">Uredi</button></td>
+          <td><button type="button" class="button delete-button delete-category" data-modal-target="#delete-category-modal">Izbriši</button></td>
         </tr>
           <?php
         }
@@ -76,6 +76,44 @@ if (isset($_SESSION["user_id"])) {
   <hr>
 
 
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Artikal</th>
+        <th>Cijena</th>
+        <th>Kategorija</th>
+        <th>Uredi</th>
+        <th>Izbriši</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <?php
+      $displayItemQuery = "SELECT * FROM item
+      JOIN category ON item.category_id = category.category_id";
+      $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
+
+      if(!$displayItemResult){
+        die("Query failed".mysqli_error($mysqli));
+      }
+      else {
+        while($row = mysqli_fetch_assoc($displayItemResult)){
+          ?>
+        <tr>
+          <td><?php echo $row['item_id'];  ?></td>
+          <td><?php echo $row['item_name'];  ?></td>
+          <td><?php echo $row['item_price'], '€';  ?></td>
+          <td><?php echo $row['category_name'] ?></td>
+          <td><button type="button" class="button update-button edit-item" data-modal-target="#edit-item-modal">Uredi</button></td>
+          <td><button type="button" class="button delete-button delete-item" data-modal-target="#delete-item-modal">Izbriši</button></td>
+        </tr>
+          <?php
+        }
+      }
+      ?>
+    </tbody>
+  </table>
   
 
 
@@ -198,11 +236,13 @@ if (isset($_SESSION["user_id"])) {
 <!-- Kraj obrasca koji koristimo za brisanje kategorije -->
 
 <!-- #################################################################################################################################-->
+<!-- #################################################################################################################################-->
+<!-- #################################################################################################################################-->
 
 <!-- Početak obrasca koji koristimo za dodavanje artikla -->
 
-<form action="insert-item.php" method="post">
-    
+  <form action="insert-item.php" method="post">
+    <div id="overlay"></div>
     <div>
       <div class="modal" id="insert-item-modal">
 
@@ -214,7 +254,7 @@ if (isset($_SESSION["user_id"])) {
         <div class="modal-body">
 
           <div class="input-box">
-            <input type="text" name="item_name" placeholder="Nova kategorija">
+            <input type="text" name="item_name" placeholder="Novi artikl">
          </div>
 
           <div class="input-box">
@@ -255,8 +295,52 @@ if (isset($_SESSION["user_id"])) {
     </div>
   </form>
 
+<!-- Kraj obrasca koji koristimo za dodavanje artikla -->
+
+<!-- #################################################################################################################################-->
+
+<!-- Početak obrasca koji koristimo za uređivanje artikla -->
+
+  <form action="edit-item.php" method="post">
+    <div id="overlay"></div>
+    <div>
+      <div class="modal" id="edit-item-modal">
+
+        <input type="hidden" id="edit_item_id_fetched" name="item_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
+
+        <div class="modal-header">
+          <div class="title">Uredi artikal</div>
+          <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
+        </div>
+
+        <div class="modal-body">
+
+          <div class="input-box">
+            <input type="text" id="edit_item_name_fetched" name="category_name" placeholder="Izmjeni artikal">  
+          </div>
+
+          <div class="input-box">
+            <input type="number" id="edit_item_price_fetched" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
+          </div>
 
 
+
+
+
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="button save-button" name="edit_category" value="Spremi">    <!-- save button -->
+          <button type="button" data-close-button class="button cancel-button">Zatvori</button>  <!-- cancel button -->
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+<!-- Kraj obrasca koji koristimo za uređivanje artikla -->
+
+<!-- #################################################################################################################################-->
 
 
 

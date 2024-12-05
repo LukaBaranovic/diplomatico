@@ -23,6 +23,6 @@ return $mysqli;
 // #### Korisnik:        "root"
 // #### Lozinka:         ""
 // ####
-// #### Napravljeno:     28.11.2024.
+// #### Napravljeno:     20.11.2024.
 // #### Zadnja promjena: 2.12.2024.
 // #### Napravio: Luka Baranović
