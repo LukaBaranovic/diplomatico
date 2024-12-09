@@ -38,6 +38,13 @@ if (isset($_SESSION["user_id"])) {
   <button type="button" class="button" data-modal-target="#add-category-modal">Dodaj novu kategoriju</button> <!-- new category button -->
   <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
   
+
+
+
+
+
+
+
   <table>
     <thead>
       <tr>
@@ -144,7 +151,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za dodavanje novih kategorija -->
 
-  <form action="insert-category.php" method="post">
+  <form action="crud/insert-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="add-category-modal">
@@ -175,7 +182,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za uređivanje kategorija -->
 
-  <form action="edit-category.php" method="post">
+  <form action="crud/edit-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="edit-category-modal">
@@ -208,7 +215,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za brisanje kategorije -->
 
-  <form action="delete-category.php" method="post">
+  <form action="crud/delete-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="delete-category-modal">
@@ -236,12 +243,10 @@ if (isset($_SESSION["user_id"])) {
 <!-- Kraj obrasca koji koristimo za brisanje kategorije -->
 
 <!-- #################################################################################################################################-->
-<!-- #################################################################################################################################-->
-<!-- #################################################################################################################################-->
 
 <!-- Početak obrasca koji koristimo za dodavanje artikla -->
 
-  <form action="insert-item.php" method="post">
+  <form action="crud/insert-item.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="insert-item-modal">
@@ -263,7 +268,7 @@ if (isset($_SESSION["user_id"])) {
 
           <div class="input-box">
             <div class="dropdown-selector">
-              <input type="text" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
+              <input type="button" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly data-dropdown-target>
               <div class="category-option">
 
                 <?php
@@ -301,7 +306,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za uređivanje artikla -->
 
-  <form action="edit-item.php" method="post">
+  <form action="crud/edit-item.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="edit-item-modal">
@@ -323,7 +328,29 @@ if (isset($_SESSION["user_id"])) {
             <input type="number" id="edit_item_price_fetched" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
           </div>
 
+          <div class="input-box">
+            <div class="dropdown-selector" >
+              <input type="text" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
+              <div class="category-option">
 
+                <?php
+                  $displayCategoryQuery = "SELECT * FROM category WHERE company_id = $company_id";
+                  $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
+
+                  if(!$displayCategoryResult){
+                    die("Query failed".mysqli_error($mysqli));
+                  }
+                  else {
+                    while($row = mysqli_fetch_assoc($displayCategoryResult)){
+                      ?>
+                    <div onclick="showCategory('<?php echo $row['category_name'];  ?>')"><?php echo $row['category_name'];  ?></div>
+                      <?php
+                    }
+                  }
+                  ?>
+              </div>
+            </div>
+          </div>
 
 
 

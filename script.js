@@ -1,7 +1,7 @@
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
-const dropdown = document.querySelector('.dropdown-selector');
+// const dropdown = document.querySelector('.dropdown-selector')
 
 openModalButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -9,6 +9,34 @@ openModalButtons.forEach(button => {
     openModal(modal)
   })
 })
+
+
+
+
+
+
+const openDropdownButtons = document.querySelectorAll('[data-dropdown-target]')
+
+openDropdownButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const dropdown = document.querySelector(button.dataset.dropdownTarget)
+    openDropdown(dropdown)
+  })
+})
+
+function openDropdown(dropdown){
+  if (dropdown == null) return
+  dropdown.classList.add('.selector.active')
+}
+
+
+
+
+
+
+
+
+
 
 overlay.addEventListener('click', () => {
   const modals = document.querySelectorAll('.modal.active')
@@ -78,14 +106,29 @@ $(document).ready(function (){
 
 // ####################################################################################################################################
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ####################################################################################################################################
+
 // JS korišten za dropdown selector
 
-function showCategory(selected){
-  document.querySelector('.text-box').value = selected;
-}
-dropdown.onclick = function() {
-  dropdown.classList.toggle('selectorActive');
-}
+//function showCategory(selected){
+//  document.querySelector('.text-box').value = selected;
+//}
+//dropdown.onclick = function() {
+//  dropdown.classList.toggle('selectorActive');
+//}
 
 // ####################################################################################################################################
 

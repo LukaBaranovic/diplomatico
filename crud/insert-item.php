@@ -30,9 +30,9 @@ if (isset($_POST['add_item']) && !empty($_POST['item_name']) && !empty($_POST['i
     $category_id = $category['category_id'];
 
     // Provjeravamo postoji li duplikat
-    $sql_check = "SELECT COUNT(*) FROM item WHERE item_name = ? AND category_id = ?";
+    $sql_check = "SELECT COUNT(*) FROM item WHERE item_name = ? AND company_id = ?";
     $stmt_check = $mysqli->prepare($sql_check);
-    $stmt_check->bind_param("si", $item_name, $category_id);
+    $stmt_check->bind_param("si", $item_name, $company_id);
     $stmt_check->execute();
     $stmt_check->bind_result($count);
     $stmt_check->fetch();
