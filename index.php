@@ -220,14 +220,14 @@ if (isset($_SESSION["user_id"])) {
     <div>
       <div class="modal" id="delete-category-modal">
 
-        <input type="hidden" id="delete_category_id_fetched" name="category_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
+        <input type="hidden" id="delete_category_id_fetched" name="category_id">  <!-- ovisno o ID-u ćemo mjenjati brisati kategoriju -->
 
         <div class="modal-header">
           <div class="title">Jeste li sigurni da želite izbrisati:</div>
           <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
         </div>
 
-        <div class="modal-body" style="margin: 0;">
+        <div class="modal-body" style="padding-top: 30px;">
           <h5 id="delete_category_name_fetched"></h5>
         </div>
 
@@ -312,7 +312,7 @@ if (isset($_SESSION["user_id"])) {
     <div>
       <div class="modal" id="edit-item-modal">
 
-        <input type="hidden" id="edit_item_id_fetched" name="item_id">  <!-- ovisno o ID-u ćemo mjenjati naziv kategorije -->
+        <input type="hidden" id="edit_item_id_fetched" name="item_id">  <!-- ovisno o ID-u ćemo mjenjati naziv artikla, cijenu i kategoriju -->
 
         <div class="modal-header">
           <div class="title">Uredi artikal</div>
@@ -352,9 +352,6 @@ if (isset($_SESSION["user_id"])) {
               </div>
             </div>
           </div>
-
-
-
         </div>
 
         <div class="modal-footer">
@@ -370,7 +367,36 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- #################################################################################################################################-->
 
+<!-- Početak obrasca koji koristimo za brisanje artikla -->
 
+<form action="delete-item.php" method="post">
+    <div id="overlay"></div>
+    <div>
+      <div class="modal" id="delete-item-modal">
+
+        <input type="hidden" id="delete_item_id_fetched" name="item_id">  <!-- ovisno o ID-u ćemo mjenjati brisati artikal -->
+
+        <div class="modal-header">
+          <div class="title">Jeste li sigurni da želite izbrisati:</div>
+          <button type="button" data-close-button class="close-button">&times;</button>  <!-- cancel 'x' button -->
+        </div>
+
+        <div class="modal-body">
+
+          <div class="input-box">
+            <h5 id="delete_item_name_fetched"></h5>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="button save-button" name="delete_item_name" value="Da, izbriši">    <!-- save button -->
+          <button type="button" data-close-button class="button cancel-button">Zatvori</button>  <!-- cancel button -->
+        </div>
+
+      </div>
+    </div>
+  </form>
 
 
 

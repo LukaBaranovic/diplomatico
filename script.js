@@ -18,7 +18,7 @@ document.querySelectorAll('.dropdown-selector').forEach(dropdown => {
   });
 });
 
-// Do ovjde je JS korišten za dropdown
+// Do ovjde je JS kod korišten za dropdown  (+ jedan dio u modalu, naglašeno je)
 
 // ##################################################################################################################################
 
@@ -70,13 +70,12 @@ function closeModal(modal) {
 }
 
 
-// vidi ovo kako prominit
 
 // JS kod do ovdje je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
 
 // ##################################################################################################################################
 
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za kategorije
 
 $(document).ready(function (){
   $('.edit-category').on('click', function() {
@@ -92,7 +91,7 @@ $(document).ready(function (){
   });
 });
 
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši'
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši' za kategorije
 
 $(document).ready(function (){
   $('.delete-category').on('click', function() {
@@ -110,7 +109,7 @@ $(document).ready(function (){
 
 // ####################################################################################################################################
 
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za artikle
 
 $(document).ready(function (){
   $('.edit-item').on('click', function() {
@@ -125,9 +124,21 @@ $(document).ready(function (){
     $('#edit_item_name_fetched').val(data[1]);
     $('#edit_item_price_fetched').val(parseFloat(data[2]) || 0);
     $('#edit_item_category_fetched').val(data[3]);
+  });
+});
 
 
-    console.log($('#edit_item_id_fetched').val()); 
-   
+
+$(document).ready(function (){
+  $('.delete-item').on('click', function() {
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+    console.log(data);
+
+    $('#delete_item_id_fetched').val(data[0]);
+    $('#delete_item_name_fetched').text(data[1]);
   });
 });
