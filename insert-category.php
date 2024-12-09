@@ -15,7 +15,7 @@ $company_id = (int)$_SESSION['company_id'];
 // Provjerava jesmo li uopće išta unijeli u obrazac
 if (isset($_POST['add_category']) && !empty($_POST['category_name'])) {
 
-    $category_name = mysqli_real_escape_string($mysqli, $_POST['category_name']); 
+    $category_name = trim($_POST['category_name']);  
 
     // Provjerava je li vrijednost unosa korisnika već postoji u bazi podataka.
 

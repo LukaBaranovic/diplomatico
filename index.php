@@ -266,9 +266,6 @@ if (isset($_SESSION["user_id"])) {
             <input type="number" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
           </div>
 
-
-
-
           <div class="input-box">
             <div class="dropdown-selector">
               <input type="text" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
@@ -292,7 +289,6 @@ if (isset($_SESSION["user_id"])) {
               </div>
             </div>
           </div>
-
 
         </div>
 
@@ -326,16 +322,16 @@ if (isset($_SESSION["user_id"])) {
         <div class="modal-body">
 
           <div class="input-box">
-            <input type="text" id="edit_item_name_fetched" name="category_name" placeholder="Izmjeni artikal">  
+            <input type="text" id="edit_item_name_fetched" name="item_name" placeholder="Izmjeni artikal">  
           </div>
 
           <div class="input-box">
-            <input type="number" id="edit_item_price_fetched" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
+            <input type="number" id="edit_item_price_fetched"  name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
           </div>
 
           <div class="input-box">
             <div class="dropdown-selector" >
-              <input type="text" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
+              <input type="text" id="edit_item_category_fetched" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
               <div class="category-option">
 
                 <?php

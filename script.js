@@ -62,8 +62,10 @@ function closeModal(modal) {
   modal.classList.remove('active')
   overlay.classList.remove('active')
 
-  dropdown.classList.remove('selectorActive');
+  // dropdown.classList.remove('selectorActive');
 }
+
+// vidi ovo kako prominit
 
 // JS kod do ovdje je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
 
@@ -103,32 +105,6 @@ $(document).ready(function (){
 
 // ####################################################################################################################################
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ####################################################################################################################################
-
-// JS korišten za dropdown selector
-
-//function showCategory(selected){
-//  document.querySelector('.text-box').value = selected;
-//}
-//dropdown.onclick = function() {
-//  dropdown.classList.toggle('selectorActive');
-//}
-
-// ####################################################################################################################################
-
 // AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
 
 $(document).ready(function (){
@@ -140,7 +116,13 @@ $(document).ready(function (){
     }).get();
     console.log(data);
 
-    $('#edit_category_id_fetched').val(data[0]);
-    $('#edit_category_name_fetched').val(data[1]);
+    $('#edit_item_id_fetched').val(data[0]);
+    $('#edit_item_name_fetched').val(data[1]);
+    $('#edit_item_price_fetched').val(parseFloat(data[2]) || 0);
+    $('#edit_item_category_fetched').val(data[3]);
+
+
+    console.log($('#edit_item_id_fetched').val()); 
+   
   });
 });

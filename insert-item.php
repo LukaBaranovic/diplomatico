@@ -17,7 +17,7 @@ if (isset($_POST['add_item']) && !empty($_POST['item_name']) && !empty($_POST['i
 
     // Dobavljamo podatke iz obrasca
     $category_name = mysqli_real_escape_string($mysqli, $_POST['category_name']); 
-    $item_name = mysqli_real_escape_string($mysqli, $_POST['item_name']); 
+    $item_name = trim($_POST['item_name']);  
     $item_price = floatval($_POST['item_price']);
 
     // Dobavljamo category_id od category_name
