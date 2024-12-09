@@ -138,6 +138,7 @@
   transition: 0.5s;
   pointer-events: none;
 }
+
 .dropdown-selector.selectorActive::before {
   top: 22px;
   transform: rotate(-225deg);

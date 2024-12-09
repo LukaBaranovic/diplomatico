@@ -1,7 +1,32 @@
+// JS kod korišten za dropdown
+
+function show(selectedCategory) {
+  const textBox = this.closest('.dropdown-selector').querySelector('.text-box');
+  textBox.value = selectedCategory;
+}
+
+document.querySelectorAll('.dropdown-selector').forEach(dropdown => {
+  dropdown.onclick = function() {
+    dropdown.classList.toggle('selectorActive');
+  };
+
+  const options = dropdown.querySelectorAll('.category-option div');
+  options.forEach(option => {
+    option.addEventListener('click', function() {
+      show.call(this, this.textContent);
+    });
+  });
+});
+
+// Do ovjde je JS korišten za dropdown
+
+// ##################################################################################################################################
+
+// JS kod odavde je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
+
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
-// const dropdown = document.querySelector('.dropdown-selector')
 
 openModalButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -9,34 +34,6 @@ openModalButtons.forEach(button => {
     openModal(modal)
   })
 })
-
-
-
-
-
-
-const openDropdownButtons = document.querySelectorAll('[data-dropdown-target]')
-
-openDropdownButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const dropdown = document.querySelector(button.dataset.dropdownTarget)
-    openDropdown(dropdown)
-  })
-})
-
-function openDropdown(dropdown){
-  if (dropdown == null) return
-  dropdown.classList.add('.selector.active')
-}
-
-
-
-
-
-
-
-
-
 
 overlay.addEventListener('click', () => {
   const modals = document.querySelectorAll('.modal.active')
@@ -72,7 +69,7 @@ function closeModal(modal) {
 
 // ##################################################################################################################################
 
-// AJAX i JS kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi'
 
 $(document).ready(function (){
   $('.edit-category').on('click', function() {

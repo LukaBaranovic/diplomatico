@@ -151,7 +151,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za dodavanje novih kategorija -->
 
-  <form action="crud/insert-category.php" method="post">
+  <form action="insert-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="add-category-modal">
@@ -182,7 +182,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za uređivanje kategorija -->
 
-  <form action="crud/edit-category.php" method="post">
+  <form action="edit-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="edit-category-modal">
@@ -215,7 +215,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za brisanje kategorije -->
 
-  <form action="crud/delete-category.php" method="post">
+  <form action="delete-category.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="delete-category-modal">
@@ -246,7 +246,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za dodavanje artikla -->
 
-  <form action="crud/insert-item.php" method="post">
+  <form action="insert-item.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="insert-item-modal">
@@ -266,9 +266,12 @@ if (isset($_SESSION["user_id"])) {
             <input type="number" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
           </div>
 
+
+
+
           <div class="input-box">
             <div class="dropdown-selector">
-              <input type="button" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly data-dropdown-target>
+              <input type="text" name="category_name" class="text-box" placeholder="Odaberi kategoriju" readonly>
               <div class="category-option">
 
                 <?php
@@ -289,6 +292,8 @@ if (isset($_SESSION["user_id"])) {
               </div>
             </div>
           </div>
+
+
         </div>
 
         <div class="modal-footer">
@@ -306,7 +311,7 @@ if (isset($_SESSION["user_id"])) {
 
 <!-- Početak obrasca koji koristimo za uređivanje artikla -->
 
-  <form action="crud/edit-item.php" method="post">
+  <form action="edit-item.php" method="post">
     <div id="overlay"></div>
     <div>
       <div class="modal" id="edit-item-modal">
