@@ -61,9 +61,14 @@ function closeModal(modal) {
   if (modal == null) return
   modal.classList.remove('active')
   overlay.classList.remove('active')
-
-  // dropdown.classList.remove('selectorActive');
+  
+  // Kad uređujemo i ostavimo dropdown otvoren, kada izađemo iz modala moramo zatvorit taj dropdown
+  const dropdown = modal.querySelector('.dropdown-selector');
+  if (dropdown) {
+    dropdown.classList.remove('selectorActive');
+  }
 }
+
 
 // vidi ovo kako prominit
 

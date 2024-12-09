@@ -20,6 +20,7 @@ echo $item_count;
 // Ako ima children elemenata, vracamo se na početnu stranicu.
 if ($item_count == 0) {
 
+  // Pripremamo query 
   $query = "DELETE FROM `category` WHERE `category_id` = ?";
 
   // Provjerava imamo li category_id

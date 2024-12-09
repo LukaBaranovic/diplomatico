@@ -358,7 +358,7 @@ if (isset($_SESSION["user_id"])) {
         </div>
 
         <div class="modal-footer">
-          <input type="submit" class="button save-button" name="edit_category" value="Spremi">    <!-- save button -->
+          <input type="submit" class="button save-button" name="edit_item" value="Spremi">    <!-- save button -->
           <button type="button" data-close-button class="button cancel-button">Zatvori</button>  <!-- cancel button -->
         </div>
 

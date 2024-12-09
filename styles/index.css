@@ -172,6 +172,8 @@
   border-bottom-right-radius: 10px;
   overflow: hidden;
   display: none;
+  max-height: 200px;  
+  overflow-y: auto; 
 }
 
 .dropdown-selector.selectorActive .category-option {
