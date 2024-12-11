@@ -92,7 +92,9 @@ if (isset($_SESSION["user_id"])) {
     <tbody>
       <?php
       $displayItemQuery = "SELECT * FROM item
-      JOIN category ON item.category_id = category.category_id";
+      JOIN category ON item.category_id = category.category_id
+      WHERE item.company_id = '$company_id'";
+
       $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
 
       if(!$displayItemResult){

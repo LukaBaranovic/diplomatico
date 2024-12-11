@@ -28,9 +28,7 @@ Prilikom pogrešne prijave dobivamo poruku 'invalid login' crvene boje. Pamti se
 
 ![dodaj artikal](page-photo/add-item.png)
 
-# diplomatico
-# diplomatico
+![uredi artikal](page-photo/edit-item.png)
 
-# diplomatico
-# diplomatico
-# diplomatico
+![izbriši artikal](page-photo/delete-item.png)
+
