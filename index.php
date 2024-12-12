@@ -47,7 +47,6 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-
   <?php
     $displayCategoryQuery = "SELECT * FROM category WHERE company_id = '$company_id'";
     $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
@@ -67,14 +66,30 @@ if (isset($_SESSION["user_id"])) {
                      AND item.category_id = '$row[category_id]'";
          $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
 
+         if(!$displayItemResult || mysqli_num_rows($displayItemResult) == 0){
+          ?>
+          <table class="content-table">
+          <thead>
+            <tr  style="text-align:center;">
+                <th><?php echo $row['category_id']; ?> </th>
+                <th><?php echo $row['category_name']; ?> </th>
+                <th><button type="button" class="button update-button edit-category"  data-modal-target="#edit-category-modal">Uredi</button></th>
+                <th><button type="button" class="button delete-button delete-category" data-modal-target="#delete-category-modal">Izbriši</button></th>
+          
+            </tr>
+          </thead>
+         </table>
+         <?php
+         } else {
    ?>
         
 
         <table class="content-table">
           <thead>
-            <tr>
-              <th>ID: <?php echo $row['category_id']; ?> </th>
-              <th colspan="5">Kategorija: <?php echo $row['category_name']; ?> </th>
+            <tr style="text-align: center" >
+              <th><?php echo $row['category_id']; ?> </th>
+              <th colspan="2"><?php echo $row['category_name']; ?></th>
+              <th colspan="2"><button type="button" class="button update-button edit-category"  data-modal-target="#edit-category-modal">Uredi</button></th>
       
             </tr>
             <tr>
@@ -96,12 +111,12 @@ if (isset($_SESSION["user_id"])) {
               while($row = mysqli_fetch_assoc($displayItemResult)){
                 ?>
               <tr>
-                <td><?php echo $row['item_id'];  ?></td>
-                <td><?php echo $row['item_name'];  ?></td>
+                <td><?php echo $row['item_id']; ?></td>
+                <td><?php echo $row['item_name'];?></td>
                 <td><?php echo $row['item_price'], '€';  ?></td>
                 <td class="hidden"><?php echo $row['category_name'] ?></td>
-                <td><button type="button" class="button update-button edit-item" data-modal-target="#edit-item-modal">Uredi</button></td>
-                <td><button type="button" class="button delete-button delete-item" data-modal-target="#delete-item-modal">Izbriši</button></td>
+                <td style="text-align: center"><button type="button" class="button update-button edit-item" data-modal-target="#edit-item-modal">Uredi</button></td>
+                <td style="text-align: center"><button type="button" class="button delete-button delete-item" data-modal-target="#delete-item-modal">Izbriši</button></td>
               </tr>
                 <?php
               }
@@ -119,6 +134,7 @@ if (isset($_SESSION["user_id"])) {
           <?php
         }
       }
+    }
       ?>
 
 </div>

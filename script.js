@@ -75,13 +75,13 @@ function closeModal(modal) {
 
 // ##################################################################################################################################
 
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za kategorije
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za kategorije.
 
 $(document).ready(function (){
   $('.edit-category').on('click', function() {
     $tr = $(this).closest('tr');
 
-    var data = $tr.children("td").map(function() {
+    var data = $tr.children("th").map(function() {
       return $(this).text();
     }).get();
     console.log(data);
@@ -91,13 +91,13 @@ $(document).ready(function (){
   });
 });
 
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši' za kategorije
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši' za kategorije.
 
 $(document).ready(function (){
   $('.delete-category').on('click', function() {
     $tr = $(this).closest('tr');
 
-    var data = $tr.children("td").map(function() {
+    var data = $tr.children("th").map(function() {
       return $(this).text();
     }).get();
     console.log(data);
@@ -109,7 +109,7 @@ $(document).ready(function (){
 
 // ####################################################################################################################################
 
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za artikle
+// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za artikle.
 
 $(document).ready(function (){
   $('.edit-item').on('click', function() {
