@@ -195,29 +195,13 @@
 /* CSS korišten za tablicu/prikaz podotaka */
 
 .content-table-container {
+  margin: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
 }
-
-.category-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 80%;
-  height: auto;
-  background-color: white;
-  padding: 0 0 20px 0;
-}
-
-
-
-
-
-
 
 
 
