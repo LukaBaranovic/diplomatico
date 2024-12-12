@@ -38,7 +38,6 @@ if (isset($_SESSION["user_id"])) {
   <button type="button" class="button" data-modal-target="#add-category-modal">Dodaj novu kategoriju</button> <!-- new category button -->
   <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
   
-
   <table>
     <thead>
       <tr>
@@ -118,29 +117,69 @@ if (isset($_SESSION["user_id"])) {
     </tbody>
   </table>
   
+  
+
 <!-- #################################################################################################################################-->
   <hr>
 
 
-  <div class="datatable-container">
-    <div class="category-container">
+
+
+
+
+
+
+
+ <div class="content-table-container">
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>ID </th>
+        <th colspan="3">Kategorija</th>
+       
       
+      </tr>
+      <tr>
+        <th>ID</th>
+        <th>Artikal</th>
+        <th>Cijena</th>
+        <th>Kategorija</th>
+      </tr>
+    </thead>
+    <tbody>
 
-      <div class="category-container-header">
-        <p> ID: 55 </p>
-        <p> Kategorija: Topli napitci</p>
-      </div>
+    <?php
+      $displayItemQuery2 = "SELECT * FROM item
+      JOIN category ON item.category_id = category.category_id
+      WHERE item.company_id = '$company_id'";
 
-      <div class="category-container-body">
-        <p> zuka </p>
-      </div>
+      $displayItemResult2 = mysqli_query($mysqli, $displayItemQuery2);
 
+      if(!$displayItemResult2){
+        die("Query failed".mysqli_error($mysqli));
+      }
+      else {
+        while($row = mysqli_fetch_assoc($displayItemResult2)){
+          ?>
+        <tr>
+          <td><?php echo $row['item_id'];  ?></td>
+          <td><?php echo $row['item_name'];  ?></td>
+          <td><?php echo $row['item_price'], '€';  ?></td>
+          <td><?php echo $row['category_name'] ?></td>
+        </tr>
+          <?php
+        }
+      }
+      ?>
+    
 
-
-    </div>
-  </div>
-
-
+          
+        
+    
+      
+    </tbody>
+  </table>
+</div>
 
 
 
