@@ -2,7 +2,7 @@
 
 session_start();
 
-print_r($_SESSION);
+// print_r($_SESSION);
 
 $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
@@ -37,7 +37,29 @@ if (isset($_SESSION["user_id"])) {
 
 
 
+<header>
+    <div class="logo-container">
+      <img src="photo/nav-logo-1.png" alt="company logo">
+    </div>
+   <!-- <i class='bx bxs-user-circle'></i> -->
+   <i class='bx bxs-user-rectangle'></i>
+ 
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
 <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
+
+
 
 
 
