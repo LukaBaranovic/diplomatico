@@ -260,18 +260,20 @@
 
 /* ################################################################################################################## */
 
+/*
+
 header {
   position: sticky;
   transition: none;
   width: 100%;
   height: 80px;
-  display: flex; /* Use flexbox for better alignment */
-  align-items: center; /* Vertically center items */
-  justify-content: space-between; /* Space items evenly, pushing logo left and icon right */
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
   background-color: #FFFFFF;
   border-bottom: 2px solid #f2f2f2;
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.3);
-  padding: 0 20px; /* Add padding for spacing on sides */
+  padding: 0 20px; 
 }
 
 .logo-container {
@@ -293,17 +295,8 @@ header i {
   cursor: pointer; 
 }
 
+*/
 
-header {
-  position: sticky;
-  transition: none;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center; 
-  justify-content: space-between; 
-  background-color: #FFFFFF;
-  border-bottom: 2px solid #f2f2f2;
-  box-shadow: 0 0 20px rgb(0, 0, 0, 0.3);
-  padding: 0 20px; 
-}
+/* ################################################################################################################## */
+
+
