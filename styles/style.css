@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Montserrat:ital,wght@0,500;1,500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+body {
+  background-color: #F7F7F7;
+}
+
+
+/* ################################################################################################################## */
+
+/* CSS kod za header i footer */
+
+header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.header-logo {
+  cursor: pointer;
+}
+
+header nav {
+  padding: 0px 20px;
+}
+
+header nav a {
+  text-decoration: none;
+  color:  #333333;
+  cursor: pointer;
+  display: inline-block;
+  padding: 9px 35px;
+  background-color: rgb(0,136,169,0.1);
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease 0s;
+}
+
+header nav a:hover {
+  color: #0088a9;
+}
+
+footer {
+  background-color: white;
+  color: #333333;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  box-shadow: 0 -10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-content p {
+  margin: 5px;
+}
+
+@media (max-width: 1200px) {
+  header {
+    padding: 18px 10%;
+  }
+  footer {
+    padding: 18px 0;
+  }
+  header nav {
+    padding: 0 18px;
+  }
+  header nav a {
+    padding: 7px 26px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  header {
+    padding: 15px 10%;
+  }
+  footer {
+    padding: 15px 0;
+  }
+  header nav {
+    padding: 0 15px;
+  }
+  header nav a {
+    padding: 6px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 12px 10%;
+  }
+  footer {
+    padding: 12px 0;
+  }
+  header nav {
+    padding: 0 10px;
+  }
+  header nav a {
+    padding: 5px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Do ovdje je CSS kod za header i footer */
+
+/* ################################################################################################################## */
+/* ################################################################################################################## */
+
+
+
+
+
+
+
+
+
+/* ################################################################################################################## */
+
+/* Odavde je CSS kod korišten za button */
+
+.button {
+  cursor: pointer;
+  align-items: center;
+  padding: 10px 30px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .button {
+    padding: 8px 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .button {
+    padding: 7px 21px;
+  }
+}
+
+@media (max-width: 600px) {
+  .button {
+    padding: 5px 15px;
+  }
+}
+
+.cancel-button {
+  background: red;
+}
+
+.save-button {
+  background: green;
+}
+
+.update-button {
+  background: green;
+}
+
+.delete-button {
+  background: red;
+}
+
+/* Do ovjde je CSS kod korišten za button */
+
+/* ################################################################################################################## */
+
+img {
+  width: 150px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-logo {
+  padding-top: 20px;
+}
+
+h5 {
+  text-align: center;
+  color: red;
+  font-size: 2rem;
+}
+
+.hidden {
+  display: none;
+}
