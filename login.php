@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="login-form-container">
 
     <div class="login-logo">
-      <img src="/photo/zukalogo.png" alt="company logo">
+      <img src="photo/header.jpeg" alt="company logo">
 
     </div>
 
