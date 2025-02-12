@@ -59,10 +59,10 @@ if (isset($_POST['add_category']) && !empty($_POST['category_name'])) {
  ?message=success: ako je unos uspješno obavljen
  ?message=duplicate: ako je unos duplikat već postojeće kategorije
 
- Poruke dobivamo u url-u, a možda kasnije budu kasnije prikazane.
+ Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti unosa u bazu podatak, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
 
- Napravljeno: 10.2.2025.
- Zadnja promjena: 10.2.2025
+ Napravljeno: 25.11.2024.
+ Zadnja promjena: 2.12.2024
  Napravio: Luka Baranović
 -->

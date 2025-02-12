@@ -56,10 +56,10 @@ if ($item_count == 0) {
  ?message=error: ako je brisanje neuspješno.
  ?message=error-dependency: ako postoji artikli pod ovom kategorijom 
 
- Poruke dobivamo u url-u, a možda kasnije budu kasnije prikazane.
+ Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti brisanja iz baze podataka, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
 
- Napravljeno: 10.2.2025.
- Zadnja promjena: 10.2.2025.
+ Napravljeno: 27.11.2024.
+ Zadnja promjena: 2.12.2024
  Napravio: Luka Baranović
 -->

@@ -68,10 +68,10 @@ if (isset($_POST['edit_category']) && !empty($_POST['category_name'])) {
  ?message=error: ako je došlo do pogreške prilikom promjene u bazi podataka, tj. ako se nijedan red nije izmjenio
  ?message=failed: ako ništa nije uneseno u obrazac, tj. ako idemo spremiti prazno polje
 
- Poruke dobivamo u url-u, a možda kasnije budu kasnije prikazane.
+ Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
  Nebitno o uspješnosti unosa u bazu podatak, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
 
- Napravljeno: 10.2.2025.
- Zadnja promjena: 10.2.2025.
+ Napravljeno: 26.11.2024.
+ Zadnja promjena: 2.12.2024
  Napravio: Luka Baranović
 -->

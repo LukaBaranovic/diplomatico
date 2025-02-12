@@ -38,7 +38,7 @@ if (isset($_SESSION["user_id"])) {
 
 
 <header>
-  <img class="header-logo" src="photo/header.jpeg" alt="header photo">
+  <img class="header-logo" src="photo/zukaheader-rm.png" alt="">
   <nav>
      <a href="#">Profile</a>
   </nav>

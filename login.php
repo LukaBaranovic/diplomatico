@@ -1,5 +1,5 @@
 <?php
-// PHP kod koji služi za autentikaciju korisnika 
+// PHP kod koji služio za autentikaciju korisnika 
 
 $is_invalid = false; 
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="login-form-container">
 
     <div class="login-logo">
-      <img src="photo/header.jpeg" alt="company logo">
+      <img src="photo/zukam.png" alt="company logo">
 
     </div>
 
