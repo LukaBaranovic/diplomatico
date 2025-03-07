@@ -35,14 +35,12 @@ if (isset($_SESSION["user_id"])) {
 
 <body>
 
-
-
 <header>
   <a href="index.php">
     <img class="header-logo" src="photo/zukaheader-rm.png" alt="header logo">
   </a>
   <nav>
-     <a href="user.php">Korisnik</a>
+    <a href="user.php">Korisnik</a>
   </nav>
 </header></nav>
 
@@ -56,10 +54,10 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-
-<button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
-<button type="button" class="button" data-modal-target="#insert-category-modal">Dodaj novu kategoriju</button>
-
+<div class="button-container">
+  <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
+  <button type="button" class="button" data-modal-target="#insert-category-modal">Dodaj novu kategoriju</button>
+</div>
 
 
 
@@ -80,13 +78,13 @@ if (isset($_SESSION["user_id"])) {
 
         <?php
         $displayItemQuery = "SELECT * FROM item 
-                     JOIN category 
-                     ON item.category_id = category.category_id 
-                     WHERE item.company_id = '$company_id' 
-                     AND item.category_id = '$row[category_id]'";
-         $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
+                    JOIN category 
+                    ON item.category_id = category.category_id 
+                    WHERE item.company_id = '$company_id' 
+                    AND item.category_id = '$row[category_id]'";
+        $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
 
-         if(!$displayItemResult || mysqli_num_rows($displayItemResult) == 0){
+        if(!$displayItemResult || mysqli_num_rows($displayItemResult) == 0){
           ?>
           <table class="content-table">
           <thead>
@@ -98,10 +96,10 @@ if (isset($_SESSION["user_id"])) {
           
             </tr>
           </thead>
-         </table>
-         <?php
-         } else {
-   ?>
+        </table>
+        <?php
+        } else {
+  ?>
 
         <table class="content-table">
           <thead>
@@ -173,6 +171,7 @@ if (isset($_SESSION["user_id"])) {
     ?>
   </div>
 </footer>
+
 
 
 <!-- #################################################################################################################################-->
