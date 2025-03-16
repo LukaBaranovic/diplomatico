@@ -194,6 +194,31 @@ if (isset($_SESSION["user_id"])) {
         <div class="input-box">
           <input type="text" name="category_name" placeholder="Nova kategorija">
         </div>
+      
+
+      <div class="input-box">
+          <div class="dropdown-selector">
+            <input type="text" name="category_type" class="text-box" placeholder="Odaberi vrstu" readonly>
+            <div class="category-option">
+
+              <?php
+                $displayTypeQuery = "SELECT * FROM type";
+                $displayTypeResult = mysqli_query($mysqli, $displayTypeQuery);
+
+                if(!$displayTypeResult){
+                  die("Query failed".mysqli_error($mysqli));
+                }
+                else {
+                  while($row = mysqli_fetch_assoc($displayTypeResult)){
+                    ?>
+                  <div onclick="showCategory('<?php echo $row['type_name'];  ?>')"><?php echo $row['type_name'];  ?></div>
+                    <?php
+                  }
+                }
+                ?>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="modal-footer">
@@ -292,7 +317,7 @@ if (isset($_SESSION["user_id"])) {
         </div>
 
         <div class="input-box">
-          <input type="number" name="item_price" placeholder="Cijena artikla" step="0.01" min="0">
+          <input type="number" name="item_price" placeholder="Cijena artikla" step="0.1" min="0">
         </div>
 
         <div class="input-box">
@@ -310,7 +335,7 @@ if (isset($_SESSION["user_id"])) {
                 else {
                   while($row = mysqli_fetch_assoc($displayCategoryResult)){
                     ?>
-                  <div onclick="showCategory('<?php echo $row['category_name'];  ?>')"><?php echo $row['category_name'];  ?></div>
+                  <div onclick="show('<?php echo $row['category_name'];  ?>')"><?php echo $row['category_name'];  ?></div>
                     <?php
                   }
                 }
