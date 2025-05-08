@@ -1,151 +1,177 @@
-// JS kod korišten za dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  // Toggle between categories and items
+  const btnCategories = document.getElementById("btnCategories");
+  const btnItems = document.getElementById("btnItems");
+  const categoriesSection = document.getElementById("categoriesSection");
+  const itemsSection = document.getElementById("itemsSection");
 
-function show(selectedCategory) {
-  const textBox = this.closest(".dropdown-selector").querySelector(".text-box");
-  textBox.value = selectedCategory;
-}
+  btnCategories.addEventListener("click", () => {
+    // Show categories, hide items
+    categoriesSection.style.display = "block";
+    itemsSection.style.display = "none";
 
-document.querySelectorAll(".dropdown-selector").forEach((dropdown) => {
-  dropdown.onclick = function () {
-    dropdown.classList.toggle("selectorActive");
-  };
+    // Update button styles
+    btnCategories.classList.add("active");
+    btnItems.classList.remove("active");
+  });
 
-  const options = dropdown.querySelectorAll(".category-option div");
-  options.forEach((option) => {
-    option.addEventListener("click", function () {
-      show.call(this, this.textContent);
+  btnItems.addEventListener("click", () => {
+    // Show items, hide categories
+    categoriesSection.style.display = "none";
+    itemsSection.style.display = "block";
+
+    // Update button styles
+    btnItems.classList.add("active");
+    btnCategories.classList.remove("active");
+  });
+
+  // Add event listeners for Uredi (Edit) buttons in categories
+  const categoryEditButtons = document.querySelectorAll(
+    "#categoryTable .edit-btn"
+  );
+  categoryEditButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const row = event.target.closest("tr");
+      const categoryId = row.querySelector("td:first-child").textContent.trim();
+      const categoryName = row
+        .querySelector("td:nth-child(2)")
+        .textContent.trim();
+      const typeName = row.querySelector("td:nth-child(3)").textContent.trim();
+
+      // Populate the modal fields
+      document.getElementById("categoryId").value = categoryId;
+      document.getElementById("categoryName").value = categoryName;
+
+      const typeDropdown = document.getElementById("typeName");
+      const options = typeDropdown.options;
+
+      // Set the correct type as selected in the dropdown
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].value === typeName) {
+          options[i].selected = true;
+          break;
+        }
+      }
+
+      // Show the modal
+      document.getElementById("editCategoryModal").style.display = "block";
     });
   });
-});
 
-// Do ovjde je JS kod korišten za dropdown  (+ jedan dio u modalu, naglašeno je)
+  // Add event listeners for Izbriši (Delete) buttons in categories
+  const categoryDeleteButtons = document.querySelectorAll(
+    "#categoryTable .delete-btn"
+  );
+  categoryDeleteButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const row = event.target.closest("tr");
+      const categoryId = row.querySelector("td:first-child").textContent;
+      if (
+        confirm(`Are you sure you want to delete Category ID: ${categoryId}?`)
+      ) {
+        alert(
+          `Delete feature for Category ID: ${categoryId} will be implemented here.`
+        );
+        // TODO: Add AJAX call to delete the category
+      }
+    });
+  });
 
-// ##################################################################################################################################
+  // Add event listeners for Uredi (Edit) buttons in items
+  const itemEditButtons = document.querySelectorAll("#itemTable .edit-btn");
+  itemEditButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const row = event.target.closest("tr");
+      const itemId = row.querySelector("td:first-child").textContent;
+      alert(`Edit feature for Item ID: ${itemId} will be implemented here.`);
+      // TODO: Add AJAX or navigation to edit page for item
+    });
+  });
 
-// JS kod odavde je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
+  // Add event listeners for Izbriši (Delete) buttons in items
+  const itemDeleteButtons = document.querySelectorAll("#itemTable .delete-btn");
+  itemDeleteButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const row = event.target.closest("tr");
+      const itemId = row.querySelector("td:first-child").textContent;
+      if (confirm(`Are you sure you want to delete Item ID: ${itemId}?`)) {
+        alert(
+          `Delete feature for Item ID: ${itemId} will be implemented here.`
+        );
+        // TODO: Add AJAX call to delete the item
+      }
+    });
+  });
 
-const openModalButtons = document.querySelectorAll("[data-modal-target]");
-const closeModalButtons = document.querySelectorAll("[data-close-button]");
-const overlay = document.getElementById("overlay");
+  // Search functionality for categories
+  document
+    .getElementById("searchBarCategories")
+    .addEventListener("keyup", () => {
+      filterTable("categoryTable", "searchBarCategories");
+    });
 
-openModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = document.querySelector(button.dataset.modalTarget);
-    openModal(modal);
+  // Search functionality for items
+  document.getElementById("searchBarItems").addEventListener("keyup", () => {
+    filterTable("itemTable", "searchBarItems");
+  });
+
+  // Close the modal
+  document.querySelector(".cancel-btn").addEventListener("click", () => {
+    document.getElementById("editCategoryModal").style.display = "none";
+  });
+
+  document.querySelector(".close-btn").addEventListener("click", () => {
+    document.getElementById("editCategoryModal").style.display = "none";
+  });
+
+  // Confirm button logic for editing category
+  document.getElementById("confirmEdit").addEventListener("click", () => {
+    const formData = new FormData(document.getElementById("editCategoryForm"));
+
+    // AJAX request to update the category
+    fetch("edit-category.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert(data.message);
+          location.reload(); // Reload the page to see the changes
+        } else {
+          document.getElementById("errorMessage").textContent = data.message;
+          document.getElementById("errorMessage").style.display = "block";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   });
 });
 
-overlay.addEventListener("click", () => {
-  const modals = document.querySelectorAll(".modal.active");
-  modals.forEach((modal) => {
-    closeModal(modal);
-  });
-});
+/**
+ * Filters the table rows based on the search input.
+ * @param {string} tableId - The ID of the table to filter.
+ * @param {string} searchBarId - The ID of the search bar.
+ */
+function filterTable(tableId, searchBarId) {
+  const searchValue = document.getElementById(searchBarId).value.toLowerCase();
+  const table = document.getElementById(tableId);
+  const rows = table.getElementsByTagName("tr");
 
-closeModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = button.closest(".modal");
-    closeModal(modal);
-  });
-});
+  for (let i = 1; i < rows.length; i++) {
+    // Start from 1 to skip the header row
+    const cells = rows[i].getElementsByTagName("td");
+    let match = false;
 
-function openModal(modal) {
-  if (modal == null) return;
-  modal.classList.add("active");
-  overlay.classList.add("active");
-}
+    for (let j = 0; j < cells.length - 1; j++) {
+      // Skip the last column (buttons)
+      if (cells[j].textContent.toLowerCase().includes(searchValue)) {
+        match = true;
+        break;
+      }
+    }
 
-// dropdown.classList.remove('selectorActive'); -- kad zatvorimo modal, dropdown ostane otvoren ako ga nismo zatvorili. Ovo to rješava.
-function closeModal(modal) {
-  if (modal == null) return;
-  modal.classList.remove("active");
-  overlay.classList.remove("active");
-
-  // Kad uređujemo i ostavimo dropdown otvoren, kada izađemo iz modala moramo zatvorit taj dropdown
-  const dropdown = modal.querySelector(".dropdown-selector");
-  if (dropdown) {
-    dropdown.classList.remove("selectorActive");
+    rows[i].style.display = match ? "" : "none";
   }
 }
-
-// JS kod do ovdje je korišten za otvaranje/zatvaranje obrasca/formulara korištenih za dodavanje, uređivanje, brisanje kategorija
-
-// ##################################################################################################################################
-
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za kategorije.
-
-$(document).ready(function () {
-  $(".edit-category").on("click", function () {
-    $tr = $(this).closest("tr");
-
-    var data = $tr
-      .children("th")
-      .map(function () {
-        return $(this).text();
-      })
-      .get();
-    console.log(data);
-
-    $("#edit_category_id_fetched").val(data[0]);
-    $("#edit_category_name_fetched").val(data[1]);
-  });
-});
-
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Izbriši' za kategorije.
-
-$(document).ready(function () {
-  $(".delete-category").on("click", function () {
-    $tr = $(this).closest("tr");
-
-    var data = $tr
-      .children("th")
-      .map(function () {
-        return $(this).text();
-      })
-      .get();
-    console.log(data);
-
-    $("#delete_category_id_fetched").val(data[0]);
-    $("#delete_category_name_fetched").text(data[1]);
-  });
-});
-
-// ####################################################################################################################################
-
-// AJAX kod korišten za dohvaćanje Naziva i ID-a kategorije prilikom klika na 'Uredi' za artikle.
-
-$(document).ready(function () {
-  $(".edit-item").on("click", function () {
-    $tr = $(this).closest("tr");
-
-    var data = $tr
-      .children("td")
-      .map(function () {
-        return $(this).text();
-      })
-      .get();
-    console.log(data);
-
-    $("#edit_item_id_fetched").val(data[0]);
-    $("#edit_item_name_fetched").val(data[1]);
-    $("#edit_item_price_fetched").val(parseFloat(data[2]) || 0);
-    $("#edit_item_category_fetched").val(data[3]);
-  });
-});
-
-$(document).ready(function () {
-  $(".delete-item").on("click", function () {
-    $tr = $(this).closest("tr");
-
-    var data = $tr
-      .children("td")
-      .map(function () {
-        return $(this).text();
-      })
-      .get();
-    console.log(data);
-
-    $("#delete_item_id_fetched").val(data[0]);
-    $("#delete_item_name_fetched").text(data[1]);
-  });
-});

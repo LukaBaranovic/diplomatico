@@ -51,3 +51,20 @@ if (isset($_POST['add_item']) && !empty($_POST['item_name']) && !empty($_POST['i
     header("Location: index.php?message=failed");
 }
   ?>
+
+<!-- #### Ova .php datoteka se koristi za unos vrijednosti u bazu podataka, tablica item u bazi diplomatico,
+koje korisnik unosi prilikom dodavanja novih artikala. Vrši se provjera je li unos duplikat, je li unos prazan,
+i ako je sve u redu unosi podatke u bazu podataka.
+
+Poruke:
+?message=failed: ako je došlo do neke pogreške prilikom unosa u bazu podataka
+?message=success: ako je unos uspješno obavljen
+?message=duplicate: ako je unos duplikat 
+
+Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
+Nebitno o uspješnosti unosa u bazu podatak, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
+
+Napravljeno: 30.11.2024.
+Zadnja promjena: 2.12.2024
+Napravio: Luka Baranović
+-->

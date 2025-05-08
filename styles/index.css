@@ -1,316 +1,227 @@
-/* CSS kod korišten za obrazac/formular */
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
 
+/* Main container for the content */
+.container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+/* Header styles */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Welcome message styles */
+p {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Toggle buttons container */
+.view-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Toggle buttons styling */
+.toggle-btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+}
+
+/* Active toggle button styling */
+.toggle-btn.active {
+  background-color: #0056b3;
+}
+
+/* Container for search bar and table */
+.table-container {
+  width: 100%;
+  margin-bottom: 20px; /* Spacing between search bar and table */
+}
+
+/* Search bar styling */
+.table-container input[type="text"] {
+  width: 100%; /* Ensures the search bar matches the table width */
+  padding: 10px;
+  margin-bottom: 10px; /* Spacing below the search bar */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Includes padding and border in width calculations */
+}
+
+/* Table styling */
+table {
+  width: 100%; /* Matches the search bar width */
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+/* Borders for table, headers, and cells */
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+/* Padding and alignment for table cells */
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Header row background color */
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Alternating row colors */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect on table rows */
+tr:hover {
+  background-color: #e9ecef;
+}
+
+/* General button styles */
+button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Edit button styling */
+.edit-btn {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Delete button styling */
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Modal background */
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 10;
-  background-color: white;
-  width: 700px;
-  max-width: 70%;
-}
-
-.modal.active {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.modal-header {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-}
-
-.modal-header .title {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-header .close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-body {
-  padding: 10px 15px;
-  margin-bottom: 30px;
-}
-
-.modal-footer {
-  padding: 10px 15px;
-  border-top: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#overlay {
-  position: fixed;
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  top: 0;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
-  pointer-events: none;
-}
-
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.input-box {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  margin-top: 30px;
-}
-
-.input-box input {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(237, 237, 237);
-  outline: none;
-  border: 2px solid #f5f5f5 ;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 20px 45px 20px 20px;
-} 
-
-.button {
-  cursor: pointer;
-  align-items: center;
-  padding: 10px 30px;
-  border-radius: 6px;
-  border: none;
-  color: #fff;
-}
-
-
-@media (max-width: 1200px) {
-  .button {
-    padding: 8px 24px;
-  }
-}
-
-@media (max-width: 900px) {
-  .button {
-    padding: 7px 21px;
-  }
-}
-
-@media (max-width: 600px) {
-  .button {
-    padding: 5px 15px;
-  }
-}
-
-.cancel-button {
-  background: red;
-}
-
-.save-button {
-  background: green;
-}
-
-.update-button {
-  background: green;
-}
-
-.delete-button {
-  background: red;
-}
-
-/* Do ovjde je CSS kod korišten za obrazac/formular */
-
-/* ################################################################################################################## */
-
-/* CSS kod korišten za selector kategorija */
-
-.dropdown-selector {
-  position: relative;
-  width: 100%;
-  height: 50px;
-}
-
-.dropdown-selector::before {
-  content: '';
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  z-index: 10000;
-  width: 8px;
-  height: 8px;
-  border: 2px solid #333;
-  border-top: 2px solid rgb(237, 237, 237);
-  border-right: 2px solid rgb(237, 237, 237);
-  transform: rotate(-45deg);
-  transition: 0.5s;
-  pointer-events: none;
-}
-
-.dropdown-selector.selectorActive::before {
-  top: 22px;
-  transform: rotate(-225deg);
-}
-
-.dropdown-selector input {
-  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  background-color: rgb(237, 237, 237);
-  border: none;
-  outline: none;
-  padding: 20px 45px 20px 20px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fff; /* White background */
+  margin: 10% auto; /* Centered vertically and horizontally */
+  padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 10px;
+  width: 50%; /* Set a width for the modal */
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
 }
 
-.dropdown-selector.selectorActive input{
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.dropdown-selector .category-option {
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  background-color: rgb(237, 237, 237);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow: hidden;
-  display: none;
-  max-height: 200px;  
-  overflow-y: auto; 
-}
-
-.dropdown-selector.selectorActive .category-option {
-  display: block;
-
-}
-
-.dropdown-selector .category-option div {
-  padding: 12px 20px;
+/* Close button */
+.close-btn {
+  color: #aaa;
+  float: right; /* Position it to the top-right corner */
+  font-size: 28px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.dropdown-selector .category-option div:hover {
-  background-color: aquamarine;
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* Do ovdje je CSS kod korišten za selector kategorija */
-
-/* ################################################################################################################## */
-
-/* CSS kod korišten za tablicu/prikaz podotaka */
-
-.content-table-container {
-  margin: auto;
+/* Form styles for modal */
+.modal form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
+  gap: 15px; /* Space between form elements */
 }
 
-.content-table {
-  border-collapse: collapse;
-  margin: 25px 0;
-  width: 60%;
-  border-radius: 5px 5px 0 0;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgb(0, 0, 0, 0.3);
+.modal form .form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.content-table thead tr {
-  background-color: #009879;
-  color: #ffffff;
-  text-align: left;
-  font-size: 1.5rem;
+.modal form .form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.category-section {
-  text-align: center;
+.modal form .form-group input,
+.modal form .form-group select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in width */
 }
 
-.content-table th,
-.content-table td {
-  padding: 12px 15px;  
+/* Error message */
+#errorMessage {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 14px;
 }
 
-.content-table th {
-  font-size: 1.15rem;
+/* Buttons in the modal */
+.modal form button {
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
 }
 
-.content-table tbody tr {
-  border-bottom: 1px solid #dddddd;
+.modal form #confirmEdit {
+  background-color: #007bff; /* Blue for confirm button */
+  color: white;
 }
 
-.content-table tbody tr:nth-of-type(odd){
-  background-color: #f5f5f5;
+.modal form #confirmEdit:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
-.content-table tbody tr:nth-of-type(even){
-  background-color: #FFFFFF;
+.modal form .cancel-btn {
+  background-color: #6c757d; /* Gray for cancel button */
+  color: white;
 }
 
-.content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+.modal form .cancel-btn:hover {
+  background-color: #5a6268; /* Darker gray on hover */
 }
-
-.align-center {
-  text-align: center;
-}
-
-
-@media (max-width: 1200px) {
-
-  .content-table {
-    width: 65%;
-  }
-  .content-table th {
-    font-size: 1.1rem;
-  }
-  .content-table td {
-    font-size: 0.9rem;
-  }
-
-}
-
-@media (max-width: 900px) {
-  
-  .content-table {
-    width: 75%;
-  }
-  .content-table th {
-    font-size: 1rem;
-  }
-  .content-table td {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 700px) {
-  .content-table {
-    width: 95%;
-  }
-}
-
-
-
-/* Do ovdje je CSS kod korišten za tablicu/prikaz podotaka */
-
-/* ################################################################################################################## */
