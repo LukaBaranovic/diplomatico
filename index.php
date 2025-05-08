@@ -46,6 +46,14 @@ if (isset($_SESSION["user_id"])) {
 
 
 
+
+
+
+
+
+
+
+
 <div class="button-container">
   <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
   <button type="button" class="button" data-modal-target="#insert-category-modal">Dodaj novu kategoriju</button>
@@ -54,87 +62,94 @@ if (isset($_SESSION["user_id"])) {
 
 
 <div class="content-table-container">
-    <?php
+
+
+
+  <?php
     $displayCategoryQuery = "SELECT * FROM category WHERE company_id = '$company_id'";
     $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
 
-    if (!$displayCategoryResult) {
-        die("Query failed" . mysqli_error($mysqli));
-    } else {
-        while ($row = mysqli_fetch_assoc($displayCategoryResult)) {
+      if(!$displayCategoryResult){
+        die("Query failed".mysqli_error($mysqli));
+      }
+      else {
+        while($row = mysqli_fetch_assoc($displayCategoryResult)){
+          ?>
+
+        <?php
+        $displayItemQuery = "SELECT * FROM item 
+                    JOIN category 
+                    ON item.category_id = category.category_id 
+                    WHERE item.company_id = '$company_id' 
+                    AND item.category_id = '$row[category_id]'";
+        $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
+
+        if(!$displayItemResult || mysqli_num_rows($displayItemResult) == 0){
+          ?>
+          <table class="content-table">
+          <thead>
+            <tr  style="text-align:center;">
+                <th><?php echo $row['category_id']; ?> </th>
+                <th><?php echo $row['category_name']; ?> </th>
+                <th><button type="button" class="button update-button edit-category"  data-modal-target="#edit-category-modal">Uredi</button></th>
+                <th><button type="button" class="button delete-button delete-category" data-modal-target="#delete-category-modal">Izbriši</button></th>
+          
+            </tr>
+          </thead>
+        </table>
+        <?php
+        } else {
+  ?>
+
+        <table class="content-table">
+          <thead>
+            <tr style="text-align: center" >
+              <th><?php echo $row['category_id']; ?> </th>
+              <th colspan="2"><?php echo $row['category_name']; ?></th>
+              <th colspan="2"><button type="button" class="button update-button edit-category"  data-modal-target="#edit-category-modal">Uredi</button></th>
+      
+            </tr>
+            <tr>
+              <th>ID</th>
+              <th>Artikal</th>
+              <th colspan="3">Cijena</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+
+        
+          <?php
+            if(!$displayItemResult){
+              die("Query failed".mysqli_error($mysqli));
+            }
+            else {
+              while($row = mysqli_fetch_assoc($displayItemResult)){
+                ?>
+              <tr>
+                <td><?php echo $row['item_id']; ?></td>
+                <td><?php echo $row['item_name'];?></td>
+                <td><?php echo $row['item_price'], '€';  ?></td>
+                <td class="hidden"><?php echo $row['category_name'] ?></td>
+                <td style="text-align: center"><button type="button" class="button update-button edit-item" data-modal-target="#edit-item-modal">Uredi</button></td>
+                <td style="text-align: center"><button type="button" class="button delete-button delete-item" data-modal-target="#delete-item-modal">Izbriši</button></td>
+              </tr>
+                <?php
+              }
+            }
             ?>
-            <div class="category-table">
-                <!-- Category Header -->
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
-                            <th colspan="2" class="align-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $row['category_id']; ?></td>
-                            <td><?php echo $row['category_name']; ?></td>
-                            <td><button type="button" class="button update-button edit-category" data-modal-target="#edit-category-modal">Uredi</button></td>
-                            <td><button type="button" class="button delete-button delete-category" data-modal-target="#delete-category-modal">Izbriši</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <!-- Items Section -->
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Item Name</th>
-                            <th>Price</th>
-                            <th class="align-center">Uredi</th>
-                            <th class="align-center">Izbriši</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $displayItemQuery = "SELECT * FROM item 
-                                             JOIN category 
-                                             ON item.category_id = category.category_id 
-                                             WHERE item.company_id = '$company_id' 
-                                             AND item.category_id = '{$row['category_id']}'";
-                        $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
-
-                        if (!$displayItemResult || mysqli_num_rows($displayItemResult) == 0) {
-                            ?>
-                            <tr>
-                                <td colspan="5" class="align-center">No items available</td>
-                            </tr>
-                            <?php
-                        } else {
-                            while ($itemRow = mysqli_fetch_assoc($displayItemResult)) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $itemRow['item_id']; ?></td>
-                                    <td><?php echo $itemRow['item_name']; ?></td>
-                                    <td><?php echo $itemRow['item_price']; ?>€</td>
-                                    <td class="align-center">
-                                        <button type="button" class="button update-button edit-item" data-modal-target="#edit-item-modal">Uredi</button>
-                                    </td>
-                                    <td class="align-center">
-                                        <button type="button" class="button delete-button delete-item" data-modal-target="#delete-item-modal">Izbriši</button>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-            <?php
+            
+          </tbody>
+        </table>
+        
+          <?php
         }
+      }
     }
-    ?>
+      ?>
+
 </div>
+
 
 
 

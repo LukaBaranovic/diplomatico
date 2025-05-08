@@ -76,23 +76,3 @@ if (isset($_POST['edit_item']) && !empty($_POST['item_id']) && !empty($_POST['it
 }
 ?>
 
-<!-- #### Ova .php datoteka se koristi za ažuriranje vrijednosti u bazi podataka, tablica item u bazi diplomatico.
- Korisnik ažurira podatke prilikom klika na 'Uredi'. Tada preko AJAX-a (pomoću js skripte) dohvaćamo koji red u tablici smo 
- klikli i tada nam u obrascu bude već prikazan naziv, cijena i kategorija spremni na ažuriranje. 
- 
- Klikom na spremi se vrši provjera postoji li duplikat te ako postoji ne dolazi do promjene već korisnik mora unijeti unikatni
- artikal. Ako je artikal unikatna dolazi do izmjene tablice, a cijena i kategorija se svakako ažuriraju.
-
- Poruke:
- ?message=duplicate: ako je izmjena duplikat već postojeće kategorije
- ?message=success: ako je promjena uspješno obavljena
- ?message=error: ako je došlo do pogreške prilikom promjene u bazi podataka, tj. ako se nijedan red nije izmjenio
- ?message=failed: ako ništa nije uneseno u obrazac, tj. ako idemo spremiti prazno polje
-
- Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
- Nebitno o uspješnosti unosa u bazu podatak, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
-
- Napravljeno: 26.11.2024.
- Zadnja promjena: 2.12.2024
- Napravio: Luka Baranović
--->

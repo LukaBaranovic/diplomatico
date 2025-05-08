@@ -47,19 +47,3 @@ if ($item_count == 0) {
 }
 
 ?>
-
-<!-- #### Ova .php datoteka se koristi za brisanje kategorija. U script.js datoteci dobavljamo
- category_id pomoću kojeg biramo element za brisanje.
-
- Poruke:
- ?message=succes: ako je brisanje uspješno.
- ?message=error: ako je brisanje neuspješno.
- ?message=error-dependency: ako postoji artikli pod ovom kategorijom 
-
- Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
- Nebitno o uspješnosti brisanja iz baze podataka, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
-
- Napravljeno: 27.11.2024.
- Zadnja promjena: 2.12.2024
- Napravio: Luka Baranović
--->
