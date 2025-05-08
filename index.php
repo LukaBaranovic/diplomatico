@@ -2,18 +2,23 @@
 
 session_start();
 
-// print_r($_SESSION);
+// Redirect to login page if the user is not logged in
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}
 
 $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
 
 if (isset($_SESSION["user_id"])) {
-  $mysqli = require_once __DIR__ ."/database.php";
-  $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
-  $result = $mysqli->query($sql);
-  $users = $result->fetch_assoc();
+    $mysqli = require_once __DIR__ . "/database.php";
+    $sql = "SELECT * FROM users WHERE id = {$_SESSION["user_id"]}";
+    $result = $mysqli->query($sql);
+    $users = $result->fetch_assoc();
 }
-//Dohvaća koji user je prijavljen, koji je potreban da znamo za koju firmu user moze raditi promjene.
+// Fetch the logged-in user, which is necessary to know which company the user can operate.
+
 ?>
 <?php include('database.php'); ?>
 
@@ -42,121 +47,85 @@ if (isset($_SESSION["user_id"])) {
   <nav>
     <a href="user.php">Korisnik</a>
   </nav>
-</header></nav>
-
-
-
-
-
-
-
-
-
-
+</header>
 
 <div class="button-container">
   <button type="button" class="button" data-modal-target="#insert-item-modal">Dodaj novi artikal</button> <!-- new category button -->
   <button type="button" class="button" data-modal-target="#insert-category-modal">Dodaj novu kategoriju</button>
 </div>
 
-
-
 <div class="content-table-container">
-
-
-
   <?php
     $displayCategoryQuery = "SELECT * FROM category WHERE company_id = '$company_id'";
     $displayCategoryResult = mysqli_query($mysqli, $displayCategoryQuery);
 
-      if(!$displayCategoryResult){
-        die("Query failed".mysqli_error($mysqli));
-      }
-      else {
-        while($row = mysqli_fetch_assoc($displayCategoryResult)){
-          ?>
+    if (!$displayCategoryResult) {
+        die("Query failed" . mysqli_error($mysqli));
+    } else {
+        while ($row = mysqli_fetch_assoc($displayCategoryResult)) {
+            $displayItemQuery = "SELECT * FROM item 
+                                 JOIN category 
+                                 ON item.category_id = category.category_id 
+                                 WHERE item.company_id = '$company_id' 
+                                 AND item.category_id = '$row[category_id]'";
+            $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
 
-        <?php
-        $displayItemQuery = "SELECT * FROM item 
-                    JOIN category 
-                    ON item.category_id = category.category_id 
-                    WHERE item.company_id = '$company_id' 
-                    AND item.category_id = '$row[category_id]'";
-        $displayItemResult = mysqli_query($mysqli, $displayItemQuery);
-
-        if(!$displayItemResult || mysqli_num_rows($displayItemResult) == 0){
-          ?>
+            if (!$displayItemResult || mysqli_num_rows($displayItemResult) == 0) {
+  ?>
           <table class="content-table">
           <thead>
-            <tr  style="text-align:center;">
+            <tr style="text-align:center;">
                 <th><?php echo $row['category_id']; ?> </th>
                 <th><?php echo $row['category_name']; ?> </th>
                 <th><button type="button" class="button update-button edit-category"  data-modal-target="#edit-category-modal">Uredi</button></th>
                 <th><button type="button" class="button delete-button delete-category" data-modal-target="#delete-category-modal">Izbriši</button></th>
-          
             </tr>
           </thead>
         </table>
         <?php
-        } else {
-  ?>
+            } else {
+        ?>
 
         <table class="content-table">
           <thead>
-            <tr style="text-align: center" >
+            <tr style="text-align: center">
               <th><?php echo $row['category_id']; ?> </th>
               <th colspan="2"><?php echo $row['category_name']; ?></th>
               <th colspan="2"><button type="button" class="button update-button edit-category"  data-modal-target="#edit-category-modal">Uredi</button></th>
-      
             </tr>
             <tr>
               <th>ID</th>
               <th>Artikal</th>
               <th colspan="3">Cijena</th>
-              
             </tr>
           </thead>
           <tbody>
-
-        
           <?php
-            if(!$displayItemResult){
-              die("Query failed".mysqli_error($mysqli));
-            }
-            else {
-              while($row = mysqli_fetch_assoc($displayItemResult)){
-                ?>
+            if (!$displayItemResult) {
+                die("Query failed" . mysqli_error($mysqli));
+            } else {
+                while ($row = mysqli_fetch_assoc($displayItemResult)) {
+          ?>
               <tr>
                 <td><?php echo $row['item_id']; ?></td>
-                <td><?php echo $row['item_name'];?></td>
-                <td><?php echo $row['item_price'], '€';  ?></td>
-                <td class="hidden"><?php echo $row['category_name'] ?></td>
+                <td><?php echo $row['item_name']; ?></td>
+                <td><?php echo $row['item_price'], '€'; ?></td>
+                <td class="hidden"><?php echo $row['category_name']; ?></td>
                 <td style="text-align: center"><button type="button" class="button update-button edit-item" data-modal-target="#edit-item-modal">Uredi</button></td>
                 <td style="text-align: center"><button type="button" class="button delete-button delete-item" data-modal-target="#delete-item-modal">Izbriši</button></td>
               </tr>
-                <?php
-              }
+          <?php
+                }
             }
-            ?>
-            
+          ?>
           </tbody>
         </table>
-        
-          <?php
+        <?php
+            }
         }
-      }
     }
-      ?>
-
+        ?>
 </div>
-
-
-
-
-
-
-
-
 
 <footer>
   <div class="footer-content">
@@ -165,8 +134,8 @@ if (isset($_SESSION["user_id"])) {
     <?php
       $companyQuery = "SELECT company_name FROM company WHERE company_id = $company_id";
       $companyResult = mysqli_query($mysqli, $companyQuery);
-      if($companyResult && $row = mysqli_fetch_assoc($companyResult)) {
-        echo "<p>" . htmlspecialchars($row['company_name']) . "</p>";
+      if ($companyResult && $row = mysqli_fetch_assoc($companyResult)) {
+          echo "<p>" . htmlspecialchars($row['company_name']) . "</p>";
       }
     ?>
   </div>
