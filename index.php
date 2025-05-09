@@ -84,8 +84,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Diplomatico</title>
     <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
-    <script defer src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="script.js"></script> <!-- General script -->
+    <script defer src="edit-category.js"></script> <!-- Script for editing categories -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
 </head>
 <body>
     <div class="container">
@@ -186,6 +187,5 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>
