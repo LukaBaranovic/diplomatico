@@ -88,6 +88,8 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <script defer src="script.js"></script> <!-- General script -->
     <script defer src="edit-category.js"></script> <!-- Script for editing categories -->
     <script defer src="edit-item.js"></script> <!-- Script for editing items -->
+    <script defer src="delete-category.js"></script> <!-- Script for deleting categories -->
+    <script defer src="delete-item.js"></script> <!-- Script for deleting items -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
 </head>
 <body>
@@ -122,7 +124,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <td><?= htmlspecialchars($category['type_name']) ?></td>
                                 <td>
                                     <button class="edit-btn" data-id="<?= $category['category_id'] ?>" data-name="<?= htmlspecialchars($category['category_name']) ?>" data-type="<?= htmlspecialchars($category['type_name']) ?>">Uredi</button>
-                                    <button class="delete-btn">Izbriši</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -154,7 +155,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <td data-category-id="<?= $item['category_id'] ?>"><?= htmlspecialchars($item['category_name']) ?></td>
                                 <td>
                                     <button class="edit-btn" data-id="<?= $item['item_id'] ?>" data-name="<?= htmlspecialchars($item['item_name']) ?>" data-price="<?= htmlspecialchars($item['item_price']) ?>" data-category-id="<?= $item['category_id'] ?>">Uredi</button>
-                                    <button class="delete-btn">Izbriši</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -184,6 +184,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     </div>
                     <div id="errorMessage" style="color: red; display: none;"></div>
                     <button type="button" id="confirmEdit">Confirm</button>
+                    <button type="button" id="deleteCategoryBtn" class="delete-btn">Delete</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>
@@ -214,6 +215,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     </div>
                     <div id="itemErrorMessage" style="color: red; display: none;"></div>
                     <button type="button" id="confirmEditItem">Confirm</button>
+                    <button type="button" id="deleteItemBtn" class="delete-btn">Delete</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>

@@ -1,47 +1,40 @@
 <?php
-// Priprema .php za unos i provjeru podataka
-
 session_start();
+
+// Include database connection
 $mysqli = require_once __DIR__ . "/database.php";
-$item_id = (int)$_POST['item_id'];
 
-// Pripremamo query 
-$query = "DELETE FROM `item` WHERE `item_id` = ?";
-
-// Provjerava imamo li item_id
-if (isset($_POST['item_id'])) {
-  
-  // Prirpema za brisanje.
-  if ($stmt = $mysqli->prepare($query)) {
-  $stmt->bind_param("i", $item_id);
-
-  // Brisanje.
-  if ($stmt->execute()) {
-    header('Location: index.php?message=success');
-  } else {
-    header('Location: index.php?message=error');
-  }
-  $stmt->close();
-  }
+// Ensure the user is logged in and the request is POST
+if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(401); // Unauthorized
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized request']);
+    exit;
 }
-  else {
-  header('Location: index.php?message=error');
-} 
 
+// Decode the JSON input
+$data = json_decode(file_get_contents("php://input"), true);
+$item_id = (int)$data['item_id'];
 
+// Check if the item exists
+$sql_check = "SELECT 1 FROM ITEM WHERE item_id = ?";
+$stmt_check = $mysqli->prepare($sql_check);
+$stmt_check->bind_param("i", $item_id);
+$stmt_check->execute();
+$stmt_check->store_result();
+
+if ($stmt_check->num_rows === 0) {
+    echo json_encode(['status' => 'error', 'message' => 'Item not found.']);
+    exit;
+}
+
+// Delete the item
+$sql_delete = "DELETE FROM ITEM WHERE item_id = ?";
+$stmt_delete = $mysqli->prepare($sql_delete);
+$stmt_delete->bind_param("i", $item_id);
+
+if ($stmt_delete->execute()) {
+    echo json_encode(['status' => 'success', 'message' => 'Item deleted successfully.']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Failed to delete item.']);
+}
 ?>
-
-<!-- #### Ova .php datoteka se koristi za brisanje artikala.
-
- Poruke:
- ?message=succes: ako je brisanje uspješno.
- ?message=error: ako je brisanje neuspješno.
- ?message=error-dependency: ako postoji artikli pod ovom kategorijom 
-
- Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
- Nebitno o uspješnosti brisanja iz baze podataka, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
-
- Napravljeno: 27.11.2024.
- Zadnja promjena: 2.12.2024
- Napravio: Luka Baranović
--->
