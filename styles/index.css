@@ -147,6 +147,14 @@ button {
   width: 50%; /* Set a width for the modal */
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
+  text-align: center; /* Center-align text inside the modal */
+}
+
+/* General text alignment for modal elements */
+.modal-content p {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 /* Close button */
@@ -224,4 +232,10 @@ button {
 
 .modal form .cancel-btn:hover {
   background-color: #5a6268; /* Darker gray on hover */
+}
+
+/* Buttons in the modal */
+.modal-content button {
+  display: inline-block; /* Ensure buttons are treated as inline elements */
+  margin: 10px 5px; /* Add spacing between buttons */
 }

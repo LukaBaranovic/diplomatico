@@ -25,17 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCategories.classList.remove("active");
   });
 
-  // Add event listeners for Uredi (Edit) buttons in items
-  const itemEditButtons = document.querySelectorAll("#itemTable .edit-btn");
-  itemEditButtons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const row = event.target.closest("tr");
-      const itemId = row.querySelector("td:first-child").textContent;
-      alert(`Edit feature for Item ID: ${itemId} will be implemented here.`);
-      // TODO: Add AJAX or navigation to edit page for item
-    });
-  });
-
   // Add event listeners for Izbriši (Delete) buttons in items
   const itemDeleteButtons = document.querySelectorAll("#itemTable .delete-btn");
   itemDeleteButtons.forEach((button) => {

@@ -1,65 +1,40 @@
 <?php
-// Priprema .php za unos i provjeru podataka
-
 session_start();
+
+// Include database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
-$category_id = (int)$_POST['category_id'];
-
-// Provjeravamo ima li kategorija koju brišemo children elemenata 
-$query_check_for_children = "SELECT COUNT(*) FROM item WHERE category_id = ?";
-$stmt_select_check_for_children = $mysqli->prepare($query_check_for_children);
-$stmt_select_check_for_children->bind_param("i", $category_id);
-$stmt_select_check_for_children->execute();
-$stmt_select_check_for_children->bind_result($item_count);
-$stmt_select_check_for_children->fetch();
-$stmt_select_check_for_children->close();
-
-echo $item_count;
-
-// Ako ima children elemenata, vracamo se na početnu stranicu.
-if ($item_count == 0) {
-
-  // Pripremamo query 
-  $query = "DELETE FROM `category` WHERE `category_id` = ?";
-
-  // Provjerava imamo li category_id
-  if (isset($_POST['category_id'])) {
-    
-    // Prirpema za brisanje.
-    if ($stmt = $mysqli->prepare($query)) {
-    $stmt->bind_param("i", $category_id);
-  
-    // Brisanje.
-    if ($stmt->execute()) {
-      header('Location: index.php?message=success');
-    } else {
-      header('Location: index.php?message=error');
-    }
-    $stmt->close();
-    }
-  }
-    else {
-    header('Location: index.php?message=error');
-  } 
-} else {
-  header('Location: index.php?message=has-children-elements');
+// Ensure the user is logged in and the request is POST
+if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(401); // Unauthorized
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized request']);
+    exit;
 }
 
+// Get category ID from request
+$data = json_decode(file_get_contents("php://input"), true);
+$category_id = (int)$data['category_id'];
+
+// Check if the category has associated items
+$sql = "SELECT 1 FROM ITEM WHERE category_id = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $category_id);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    echo json_encode(['status' => 'error', 'message' => 'This category has items and cannot be deleted.']);
+    exit;
+}
+
+// Delete the category
+$sql_delete = "DELETE FROM CATEGORY WHERE category_id = ?";
+$stmt_delete = $mysqli->prepare($sql_delete);
+$stmt_delete->bind_param("i", $category_id);
+
+if ($stmt_delete->execute()) {
+    echo json_encode(['status' => 'success', 'message' => 'Category deleted successfully.']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Failed to delete category.']);
+}
 ?>
-
-<!-- #### Ova .php datoteka se koristi za brisanje kategorija. U script.js datoteci dobavljamo
- category_id pomoću kojeg biramo element za brisanje.
-
- Poruke:
- ?message=succes: ako je brisanje uspješno.
- ?message=error: ako je brisanje neuspješno.
- ?message=error-dependency: ako postoji artikli pod ovom kategorijom 
-
- Poruke dobivamo u url-u (na dan 2.12.2024.), a možda kasnije budu kasnije prikazane.
- Nebitno o uspješnosti brisanja iz baze podataka, vraćamo se na index stranicu, tj. početnu stranicu nakon prijave.
-
- Napravljeno: 27.11.2024.
- Zadnja promjena: 2.12.2024
- Napravio: Luka Baranović
--->

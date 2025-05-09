@@ -54,4 +54,3 @@ if ($stmt_update->execute()) {
     echo json_encode(['status' => 'error', 'message' => 'Failed to update category']);
 }
 ?>
-

@@ -47,7 +47,8 @@ $sql_items = "
         i.item_id, 
         i.item_name, 
         i.item_price, 
-        c.category_name 
+        c.category_name,
+        i.category_id
     FROM 
         ITEM i
     JOIN 
@@ -86,6 +87,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
     <script defer src="script.js"></script> <!-- General script -->
     <script defer src="edit-category.js"></script> <!-- Script for editing categories -->
+    <script defer src="edit-item.js"></script> <!-- Script for editing items -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
 </head>
 <body>
@@ -149,9 +151,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <td><?= htmlspecialchars($item['item_id']) ?></td>
                                 <td><?= htmlspecialchars($item['item_name']) ?></td>
                                 <td><?= htmlspecialchars($item['item_price']) ?></td>
-                                <td><?= htmlspecialchars($item['category_name']) ?></td>
+                                <td data-category-id="<?= $item['category_id'] ?>"><?= htmlspecialchars($item['category_name']) ?></td>
                                 <td>
-                                    <button class="edit-btn">Uredi</button>
+                                    <button class="edit-btn" data-id="<?= $item['item_id'] ?>" data-name="<?= htmlspecialchars($item['item_name']) ?>" data-price="<?= htmlspecialchars($item['item_price']) ?>" data-category-id="<?= $item['category_id'] ?>">Uredi</button>
                                     <button class="delete-btn">Izbriši</button>
                                 </td>
                             </tr>
@@ -182,6 +184,36 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     </div>
                     <div id="errorMessage" style="color: red; display: none;"></div>
                     <button type="button" id="confirmEdit">Confirm</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Item Modal -->
+        <div id="editItemModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Edit Item</h2>
+                <form id="editItemForm">
+                    <input type="hidden" id="itemId" name="item_id">
+                    <div class="form-group">
+                        <label for="itemName">Item Name:</label>
+                        <input type="text" id="itemName" name="item_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemPrice">Item Price:</label>
+                        <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory">Category:</label>
+                        <select id="itemCategory" name="category_id" required>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div id="itemErrorMessage" style="color: red; display: none;"></div>
+                    <button type="button" id="confirmEditItem">Confirm</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>
