@@ -90,6 +90,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <script defer src="edit-item.js"></script> <!-- Script for editing items -->
     <script defer src="delete-category.js"></script> <!-- Script for deleting categories -->
     <script defer src="delete-item.js"></script> <!-- Script for deleting items -->
+    <script defer src="add-category.js"></script> <!-- Script for adding categories -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
 </head>
 <body>
@@ -101,6 +102,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <div class="view-toggle">
             <button id="btnCategories" class="toggle-btn active">Prikaz kategorija</button>
             <button id="btnItems" class="toggle-btn">Prikaz Artikala</button>
+            <button id="btnAddCategory" class="toggle-btn">Dodaj kategoriju</button>
         </div>
 
         <!-- Categories Section -->
@@ -183,8 +185,8 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                         </select>
                     </div>
                     <div id="errorMessage" style="color: red; display: none;"></div>
-                    <button type="button" id="confirmEdit">Confirm</button>
-                    <button type="button" id="deleteCategoryBtn" class="delete-btn">Delete</button>
+                    <button type="button" class="confirm-btn">Confirm</button>
+                    <button type="button" class="delete-btn">Delete</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>
@@ -214,8 +216,34 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                         </select>
                     </div>
                     <div id="itemErrorMessage" style="color: red; display: none;"></div>
-                    <button type="button" id="confirmEditItem">Confirm</button>
-                    <button type="button" id="deleteItemBtn" class="delete-btn">Delete</button>
+                    <button type="button" class="confirm-btn">Confirm</button>
+                    <button type="button" class="delete-btn">Delete</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Category Modal -->
+        <div id="addCategoryModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Dodaj Kategoriju</h2>
+                <form id="addCategoryForm">
+                    <div class="form-group">
+                        <label for="newCategoryName">Category Name:</label>
+                        <input type="text" id="newCategoryName" name="category_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newType">Type:</label>
+                        <select id="newType" name="type_id" required>
+                            <?php foreach ($types as $type): ?>
+                                <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div id="addCategoryErrorMessage" style="color: red; display: none;"></div>
+                    <div id="addCategorySuccessMessage" style="color: green; display: none;"></div>
+                    <button type="button" class="confirm-btn">Add Category</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>
