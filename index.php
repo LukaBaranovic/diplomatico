@@ -91,6 +91,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <script defer src="delete-category.js"></script> <!-- Script for deleting categories -->
     <script defer src="delete-item.js"></script> <!-- Script for deleting items -->
     <script defer src="add-category.js"></script> <!-- Script for adding categories -->
+    <script defer src="add-item.js"></script> <!-- Script for adding categories -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
 </head>
 <body>
@@ -103,6 +104,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             <button id="btnCategories" class="toggle-btn active">Prikaz kategorija</button>
             <button id="btnItems" class="toggle-btn">Prikaz Artikala</button>
             <button id="btnAddCategory" class="toggle-btn">Dodaj kategoriju</button>
+            <button id="btnAddItem" class="toggle-btn">Dodaj artikal</button>
         </div>
 
         <!-- Categories Section -->
@@ -248,6 +250,38 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 </form>
             </div>
         </div>
+
+        <!-- Add Item Modal -->
+        <div id="addItemModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Dodaj Artikal</h2>
+                <form id="addItemForm">
+                    <div class="form-group">
+                        <label for="itemName">Item Name:</label>
+                        <input type="text" id="itemName" name="item_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemPrice">Item Price:</label>
+                        <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory">Category:</label>
+                        <select id="itemCategory" name="category_id" required>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div id="addItemErrorMessage" style="color: red; display: none;"></div>
+                    <div id="addItemSuccessMessage" style="color: green; display: none;"></div>
+                    <button type="submit" class="confirm-btn">Add Item</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+
     </div>
 </body>
 </html>
