@@ -185,8 +185,8 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                         </select>
                     </div>
                     <div id="errorMessage" style="color: red; display: none;"></div>
-                    <button type="button" class="confirm-btn">Confirm</button>
-                    <button type="button" class="delete-btn">Delete</button>
+                    <button type="button" id="confirmEdit">Confirm</button>
+                    <button type="button" id="deleteCategoryBtn" class="delete-btn">Delete</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>
@@ -216,8 +216,8 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                         </select>
                     </div>
                     <div id="itemErrorMessage" style="color: red; display: none;"></div>
-                    <button type="button" class="confirm-btn">Confirm</button>
-                    <button type="button" class="delete-btn">Delete</button>
+                    <button type="button" id="confirmEditItem">Confirm</button>
+                    <button type="button" id="deleteItemBtn" class="delete-btn">Delete</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>
@@ -243,7 +243,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     </div>
                     <div id="addCategoryErrorMessage" style="color: red; display: none;"></div>
                     <div id="addCategorySuccessMessage" style="color: green; display: none;"></div>
-                    <button type="button" class="confirm-btn">Add Category</button>
+                    <button type="button" id="confirmAddCategory">Add Category</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </form>
             </div>

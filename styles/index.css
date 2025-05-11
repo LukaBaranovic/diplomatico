@@ -52,22 +52,22 @@ p {
 /* Container for search bar and table */
 .table-container {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Spacing between search bar and table */
 }
 
 /* Search bar styling */
 .table-container input[type="text"] {
-  width: 100%;
+  width: 100%; /* Ensures the search bar matches the table width */
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Spacing below the search bar */
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Includes padding and border in width calculations */
 }
 
 /* Table styling */
 table {
-  width: 100%;
+  width: 100%; /* Matches the search bar width */
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #fff;
@@ -118,75 +118,36 @@ button {
   color: white;
 }
 
-/* Cancel button styling */
-.cancel-btn {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cancel-btn:hover {
-  background-color: darkred;
-}
-
-/* Delete button styling (same as Cancel) */
+/* Delete button styling */
 .delete-btn {
-  background-color: red;
+  background-color: #dc3545;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.delete-btn:hover {
-  background-color: darkred;
-}
-
-/* Confirm button (green) */
-.confirm-btn {
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.confirm-btn:hover {
-  background-color: darkgreen;
 }
 
 /* Modal background */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
 }
 
 /* Modal content */
 .modal-content {
-  background-color: #fff;
-  margin: 10% auto;
+  background-color: #fff; /* White background */
+  margin: 10% auto; /* Centered vertically and horizontally */
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  width: 50%;
+  width: 50%; /* Set a width for the modal */
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
+  text-align: center; /* Center-align text inside the modal */
 }
 
 /* General text alignment for modal elements */
@@ -199,7 +160,7 @@ button {
 /* Close button */
 .close-btn {
   color: #aaa;
-  float: right;
+  float: right; /* Position it to the top-right corner */
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
@@ -216,7 +177,7 @@ button {
 .modal form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 15px; /* Space between form elements */
 }
 
 .modal form .form-group {
@@ -237,5 +198,44 @@ button {
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Error message */
+#errorMessage {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 14px;
+}
+
+/* Buttons in the modal */
+.modal form button {
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal form #confirmEdit {
+  background-color: #007bff; /* Blue for confirm button */
+  color: white;
+}
+
+.modal form #confirmEdit:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.modal form .cancel-btn {
+  background-color: #6c757d; /* Gray for cancel button */
+  color: white;
+}
+
+.modal form .cancel-btn:hover {
+  background-color: #5a6268; /* Darker gray on hover */
+}
+
+/* Buttons in the modal */
+.modal-content button {
+  display: inline-block; /* Ensure buttons are treated as inline elements */
+  margin: 10px 5px; /* Add spacing between buttons */
 }
