@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Add event listeners for Uredi (Edit) buttons in items
   const itemEditButtons = document.querySelectorAll("#itemTable .edit-btn");
   itemEditButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -10,29 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const categoryId =
         row.querySelector("td:nth-child(4)").dataset.categoryId;
 
-      // Populate the modal fields
       document.getElementById("itemId").value = itemId;
       document.getElementById("itemName").value = itemName;
       document.getElementById("itemPrice").value = itemPrice;
       document.getElementById("itemCategory").value = categoryId;
 
-      // Show the modal
       document.getElementById("editItemModal").style.display = "block";
     });
   });
 
-  // Close the modal
   document.querySelectorAll(".cancel-btn, .close-btn").forEach((button) => {
     button.addEventListener("click", () => {
       document.getElementById("editItemModal").style.display = "none";
     });
   });
 
-  // Confirm button logic for editing item
   document.getElementById("confirmEditItem").addEventListener("click", () => {
     const formData = new FormData(document.getElementById("editItemForm"));
 
-    // Validate price before sending
     const itemPrice = parseFloat(formData.get("item_price"));
     if (isNaN(itemPrice) || itemPrice <= 0) {
       document.getElementById("itemErrorMessage").textContent =
@@ -41,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // AJAX request to update the item
     fetch("edit-item.php", {
       method: "POST",
       body: formData,
@@ -51,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.status === "success") {
           alert(data.message);
 
-          // Dynamically update the table row
           const row = document
             .querySelector(
               `#itemTable .edit-btn[data-id="${formData.get("item_id")}"]`
@@ -67,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
               `#itemCategory option[value="${formData.get("category_id")}"]`
             ).textContent;
 
-          // Close the modal
           document.getElementById("editItemModal").style.display = "none";
         } else {
           document.getElementById("itemErrorMessage").textContent =

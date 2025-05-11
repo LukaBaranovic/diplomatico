@@ -8,20 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmAddCategory = document.getElementById("confirmAddCategory");
   const categoryTableBody = document.querySelector("#categoryTable tbody");
 
-  // Show modal without hiding the sections
   addCategoryButton.addEventListener("click", () => {
     addCategoryModal.style.display = "block";
-    addCategoryForm.reset(); // Reset the form each time the modal is opened
+    addCategoryForm.reset();
   });
 
-  // Close modal
   closeModalBtns.forEach((btn) =>
     btn.addEventListener("click", () => {
       addCategoryModal.style.display = "none";
     })
   );
 
-  // Handle form submission via AJAX
   confirmAddCategory.addEventListener("click", () => {
     const categoryName = document
       .getElementById("newCategoryName")
@@ -33,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Send AJAX request to add-category.php
     fetch("add-category.php", {
       method: "POST",
       headers: {
@@ -49,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.status === "success") {
           alert(data.message || "Category added successfully!");
 
-          // Dynamically update the categories table
           const newRow = document.createElement("tr");
           newRow.innerHTML = `
             <td>${data.category_id}</td>
@@ -61,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
           categoryTableBody.appendChild(newRow);
 
-          // Close the modal
           addCategoryModal.style.display = "none";
         } else {
           alert(data.message || "Failed to add category.");

@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemId = document.getElementById("itemId").value;
 
     if (confirm("Are you sure you want to delete this item?")) {
-      // Send AJAX request to delete the item
       fetch("delete-item.php", {
         method: "POST",
         headers: {
@@ -16,13 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.status === "success") {
-            // Remove the item row from the table
             document
               .querySelector(`#itemTable .edit-btn[data-id="${itemId}"]`)
               .closest("tr")
               .remove();
 
-            // Close the modal
             document.getElementById("editItemModal").style.display = "none";
           } else {
             const errorMessage = document.getElementById("itemErrorMessage");

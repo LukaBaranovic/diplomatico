@@ -1,28 +1,23 @@
 <?php
 session_start();
 
-// Include database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
-// Ensure the user is logged in and the request is POST
 if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['status' => 'error', 'message' => 'Unauthorized request']);
     exit;
 }
 
-// Fetch POST data and sanitize inputs
 $company_id = (int)$_SESSION['company_id'];
 $category_id = (int)$_POST['category_id'];
 $new_category_name = trim($_POST['category_name']);
 $new_type_name = trim($_POST['type_name']);
 
-// Validate inputs
 if (empty($new_category_name) || empty($new_type_name)) {
     echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
     exit;
 }
 
-// Check if the new category name already exists for the same company
 $sql_check = "
     SELECT 1 
     FROM CATEGORY 
@@ -39,7 +34,6 @@ if ($stmt->num_rows > 0) {
     exit;
 }
 
-// Update the category in the database
 $sql_update = "
     UPDATE CATEGORY
     SET category_name = ?, type_id = (SELECT type_id FROM TYPE WHERE type_name = ?)

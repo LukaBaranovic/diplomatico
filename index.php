@@ -1,22 +1,17 @@
 <?php
 session_start();
 
-// Fetch user_id and company_id from the session
 $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
 
-// Ensure the user is logged in
 if (isset($_SESSION["user_id"])) {
-    // Include database connection
     $mysqli = require_once __DIR__ . "/database.php";
 
-    // Fetch user details (if needed for other parts of the page)
     $sql = "SELECT * FROM users WHERE id = {$user_id}";
     $result = $mysqli->query($sql);
     $users = $result->fetch_assoc();
 }
 
-// Fetch categories and their associated type names filtered by company_id
 $sql = "
     SELECT 
         c.category_id, 
@@ -41,7 +36,6 @@ if (!$result) {
 
 $categories = $result->fetch_all(MYSQLI_ASSOC);
 
-// Fetch items and their associated category names filtered by company_id
 $sql_items = "
     SELECT 
         i.item_id, 
@@ -68,7 +62,6 @@ if (!$result_items) {
 
 $items = $result_items->fetch_all(MYSQLI_ASSOC);
 
-// Fetch all types for the dropdown in the modal
 $sql_types = "SELECT type_name FROM TYPE ORDER BY type_name ASC";
 $result_types = $mysqli->query($sql_types);
 $types = $result_types->fetch_all(MYSQLI_ASSOC);
@@ -85,19 +78,18 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Diplomatico</title>
     <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
-    <script defer src="script.js"></script> <!-- General script -->
-    <script defer src="edit-category.js"></script> <!-- Script for editing categories -->
-    <script defer src="edit-item.js"></script> <!-- Script for editing items -->
-    <script defer src="delete-category.js"></script> <!-- Script for deleting categories -->
-    <script defer src="delete-item.js"></script> <!-- Script for deleting items -->
-    <script defer src="add-category.js"></script> <!-- Script for adding categories -->
-    <script defer src="add-item.js"></script> <!-- Script for adding categories -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+    <script defer src="script.js"></script> 
+    <script defer src="edit-category.js"></script> 
+    <script defer src="edit-item.js"></script> 
+    <script defer src="delete-category.js"></script> 
+    <script defer src="delete-item.js"></script> 
+    <script defer src="add-category.js"></script> 
+    <script defer src="add-item.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 <body>
     <div class="container">
-        <h1>Category and Item Management</h1>
-        <p>Welcome, <?= htmlspecialchars($users['name']) ?>!</p>
+    
 
         <!-- View Toggle Buttons -->
         <div class="view-toggle">
@@ -110,14 +102,14 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <!-- Categories Section -->
         <div id="categoriesSection">
             <div class="table-container">
-                <input type="text" id="searchBarCategories" placeholder="Search categories..." onkeyup="filterTable('categoryTable', 'searchBarCategories')">
+                <input type="text" id="searchBarCategories" placeholder="Pretraži kategorije..." onkeyup="filterTable('categoryTable', 'searchBarCategories')">
                 <table id="categoryTable">
                     <thead>
                         <tr>
-                            <th>Category ID</th>
-                            <th>Category Name</th>
-                            <th>Type Name</th>
-                            <th>Actions</th>
+                            <th>ID</th>
+                            <th>Kategorija</th>
+                            <th>Tip</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,15 +131,15 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <!-- Items Section -->
         <div id="itemsSection" style="display: none;">
             <div class="table-container">
-                <input type="text" id="searchBarItems" placeholder="Search items..." onkeyup="filterTable('itemTable', 'searchBarItems')">
+                <input type="text" id="searchBarItems" placeholder="Pretraži artikle..." onkeyup="filterTable('itemTable', 'searchBarItems')">
                 <table id="itemTable">
                     <thead>
                         <tr>
-                            <th>Item ID</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
-                            <th>Category Name</th>
-                            <th>Actions</th>
+                            <th>ID</th>
+                            <th>Naziv artikla</th>
+                            <th>Cijena</th>
+                            <th>Naziv kategorije</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -171,15 +163,15 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <div id="editCategoryModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close-btn">&times;</span>
-                <h2>Edit Category</h2>
+                <h2>Uredi kategoriju</h2>
                 <form id="editCategoryForm">
                     <input type="hidden" id="categoryId" name="category_id">
                     <div class="form-group">
-                        <label for="categoryName">Category Name:</label>
+                        <label for="categoryName">Naziv kategorije:</label>
                         <input type="text" id="categoryName" name="category_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="typeName">Type:</label>
+                        <label for="typeName">Tip:</label>
                         <select id="typeName" name="type_name" required>
                             <?php foreach ($types as $type): ?>
                                 <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
@@ -187,9 +179,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                         </select>
                     </div>
                     <div id="errorMessage" style="color: red; display: none;"></div>
-                    <button type="button" id="confirmEdit">Confirm</button>
-                    <button type="button" id="deleteCategoryBtn" class="delete-btn">Delete</button>
-                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="button" id="confirmEdit">Potvrdi</button>
+                    <button type="button" id="deleteCategoryBtn" class="delete-btn">Izbriši</button>
+                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>
@@ -198,19 +190,19 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <div id="editItemModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close-btn">&times;</span>
-                <h2>Edit Item</h2>
+                <h2>Uredi artikal</h2>
                 <form id="editItemForm">
                     <input type="hidden" id="itemId" name="item_id">
                     <div class="form-group">
-                        <label for="itemName">Item Name:</label>
+                        <label for="itemName">Naziv artikla:</label>
                         <input type="text" id="itemName" name="item_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="itemPrice">Item Price:</label>
+                        <label for="itemPrice">Cijena artikla:</label>
                         <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
                     </div>
                     <div class="form-group">
-                        <label for="itemCategory">Category:</label>
+                        <label for="itemCategory">Kategorija:</label>
                         <select id="itemCategory" name="category_id" required>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
@@ -218,9 +210,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                         </select>
                     </div>
                     <div id="itemErrorMessage" style="color: red; display: none;"></div>
-                    <button type="button" id="confirmEditItem">Confirm</button>
-                    <button type="button" id="deleteItemBtn" class="delete-btn">Delete</button>
-                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="button" id="confirmEditItem">Potvrdi</button>
+                    <button type="button" id="deleteItemBtn" class="delete-btn">Izbriši</button>
+                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>
@@ -232,11 +224,11 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 <h2>Dodaj Kategoriju</h2>
                 <form id="addCategoryForm">
                     <div class="form-group">
-                        <label for="newCategoryName">Category Name:</label>
+                        <label for="newCategoryName">Naziv kategorije:</label>
                         <input type="text" id="newCategoryName" name="category_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="newType">Type:</label>
+                        <label for="newType">Tip:</label>
                         <select id="newType" name="type_id" required>
                             <?php foreach ($types as $type): ?>
                                 <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
@@ -245,8 +237,8 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     </div>
                     <div id="addCategoryErrorMessage" style="color: red; display: none;"></div>
                     <div id="addCategorySuccessMessage" style="color: green; display: none;"></div>
-                    <button type="button" id="confirmAddCategory">Add Category</button>
-                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="button" id="confirmAddCategory">Dodaj kategoriju</button>
+                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>
@@ -258,15 +250,15 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 <h2>Dodaj Artikal</h2>
                 <form id="addItemForm">
                     <div class="form-group">
-                        <label for="itemName">Item Name:</label>
+                        <label for="itemName">Naziv artikla:</label>
                         <input type="text" id="itemName" name="item_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="itemPrice">Item Price:</label>
+                        <label for="itemPrice">Cijena artikla:</label>
                         <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
                     </div>
                     <div class="form-group">
-                        <label for="itemCategory">Category:</label>
+                        <label for="itemCategory">Kategorija:</label>
                         <select id="itemCategory" name="category_id" required>
                             <?php foreach ($categories as $category): ?>
                                 <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
@@ -275,8 +267,8 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     </div>
                     <div id="addItemErrorMessage" style="color: red; display: none;"></div>
                     <div id="addItemSuccessMessage" style="color: green; display: none;"></div>
-                    <button type="submit" class="confirm-btn">Add Item</button>
-                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="confirm-btn">Dodaj artikal</button>
+                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>

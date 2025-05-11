@@ -2,11 +2,10 @@
 session_start();
 require_once "database.php";
 
-header("Content-Type: application/json"); // Set content type to JSON
+header("Content-Type: application/json");
 
 $response = ["status" => "error", "message" => "An error occurred."];
 
-// Validate input data
 $data = json_decode(file_get_contents("php://input"), true);
 if (!isset($data["category_name"], $data["type_name"])) {
     $response["message"] = "Invalid input.";
@@ -17,17 +16,14 @@ if (!isset($data["category_name"], $data["type_name"])) {
 $category_name = trim($data["category_name"]);
 $type_name = trim($data["type_name"]);
 
-// Ensure inputs are valid
 if (empty($category_name) || empty($type_name)) {
     $response["message"] = "All fields are required.";
     echo json_encode($response);
     exit;
 }
 
-// Get company ID from session
 $company_id = $_SESSION["company_id"];
 
-// Check if the category already exists (case-insensitive)
 $sql_check = "
     SELECT category_id 
     FROM CATEGORY 
@@ -52,7 +48,6 @@ if ($stmt_check->num_rows > 0) {
 }
 $stmt_check->close();
 
-// Insert the new category into the database
 $sql = "INSERT INTO CATEGORY (category_name, type_id, company_id) 
         SELECT ?, t.type_id, ? 
         FROM TYPE t 
@@ -69,7 +64,7 @@ $stmt->bind_param("sis", $category_name, $company_id, $type_name);
 if ($stmt->execute()) {
     $response["status"] = "success";
     $response["message"] = "Category added successfully!";
-    $response["category_id"] = $stmt->insert_id; // Return the new category ID
+    $response["category_id"] = $stmt->insert_id;
 } else {
     $response["message"] = "Failed to add category.";
 }

@@ -6,31 +6,26 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const addItemForm = document.getElementById("addItemForm");
 
-  // Show modal
   addItemBtn.addEventListener("click", function () {
     addItemModal.style.display = "block";
   });
 
-  // Close modal
   closeModalBtns.forEach((btn) =>
     btn.addEventListener("click", function () {
       addItemModal.style.display = "none";
     })
   );
 
-  // Perform client-side validation
   function validateForm(formData) {
     const itemName = formData.get("item_name");
     const itemPrice = formData.get("item_price");
     const categoryId = formData.get("category_id");
 
-    // Check if all fields are filled
     if (!itemName || !itemPrice || !categoryId) {
       alert("All fields are required.");
       return false;
     }
 
-    // Validate that price is a positive number
     const price = parseFloat(itemPrice);
     if (isNaN(price) || price <= 0) {
       alert("Item price must be a valid positive number.");
@@ -40,15 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
-  // Submit form via AJAX
   addItemForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     const formData = new FormData(addItemForm);
 
-    // Perform client-side validation
     if (!validateForm(formData)) {
-      return; // Stop submission if validation fails
+      return;
     }
 
     fetch("add-item.php", {
@@ -58,10 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Show success alert
           alert(data.message);
 
-          // Add the new item to the Items table
           const itemTable = document
             .getElementById("itemTable")
             .getElementsByTagName("tbody")[0];
@@ -76,16 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
                       </td>
                   `;
 
-          // Reset the form and close the modal
           addItemForm.reset();
           addItemModal.style.display = "none";
         } else {
-          // Show error alert
           alert(data.message);
         }
       })
       .catch((error) => {
-        // Show generic error alert
         alert("An error occurred. Please try again.");
       });
   });
