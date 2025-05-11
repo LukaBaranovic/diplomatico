@@ -7,25 +7,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmAddCategory = document.getElementById("confirmAddCategory");
   const categoriesSection = document.getElementById("categoriesSection");
   const itemsSection = document.getElementById("itemsSection");
-  const errorMessage = document.getElementById("addCategoryErrorMessage");
-  const successMessage = document.getElementById("addCategorySuccessMessage");
   const categoryTableBody = document.querySelector("#categoryTable tbody");
+
+  // Variable to track the currently visible section
+  let currentSection = "categories"; // Default to categories section
 
   // Show modal and hide other sections
   addCategoryButton.addEventListener("click", () => {
+    // Track which section is currently visible
+    if (categoriesSection.style.display === "block") {
+      currentSection = "categories";
+    } else if (itemsSection.style.display === "block") {
+      currentSection = "items";
+    }
+
+    // Show the modal and hide both sections
     addCategoryModal.style.display = "block";
     categoriesSection.style.display = "none";
     itemsSection.style.display = "none";
-    resetMessages(); // Reset messages and form fields
+    addCategoryForm.reset();
   });
 
-  // Close modal and show other sections (Close button)
+  // Close modal (Close button)
   closeBtn.addEventListener("click", closeModal);
 
-  // Close modal and show other sections (Cancel button)
+  // Close modal (Cancel button)
   cancelButton.addEventListener("click", closeModal);
 
-  // Handle form submission
+  // Handle form submission via AJAX
   confirmAddCategory.addEventListener("click", () => {
     const categoryName = document
       .getElementById("newCategoryName")
@@ -33,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typeName = document.getElementById("newType").value;
 
     if (!categoryName || !typeName) {
-      displayMessage(errorMessage, "Please fill in all fields.", "error");
+      alert("Please fill in all fields.");
       return;
     }
 
@@ -51,42 +60,31 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          // Show success message with animation
-          displayMessage(
-            successMessage,
-            data.message || "Category added successfully!",
-            "success"
-          );
+          alert(data.message || "Category added successfully!");
 
-          // Dynamically add the new category to the table
-          const newRow = document.createElement("tr");
-          newRow.innerHTML = `
-                      <td>${data.category_id}</td>
-                      <td>${categoryName}</td>
-                      <td>${typeName}</td>
-                      <td>
-                          <button class="edit-btn" data-id="${data.category_id}" data-name="${categoryName}" data-type="${typeName}">Uredi</button>
-                      </td>
-                  `;
-          categoryTableBody.appendChild(newRow);
+          // Dynamically update the categories table if on the categories section
+          if (currentSection === "categories") {
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+              <td>${data.category_id}</td>
+              <td>${categoryName}</td>
+              <td>${typeName}</td>
+              <td>
+                <button class="edit-btn" data-id="${data.category_id}" data-name="${categoryName}" data-type="${typeName}">Uredi</button>
+              </td>
+            `;
+            categoryTableBody.appendChild(newRow);
+          }
 
-          // Reset the form for adding another category
-          addCategoryForm.reset();
+          // Close the modal and show the previously active section
+          closeModal();
         } else {
-          displayMessage(
-            errorMessage,
-            data.message || "Failed to add category.",
-            "error"
-          );
+          alert(data.message || "Failed to add category.");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        displayMessage(
-          errorMessage,
-          "An error occurred. Please try again.",
-          "error"
-        );
+        alert("An error occurred. Please try again.");
       });
   });
 
@@ -95,36 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function closeModal() {
     addCategoryModal.style.display = "none";
-    categoriesSection.style.display = "block";
-    itemsSection.style.display = "block";
-    resetMessages();
-  }
 
-  /**
-   * Function to display a message with animation (success or error)
-   * @param {HTMLElement} element - The DOM element where the message will be displayed
-   * @param {string} message - The message to display
-   * @param {string} type - The type of message ('success' or 'error')
-   */
-  function displayMessage(element, message, type) {
-    element.textContent = message;
-    element.style.fontSize = "1.5rem"; // Larger size
-    element.style.display = "block";
-    element.style.color = type === "success" ? "green" : "red"; // Set color based on type
-
-    // Shrink the message after 1 second
-    setTimeout(() => {
-      element.style.fontSize = "1rem"; // Regular size
-    }, 1000);
-  }
-
-  /**
-   * Function to reset all messages
-   */
-  function resetMessages() {
-    errorMessage.style.display = "none";
-    successMessage.style.display = "none";
-    errorMessage.textContent = "";
-    successMessage.textContent = "";
+    // Show only the previously active section
+    if (currentSection === "categories") {
+      categoriesSection.style.display = "block";
+      itemsSection.style.display = "none";
+    } else if (currentSection === "items") {
+      itemsSection.style.display = "block";
+      categoriesSection.style.display = "none";
+    }
   }
 });

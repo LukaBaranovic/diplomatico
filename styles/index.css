@@ -150,13 +150,6 @@ button {
   text-align: center; /* Center-align text inside the modal */
 }
 
-/* General text alignment for modal elements */
-.modal-content p {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
 /* Close button */
 .close-btn {
   color: #aaa;
@@ -199,12 +192,6 @@ button {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box; /* Include padding and border in width */
-}
-
-/* Error message */
-#errorMessage {
-  color: #dc3545; /* Red color for error messages */
-  font-size: 14px;
 }
 
 /* Buttons in the modal */
