@@ -27,13 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $new_password = $_POST["new_password"];
     $confirm_password = $_POST["confirm_password"];
 
-    // Validate the old password and check if new passwords match
     if (password_verify($old_password, $user["password_hash"])) {
         if ($new_password === $confirm_password) {
-            // Hash the new password
             $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-            // Update password in the database
             $update_sql = "UPDATE users SET password_hash = ? WHERE id = ?";
             $update_stmt = $mysqli->prepare($update_sql);
             $update_stmt->bind_param("si", $new_password_hash, $user_id);
