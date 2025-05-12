@@ -51,8 +51,9 @@ p {
 
 /* Container for search bar and table */
 .table-container {
-  width: 100%;
-  margin-bottom: 20px; /* Spacing between search bar and table */
+  width: 80%; /* Set the width to 80% of the page */
+  margin: 0 auto; /* Center the container horizontally */
+  margin-bottom: 20px; /* Keep spacing below the container */
 }
 
 /* Search bar styling */
@@ -204,12 +205,39 @@ button {
 }
 
 .modal form #confirmEdit {
-  background-color: #007bff; /* Blue for confirm button */
+  background-color: #28a745; /* Blue for confirm button */
   color: white;
 }
 
 .modal form #confirmEdit:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #218838; /* Darker blue on hover */
+}
+
+.modal form #confirmEditItem {
+  background-color: #28a745; /* Green for confirm item button */
+  color: white;
+}
+
+.modal form #confirmEditItem:hover {
+  background-color: #218838; /* Darker blue on hover */
+}
+
+.modal form #confirmAddCategory {
+  background-color: #28a745; /* Green for confirm category button */
+  color: white;
+}
+
+.modal form #confirmAddCategory:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.modal form .confirm-btn {
+  background-color: #28a745; /* Blue for confirm button */
+  color: white;
+}
+
+.modal form .confirm-btn:hover {
+  background-color: #218838; /* Darker blue on hover */
 }
 
 .modal form .cancel-btn {
