@@ -51,6 +51,20 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
 </head>
 
 <body>
+
+     <!-- Navigation Bar -->
+     <header class="navbar">
+        <a href="review.php" class="navbar-logo">
+            <span>ZukaMaster</span>
+        </a>
+        <a href="http://localhost/diplomatico/user.php" class="navbar-user">
+            <?= htmlspecialchars($users['name']) ?>
+        </a>
+    </header>
+
+
+
+
     <div class="container">
         <div class="table-container">
             <h1>Računi</h1>
