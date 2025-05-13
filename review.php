@@ -11,13 +11,38 @@ if (!isset($_SESSION["user_id"])) {
 // Include the database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
-// Get today's date in 'Y-m-d' format
-$today = date('Y-m-d');
+// Check if this is an AJAX request for receipts by date
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['date'])) {
+    $selected_date = $_POST['date']; // Get the selected date from AJAX request
 
-// Query to fetch today's receipts for the logged-in user's company
+    // Query to fetch receipts for the selected date and company
+    $sql = "SELECT receipt_id, table_number, total_price, timestamp 
+            FROM receipts 
+            WHERE company_id = ? AND DATE(timestamp) = ?
+            ORDER BY timestamp DESC";
+
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("is", $company_id, $selected_date);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Collect data as an array
+    $receipts = [];
+    while ($row = $result->fetch_assoc()) {
+        $receipts[] = $row;
+    }
+
+    // Return JSON response
+    header('Content-Type: application/json');
+    echo json_encode($receipts);
+    exit();
+}
+
+// Default behavior: fetch today's receipts for initial page load
+$today = date('Y-m-d');
 $sql = "SELECT receipt_id, table_number, total_price, timestamp 
         FROM receipts 
-        WHERE company_id = ? AND DATE(timestamp) = ? 
+        WHERE company_id = ? AND DATE(timestamp) = ?
         ORDER BY timestamp DESC";
 
 $stmt = $mysqli->prepare($sql);
@@ -46,7 +71,13 @@ $result = $stmt->get_result();
 <body>
     <div class="container">
         <div class="table-container">
-            <h1>Receipts</h1>
+            <h1>Računi</h1>
+            <!-- Date Selector -->
+            <div class="date-picker-container">
+                <label for="dateSelector">Odaberite datum:</label>
+                <input type="date" id="dateSelector" value="<?= $today ?>">
+            </div>
+            <!-- Receipts Table -->
             <table id="receiptsTable">
                 <thead>
                     <tr>

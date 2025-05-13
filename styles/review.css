@@ -1,28 +1,36 @@
-/* Container for table */
+/* Container for main content */
 .container {
   width: 80%;
   margin: 20px auto;
+  text-align: center; /* Center-align everything inside the container */
 }
 
+/* Table container */
 .table-container {
-  width: 80%; /* Set the width to 80% of the page */
-  margin: 0 auto; /* Center the container horizontally */
-  margin-bottom: 20px; /* Keep spacing below the container */
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
-/* Search bar styling */
-.table-container input[type="text"] {
-  width: 100%; /* Ensures the search bar matches the table width */
-  padding: 10px;
-  margin-bottom: 10px; /* Spacing below the search bar */
+/* Center the date picker and label */
+.date-picker-container {
+  display: flex;
+  flex-direction: column; /* Stack the elements vertically */
+  align-items: center; /* Center-align elements horizontally */
+  margin-bottom: 20px;
+}
+
+/* Date picker styling */
+#dateSelector {
+  padding: 8px;
+  font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-sizing: border-box; /* Includes padding and border in width calculations */
+  background-color: #f9f9f9;
 }
 
 /* Table styling */
 table {
-  width: 100%; /* Matches the search bar width */
+  width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #fff;
