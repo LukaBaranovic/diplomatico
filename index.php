@@ -103,7 +103,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
 
      <!-- Navigation Bar -->
     <header class="navbar">
-        <a href="index.php" class="navbar-logo">
+        <a href="review.php" class="navbar-logo">
             <span>ZukaMaster</span>
         </a>
         <a href="http://localhost/diplomatico/user.php" class="navbar-user">
