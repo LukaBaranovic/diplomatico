@@ -47,9 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-
-
-
 ?>
 <?php include('database.php'); ?>
 
@@ -72,21 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-
-<!--
-<header>
-  <a href="index.php">
-    <img class="header-logo" src="photo/zukaheader-rm.png" alt="header logo">
-  </a>
-  <nav>
-     <a href="user.php">Korisnik</a>
-  </nav>
-</header></nav>
-
--->
-<!-- #################################################################################################################################-->
-
-<div class="profile-wrapper">
+    <div class="profile-wrapper">
         <div class="profile-form-container">
             <div class="profile-header">
                 <h4>Promjena Lozinke</h4>
@@ -125,34 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <a href="logout.php" class="logout-button">Logout</a>
         </div>
     </div>
-</body>
-</html>
 
 
-
-
-
-
-
-
-
-<!-- #################################################################################################################################-->
-<!--
-<footer>
-  <div class="footer-content">
-    <p>© 2024 Zuka Master</p>
-    <p>All rights reserved</p>
-    <?php
-      $companyQuery = "SELECT company_name FROM company WHERE company_id = $company_id";
-      $companyResult = mysqli_query($mysqli, $companyQuery);
-      if($companyResult && $row = mysqli_fetch_assoc($companyResult)) {
-        echo "<p>" . htmlspecialchars($row['company_name']) . "</p>";
-      }
-    ?>
-  </div>
-</footer>
--->
 
 </body>
 </html>
-

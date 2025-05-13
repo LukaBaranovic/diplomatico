@@ -22,60 +22,72 @@ body {
   flex-direction: column;
 }
 
-.button {
-  cursor: pointer;
-  align-items: center;
-  padding: 10px 30px;
-  border-radius: 6px;
-  border: none;
-  color: #fff;
-}
-
-@media (max-width: 1200px) {
-  .button {
-    padding: 8px 24px;
-  }
-}
-
-@media (max-width: 900px) {
-  .button {
-    padding: 7px 21px;
-  }
-}
-
-@media (max-width: 600px) {
-  .button {
-    padding: 5px 15px;
-  }
-}
-
-.button-container {
-  display: flex;
-  justify-content: center; /* Centers buttons horizontally */
-  align-items: center; /* Centers buttons vertically */
-  gap: 15px; /* Space between buttons  */
-  margin-top: 40px;
-}
-
-.cancel-button {
-  background: red;
-}
-
-.save-button {
-  background: green;
-}
-
-.update-button {
-  background: green;
-}
-
-.delete-button {
-  background: red;
-}
-
 /* Do ovjde je CSS kod korišten za button */
 
 /* ################################################################################################################## */
+
+/* Navigation Bar Styles */
+.navbar {
+  background-color: #007bff; /* Blue background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  position: sticky; /* Sticks to the top during scrolling */
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  text-decoration: none; /* Removes underline from the text */
+  color: white;
+}
+
+.navbar-logo span {
+  font-size: 20px;
+  font-weight: 400; /* Normal font weight */
+  letter-spacing: 1.5px; /* Adds spacing between letters */
+  transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.navbar-logo span:hover {
+  color: #ffc107; /* Golden color on hover */
+}
+
+.navbar-user {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.navbar-user:hover {
+  color: #ffc107; /* Golden color on hover */
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #007bff; /* Same blue as the header */
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 20px;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow above the footer */
+}
+
+.footer-company-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Space between company name and rights text */
+}
+
+.footer-rights {
+  font-size: 14px;
+  font-weight: normal;
+  color: #e0e0e0; /* A lighter shade for the rights text */
+}
 
 img {
   width: 150px;
@@ -85,14 +97,4 @@ img {
 
 .login-logo {
   padding-top: 20px;
-}
-
-h5 {
-  text-align: center;
-  color: red;
-  font-size: 2rem;
-}
-
-.hidden {
-  display: none;
 }
