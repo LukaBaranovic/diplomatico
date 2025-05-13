@@ -1,93 +1,74 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
-
-body {
-  font-family: "Montserrat", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-}
-
+/* Container for table */
 .container {
   width: 80%;
   margin: 20px auto;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+.table-container {
+  width: 80%; /* Set the width to 80% of the page */
+  margin: 0 auto; /* Center the container horizontally */
+  margin-bottom: 20px; /* Keep spacing below the container */
 }
 
-.date-picker-form {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.date-picker-form input[type="date"] {
+/* Search bar styling */
+.table-container input[type="text"] {
+  width: 100%; /* Ensures the search bar matches the table width */
   padding: 10px;
+  margin-bottom: 10px; /* Spacing below the search bar */
   border: 1px solid #ddd;
   border-radius: 5px;
+  box-sizing: border-box; /* Includes padding and border in width calculations */
 }
 
-.date-picker-form button {
-  margin-left: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.date-picker-form button:hover {
-  background-color: #0056b3;
-}
-
-.table-container {
-  width: 100%;
-  margin: 0 auto;
-}
-
+/* Table styling */
 table {
-  width: 100%;
+  width: 100%; /* Matches the search bar width */
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #fff;
 }
 
+/* Borders for table, headers, and cells */
 table,
 th,
 td {
   border: 1px solid #ddd;
 }
 
+/* Padding and alignment for table cells */
 th,
 td {
   padding: 10px;
   text-align: left;
 }
 
+/* Header row background color */
 th {
   background-color: #007bff;
   color: white;
 }
 
+/* Alternating row colors */
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+/* Hover effect on table rows */
 tr:hover {
   background-color: #e9ecef;
 }
 
-.view-btn {
+/* General button styles */
+button {
   padding: 5px 10px;
-  background-color: #28a745;
-  color: white;
+  margin: 0 5px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.view-btn:hover {
-  background-color: #218838;
+/* Edit button styling */
+.edit-btn {
+  background-color: #ffc107;
+  color: white;
 }
