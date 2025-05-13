@@ -11,45 +11,29 @@ if (!isset($_SESSION["user_id"])) {
 // Include the database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
-// Check if this is an AJAX request for receipts by date
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['date'])) {
-    $selected_date = $_POST['date']; // Get the selected date from AJAX request
+// Handle the selected date from the form submission
+$selected_date = $_GET['date'] ?? date('Y-m-d'); // Default to today's date if no date is selected
 
-    // Query to fetch receipts for the selected date and company
-    $sql = "SELECT receipt_id, table_number, total_price, timestamp 
-            FROM receipts 
-            WHERE company_id = ? AND DATE(timestamp) = ?
-            ORDER BY timestamp DESC";
-
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("is", $company_id, $selected_date);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Collect data as an array
-    $receipts = [];
-    while ($row = $result->fetch_assoc()) {
-        $receipts[] = $row;
-    }
-
-    // Return JSON response
-    header('Content-Type: application/json');
-    echo json_encode($receipts);
-    exit();
-}
-
-// Default behavior: fetch today's receipts for initial page load
-$today = date('Y-m-d');
+// Query to fetch receipts for the selected date and company
 $sql = "SELECT receipt_id, table_number, total_price, timestamp 
         FROM receipts 
         WHERE company_id = ? AND DATE(timestamp) = ?
         ORDER BY timestamp DESC";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param("is", $company_id, $today);
+$stmt->bind_param("is", $company_id, $selected_date);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Query to calculate the total sum for the selected date
+$sql_total = "SELECT SUM(total_price) AS total_sum 
+              FROM receipts 
+              WHERE company_id = ? AND DATE(timestamp) = ?";
+$stmt_total = $mysqli->prepare($sql_total);
+$stmt_total->bind_param("is", $company_id, $selected_date);
+$stmt_total->execute();
+$result_total = $stmt_total->get_result();
+$total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if no receipts
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +48,6 @@ $result = $stmt->get_result();
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Receipts - Diplomatico</title>
     <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
-    <script defer src="review.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -73,10 +55,12 @@ $result = $stmt->get_result();
         <div class="table-container">
             <h1>Računi</h1>
             <!-- Date Selector -->
-            <div class="date-picker-container">
+            <form method="GET" action="review.php" class="date-picker-container">
                 <label for="dateSelector">Odaberite datum:</label>
-                <input type="date" id="dateSelector" value="<?= $today ?>">
-            </div>
+                <input type="date" id="dateSelector" name="date" value="<?= htmlspecialchars($selected_date) ?>">
+                <button type="submit">Prikaži</button>
+            </form>
+
             <!-- Receipts Table -->
             <table id="receiptsTable">
                 <thead>
@@ -98,6 +82,12 @@ $result = $stmt->get_result();
                     <?php endwhile; ?>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Total Sum Section -->
+        <div id="totalSumContainer">
+            <h3>Ukupni iznos:</h3>
+            <p id="totalSum"><?= number_format($total_sum, 2) ?></p>
         </div>
     </div>
 </body>

@@ -28,6 +28,28 @@
   background-color: #f9f9f9;
 }
 
+/* Total sum container */
+#totalSumContainer {
+  margin-top: 20px;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#totalSumContainer h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #007bff;
+}
+
+#totalSum {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
 /* Table styling */
 table {
   width: 100%;
@@ -64,19 +86,4 @@ tr:nth-child(even) {
 /* Hover effect on table rows */
 tr:hover {
   background-color: #e9ecef;
-}
-
-/* General button styles */
-button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/* Edit button styling */
-.edit-btn {
-  background-color: #ffc107;
-  color: white;
 }
