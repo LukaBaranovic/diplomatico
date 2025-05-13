@@ -15,16 +15,17 @@ body {
 
 html,
 body {
-  height: 100%;
+  height: 100%; /* Ensure html and body take up the full height of the viewport */
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Make the body a flex container */
 }
 
-/* Do ovjde je CSS kod korišten za button */
-
-/* ################################################################################################################## */
+/* Make the main content area grow to fill available space */
+.container {
+  flex: 1; /* This allows the content to expand and push the footer to the bottom */
+}
 
 /* Navigation Bar Styles */
 .navbar {

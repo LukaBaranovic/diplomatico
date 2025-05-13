@@ -11,8 +11,34 @@ if (!isset($_SESSION["user_id"])) {
 // Include the database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
-// Handle the selected date from the form submission
-$selected_date = $_GET['date'] ?? date('Y-m-d'); // Default to today's date if no date is selected
+// Fetch user data
+$users = [];
+if (isset($_SESSION["user_id"])) {
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $users = $result->fetch_assoc();
+}
+
+// Fetch company name
+$company_name = '';
+if (isset($company_id)) {
+    $sql_company = "SELECT company_name FROM company WHERE company_id = ?";
+    $stmt_company = $mysqli->prepare($sql_company);
+    $stmt_company->bind_param("i", $company_id);
+    $stmt_company->execute();
+    $result_company = $stmt_company->get_result();
+
+    if ($result_company && $result_company->num_rows > 0) {
+        $company_data = $result_company->fetch_assoc();
+        $company_name = $company_data['company_name'];
+    }
+}
+
+// Default behavior: fetch today's receipts for initial page load
+$today = date('Y-m-d');
 
 // Query to fetch receipts for the selected date and company
 $sql = "SELECT receipt_id, table_number, total_price, timestamp 
@@ -21,7 +47,7 @@ $sql = "SELECT receipt_id, table_number, total_price, timestamp
         ORDER BY timestamp DESC";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param("is", $company_id, $selected_date);
+$stmt->bind_param("is", $company_id, $today);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -30,7 +56,7 @@ $sql_total = "SELECT SUM(total_price) AS total_sum
               FROM receipts 
               WHERE company_id = ? AND DATE(timestamp) = ?";
 $stmt_total = $mysqli->prepare($sql_total);
-$stmt_total->bind_param("is", $company_id, $selected_date);
+$stmt_total->bind_param("is", $company_id, $today);
 $stmt_total->execute();
 $result_total = $stmt_total->get_result();
 $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if no receipts
@@ -51,13 +77,23 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <a href="review.php" class="navbar-logo">
+            <span>ZukaMaster</span>
+        </a>
+        <a href="http://localhost/diplomatico/user.php" class="navbar-user">
+            <?= htmlspecialchars($users['name'] ?? 'Guest') ?>
+        </a>
+    </header>
+
     <div class="container">
         <div class="table-container">
             <h1>Računi</h1>
             <!-- Date Selector -->
             <form method="GET" action="review.php" class="date-picker-container">
                 <label for="dateSelector">Odaberite datum:</label>
-                <input type="date" id="dateSelector" name="date" value="<?= htmlspecialchars($selected_date) ?>">
+                <input type="date" id="dateSelector" name="date" value="<?= htmlspecialchars($today) ?>">
                 <button type="submit">Prikaži</button>
             </form>
 
@@ -90,6 +126,16 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             <p id="totalSum"><?= number_format($total_sum, 2) ?></p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-company-name">
+            <?= htmlspecialchars($company_name) ?>
+        </div>
+        <div class="footer-rights">
+            All rights reserved 2025
+        </div>
+    </footer>
 </body>
 
 </html>
