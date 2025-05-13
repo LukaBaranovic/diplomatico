@@ -11,6 +11,34 @@ if (!isset($_SESSION["user_id"])) {
 // Include the database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
+// Fetch user data
+$users = [];
+if (isset($_SESSION["user_id"])) {
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $users = $result->fetch_assoc();
+}
+
+
+
+// Fetch company name
+$company_name = '';
+if (isset($company_id)) {
+    $sql_company = "SELECT company_name FROM company WHERE company_id = ?";
+    $stmt_company = $mysqli->prepare($sql_company);
+    $stmt_company->bind_param("i", $company_id);
+    $stmt_company->execute();
+    $result_company = $stmt_company->get_result();
+
+    if ($result_company && $result_company->num_rows > 0) {
+        $company_data = $result_company->fetch_assoc();
+        $company_name = $company_data['company_name'];
+    }
+}
+
 // Handle the selected date from the form submission
 $selected_date = $_GET['date'] ?? date('Y-m-d'); // Default to today's date if no date is selected
 
@@ -51,6 +79,18 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <a href="review.php" class="navbar-logo">
+            <span>ZukaMaster</span>
+        </a>
+        <a href="http://localhost/diplomatico/user.php" class="navbar-user">
+            <?= htmlspecialchars($users['name'] ?? 'Guest') ?>
+        </a>
+    </header>
+
+
+
     <div class="container">
         <div class="table-container">
             <h1>Računi</h1>
@@ -90,6 +130,18 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             <p id="totalSum"><?= number_format($total_sum, 2) ?></p>
         </div>
     </div>
+
+ <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-company-name">
+            <?= htmlspecialchars($company_name) ?>
+        </div>
+        <div class="footer-rights">
+            All rights reserved 2025
+        </div>
+    </footer>
+
+    <script src="review.js" defer></script>
 </body>
 
 </html>
