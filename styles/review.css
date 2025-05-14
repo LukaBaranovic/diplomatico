@@ -42,12 +42,14 @@
   margin: 0;
   font-size: 20px;
   color: #007bff;
+  text-align: center; /* Center-align the total label */
 }
 
 #totalSum {
   font-size: 24px;
   font-weight: bold;
   color: #333;
+  text-align: center; /* Center-align the total value */
 }
 
 /* Table styling */
@@ -69,7 +71,7 @@ td {
 th,
 td {
   padding: 10px;
-  text-align: left;
+  text-align: center; /* Center-align table headers and cells */
 }
 
 /* Header row background color */
@@ -102,31 +104,61 @@ tr:hover {
 }
 
 .popup-content {
-  background-color: #fff;
+  background-color: #fff; /* White background */
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 80%;
-  max-width: 600px;
+  border-radius: 10px; /* Rounded corners */
+  width: 50%; /* Set width for the popup */
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  text-align: center; /* Center-align text */
+}
+
+/* ID and Table Number Styling */
+.popup-header p {
+  font-size: 18px;
+  margin: 5px 0;
 }
 
 .popup-header {
-  font-size: 20px;
-  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.popup-close {
+/* Close button at the top-right corner */
+.close-btn {
+  color: #aaa;
   position: absolute;
+  top: 10px;
   right: 20px;
-  top: 20px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
-  color: #333;
   cursor: pointer;
 }
 
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Cancel button styling */
+.cancel-btn {
+  background-color: #6c757d; /* Gray */
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268; /* Darker gray */
+}
+
+/* Popup items table */
 .popup-items {
   width: 100%;
   border-collapse: collapse;
@@ -137,7 +169,7 @@ tr:hover {
 .popup-items td {
   border: 1px solid #ddd;
   padding: 10px;
-  text-align: left;
+  text-align: center; /* Center-align popup table contents */
 }
 
 .popup-items th {
@@ -145,8 +177,9 @@ tr:hover {
   color: white;
 }
 
+/* Popup total price section */
 .popup-total {
   font-size: 18px;
   font-weight: bold;
-  text-align: right;
+  text-align: center; /* Center-align the total price */
 }

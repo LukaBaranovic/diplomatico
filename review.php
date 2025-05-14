@@ -79,7 +79,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
 <body>
     <!-- Navigation Bar -->
     <header class="navbar">
-        <a href="review.php" class="navbar-logo">
+        <a href="index.php" class="navbar-logo">
             <span>ZukaMaster</span>
         </a>
         <a href="http://localhost/diplomatico/user.php" class="navbar-user">
@@ -130,8 +130,16 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
     <!-- Popup for receipt details -->
     <div id="receiptPopup" class="popup">
         <div class="popup-content">
-            <span id="popupClose" class="popup-close">&times;</span>
-            <h2 class="popup-header"></h2>
+            <!-- Close Button -->
+            <span id="popupClose" class="close-btn">&times;</span>
+
+            <!-- ID and Table Number Section -->
+            <div class="popup-header">
+                <p><strong>ID:</strong> <span class="receipt-id"></span></p>
+                <p><strong>Broj Stola:</strong> <span class="table-number"></span></p>
+            </div>
+
+            <!-- Items Table -->
             <table class="popup-items">
                 <thead>
                     <tr>
@@ -145,6 +153,8 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
                 </tbody>
             </table>
             <p class="popup-total"></p>
+            <!-- Bottom Cancel Button -->
+            <button id="popupCancel" class="cancel-btn">Otkaži</button>
         </div>
     </div>
 

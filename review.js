@@ -51,8 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close popup handler
+  // Close popup handler for the "X" button
   document.querySelector("#popupClose").addEventListener("click", () => {
+    document.querySelector("#receiptPopup").style.display = "none";
+  });
+
+  // Close popup handler for the "Otkaži" button
+  document.querySelector("#popupCancel").addEventListener("click", () => {
     document.querySelector("#receiptPopup").style.display = "none";
   });
 });
