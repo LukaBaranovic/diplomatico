@@ -12,10 +12,16 @@ if (!isset($_SESSION['company_id'])) {
     exit;
 }
 
-// Retrieve company_id and date range
+// Retrieve company_id, date range, and sorting order
 $company_id = (int)$_SESSION['company_id'];
 $start_date = $_POST['start_date'] ?? date('Y-m-d', strtotime('-7 days'));
 $end_date = $_POST['end_date'] ?? date('Y-m-d');
+$sort_order = strtoupper($_POST['sort_order'] ?? 'DESC'); // Default to DESC
+
+// Validate sort order (only ASC or DESC are allowed)
+if (!in_array($sort_order, ['ASC', 'DESC'])) {
+    $sort_order = 'DESC';
+}
 
 // Connect to the database
 $mysqli = require_once __DIR__ . "/database.php";
@@ -34,6 +40,8 @@ $sql = "
         r.company_id = ? AND DATE(r.timestamp) BETWEEN ? AND ?
     GROUP BY 
         ri.item_name
+    ORDER BY 
+        total_quantity $sort_order
 ";
 
 // Prepare and execute the query
@@ -55,7 +63,14 @@ if ($result->num_rows > 0) {
     echo '<thead>';
     echo '<tr>';
     echo '<th>Item Name</th>';
-    echo '<th>Total Quantity</th>';
+    echo '<th>
+            Total Quantity
+            <label for="sort-order" style="margin-left: 10px;">Sort:</label>
+            <select id="sort-order" onchange="updateItemSortOrder()" class="minimal-dropdown">
+                <option value="DESC"' . ($sort_order === 'DESC' ? ' selected' : '') . '>Descending</option>
+                <option value="ASC"' . ($sort_order === 'ASC' ? ' selected' : '') . '>Ascending</option>
+            </select>
+          </th>';
     echo '<th>Total Price</th>';
     echo '</tr>';
     echo '</thead>';
@@ -64,7 +79,7 @@ if ($result->num_rows > 0) {
         echo '<tr>';
         echo '<td>' . htmlspecialchars($row['item_name']) . '</td>';
         echo '<td>' . htmlspecialchars($row['total_quantity']) . '</td>';
-        echo '<td>' . htmlspecialchars($row['total_price']) . '</td>';
+        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . '</td>';
         echo '</tr>';
     }
     echo '</tbody>';

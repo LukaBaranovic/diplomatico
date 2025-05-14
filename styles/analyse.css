@@ -57,3 +57,20 @@ button {
   background-color: #ffc107;
   color: white;
 }
+
+/* Style for the dropdown to hide text and only show an arrow */
+.minimal-dropdown {
+  appearance: none; /* Remove default styling */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="black" d="M2 0L0 2h4z"/></svg>')
+    no-repeat right center;
+  background-size: 0.8em; /* Size of the arrow */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 5px 30px 5px 10px; /* Padding with space for the arrow */
+  font-size: 14px; /* Font size */
+  color: transparent; /* Make text transparent */
+}
+
+.minimal-dropdown option {
+  color: black; /* Ensure options are visible when the dropdown is opened */
+}

@@ -38,19 +38,21 @@ if (isset($company_id)) {
 <body>
 <h1>Analyse Data</h1>
 
-<!-- Date Range Inputs -->
-<label for="start-date">Start Date:</label>
-<input type="date" id="start-date" value="<?php echo date('Y-m-01'); ?>"> <!-- Default: Start of the current month -->
+<div class="date-selection">
+  <label for="start-date">Start Date:</label>
+  <input type="date" id="start-date" value="<?php echo date('Y-m-d', strtotime('-7 days')); ?>">
 
-<label for="end-date">End Date:</label>
-<input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>"> <!-- Default: Today -->
+  <label for="end-date">End Date:</label>
+  <input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>">
+</div>
 
-<!-- Buttons for Fetching Data -->
-<button id="fetch-items">Fetch Items</button>
-<button id="fetch-categories">Fetch Categories</button>
+<div class="actions">
+  <button id="fetch-items">Fetch Items</button>
+  <button id="fetch-categories">Fetch Categories</button>
+</div>
 
 <div id="results">
-  <!-- Items or Categories will be listed here -->
+  <!-- Results from fetch_items.php or fetch_categories.php will be injected here -->
 </div>
 
 <script src="analyse.js"></script>
