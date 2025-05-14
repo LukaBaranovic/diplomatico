@@ -160,9 +160,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Naziv artikla</th>
+                            <th>Artikal</th>
                             <th>Cijena</th>
-                            <th>Naziv kategorije</th>
+                            <th>Kategorija</th>
                             <th></th>
                         </tr>
                     </thead>

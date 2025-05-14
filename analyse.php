@@ -37,6 +37,16 @@ if (isset($company_id)) {
 </head>
 <body>
 
+<!-- Navigation Bar -->
+<header class="navbar">
+  <a href="review.php" class="navbar-logo">
+      <span>ZukaMaster</span>
+  </a>
+  <a href="http://localhost/diplomatico/user.php" class="navbar-user">
+      <?= htmlspecialchars($users['name']) ?>
+  </a>
+</header>
+
 <div class="main-container">
   <div class="date-selection">
     <label for="start-date">Start Date:</label>
@@ -55,6 +65,16 @@ if (isset($company_id)) {
     <!-- Results from fetch_items.php or fetch_categories.php will be injected here -->
   </div>
 </div>
+
+
+<footer class="footer">
+  <div class="footer-company-name">
+      <?= htmlspecialchars($company_name) ?>
+  </div>
+  <div class="footer-rights">
+      All rights reserved 2025
+  </div>
+</footer>
 
 <script src="analyse.js"></script>
 </body>
