@@ -22,8 +22,6 @@ if (isset($_SESSION["user_id"])) {
     $users = $result->fetch_assoc();
 }
 
-
-
 // Fetch company name
 $company_name = '';
 if (isset($company_id)) {
@@ -89,8 +87,6 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
         </a>
     </header>
 
-
-
     <div class="container">
         <div class="table-container">
             <h1>Računi</h1>
@@ -131,7 +127,28 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
         </div>
     </div>
 
- <!-- Footer -->
+    <!-- Popup for receipt details -->
+    <div id="receiptPopup" class="popup">
+        <div class="popup-content">
+            <span id="popupClose" class="popup-close">&times;</span>
+            <h2 class="popup-header"></h2>
+            <table class="popup-items">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Items will be dynamically inserted here -->
+                </tbody>
+            </table>
+            <p class="popup-total"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-company-name">
             <?= htmlspecialchars($company_name) ?>
