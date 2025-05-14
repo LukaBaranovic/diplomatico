@@ -36,23 +36,24 @@ if (isset($company_id)) {
   <title>Diplomatico</title>
 </head>
 <body>
-<h1>Analyse Data</h1>
 
-<div class="date-selection">
-  <label for="start-date">Start Date:</label>
-  <input type="date" id="start-date" value="<?php echo date('Y-m-d', strtotime('-7 days')); ?>">
+<div class="main-container">
+  <div class="date-selection">
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date" value="<?php echo date('Y-m-d', strtotime('-7 days')); ?>">
 
-  <label for="end-date">End Date:</label>
-  <input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>">
-</div>
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>">
+  </div>
 
-<div class="actions">
-  <button id="fetch-items">Fetch Items</button>
-  <button id="fetch-categories">Fetch Categories</button>
-</div>
+  <div class="actions">
+    <button id="fetch-items">Fetch Items</button>
+    <button id="fetch-categories">Fetch Categories</button>
+  </div>
 
-<div id="results">
-  <!-- Results from fetch_items.php or fetch_categories.php will be injected here -->
+  <div id="results">
+    <!-- Results from fetch_items.php or fetch_categories.php will be injected here -->
+  </div>
 </div>
 
 <script src="analyse.js"></script>
