@@ -68,14 +68,14 @@ if ($result->num_rows > 0) {
     echo '<tr>';
     echo '<th>Kategorija</th>';
     echo '<th>
-            Ukupna Količina
-            <label for="category-sort-order" style="margin-left: 10px;">Sort:</label>
+            Količina
+            <label for="category-sort-order" style="margin-left: 10px;"></label>
             <select id="category-sort-order" onchange="updateCategorySortOrder()">
                 <option value="DESC"' . ($sort_order === 'DESC' ? ' selected' : '') . '>Descending</option>
                 <option value="ASC"' . ($sort_order === 'ASC' ? ' selected' : '') . '>Ascending</option>
             </select>
           </th>';
-    echo '<th>Ukupna Cijena</th>'; // Total Price Column
+    echo '<th>Promet</th>'; // Total Price Column
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -90,5 +90,5 @@ if ($result->num_rows > 0) {
     echo '</table>';
     echo '</div>';
 } else {
-    echo "No categories found for the selected date range.";
+    echo "Nema kategorija u ovom vremenskom periodu.";
 }

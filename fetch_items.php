@@ -62,16 +62,16 @@ if ($result->num_rows > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th>Item Name</th>';
+    echo '<th>Artikal</th>';
     echo '<th>
-            Total Quantity
-            <label for="sort-order" style="margin-left: 10px;">Sort:</label>
+            Količina
+            <label for="sort-order" style="margin-left: 10px;"></label>
             <select id="sort-order" onchange="updateItemSortOrder()" class="minimal-dropdown">
                 <option value="DESC"' . ($sort_order === 'DESC' ? ' selected' : '') . '>Descending</option>
                 <option value="ASC"' . ($sort_order === 'ASC' ? ' selected' : '') . '>Ascending</option>
             </select>
           </th>';
-    echo '<th>Total Price</th>';
+    echo '<th>Promet</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -86,5 +86,5 @@ if ($result->num_rows > 0) {
     echo '</table>';
     echo '</div>';
 } else {
-    echo "No items found for the selected date range.";
+    echo "Nema artikala u ovom vremenskom periodu.";
 }
