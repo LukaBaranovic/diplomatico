@@ -23,6 +23,7 @@ $mysqli = require_once __DIR__ . "/database.php";
 // SQL Query to Fetch Categories and Aggregate Item Quantities
 $sql = "
     SELECT 
+        c.category_id,
         c.category_name, 
         SUM(ri.quantity) AS total_quantity
     FROM 
@@ -36,7 +37,7 @@ $sql = "
     WHERE 
         r.company_id = ? AND DATE(r.timestamp) BETWEEN ? AND ?
     GROUP BY 
-        c.category_name
+        c.category_id, c.category_name
 ";
 
 // Prepare and execute the query
@@ -51,16 +52,28 @@ $stmt->bind_param("iss", $company_id, $start_date, $end_date);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Display the results
+// Display the results in table format
 if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>Category Name</th><th>Total Quantity</th></tr>";
+    echo '<div class="table-container">';
+    echo '<table>';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>ID</th>';
+    echo '<th>Kategorija</th>';
+    echo '<th>Ukupna Količina</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
     while ($row = $result->fetch_assoc()) {
-        $category_name = $row['category_name'] ?? 'Uncategorized';
-        $total_quantity = $row['total_quantity'] ?? 0;
-        echo "<tr><td>{$category_name}</td><td>{$total_quantity}</td></tr>";
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($row['category_id']) . '</td>';
+        echo '<td>' . htmlspecialchars($row['category_name']) . '</td>';
+        echo '<td>' . htmlspecialchars($row['total_quantity']) . '</td>';
+        echo '</tr>';
     }
-    echo "</table>";
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
 } else {
     echo "No categories found for the selected date range.";
 }
