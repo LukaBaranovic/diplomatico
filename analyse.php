@@ -36,7 +36,7 @@ if (isset($company_id)) {
   <title>Diplomatico</title>
 </head>
 <body>
-<h1>Analyse Items</h1>
+<h1>Analyse Data</h1>
 
 <!-- Date Range Inputs -->
 <label for="start-date">Start Date:</label>
@@ -45,10 +45,12 @@ if (isset($company_id)) {
 <label for="end-date">End Date:</label>
 <input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>"> <!-- Default: Today -->
 
-<button id="fetch-data">Fetch Data</button>
+<!-- Buttons for Fetching Data -->
+<button id="fetch-items">Fetch Items</button>
+<button id="fetch-categories">Fetch Categories</button>
 
 <div id="results">
-  <!-- Items will be listed here -->
+  <!-- Items or Categories will be listed here -->
 </div>
 
 <script src="analyse.js"></script>
