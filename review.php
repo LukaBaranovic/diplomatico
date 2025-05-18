@@ -80,7 +80,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
   
     <!-- Navigation Bar -->
     <header class="navbar">
-        <a href="review.php" class="navbar-logo">
+        <a href="index.php" class="navbar-logo">
             <span>ZukaMaster</span>
         </a>
         <nav class="navbar-links">

@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <!-- Navigation Bar -->
     <header class="navbar">
-        <a href="review.php" class="navbar-logo">
+        <a href="index.php" class="navbar-logo">
             <span>ZukaMaster</span>
         </a>
         <nav class="navbar-links">
