@@ -98,12 +98,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="profile-form-container">
             <div class="profile-header">
                 <h4>Promjena Lozinke</h4>
-                <p>Hello, <?= htmlspecialchars($users["name"]) ?></p>
+                <p>Bok, <?= htmlspecialchars($users["name"]) ?></p>
             </div>
 
             <?php if ($is_success): ?>
                 <div class="success-message">
-                    <em>Password changed successfully!</em>
+                    <em>Lozinka promjenjena!</em>
                 </div>
             <?php elseif ($is_invalid): ?>
                 <div class="invalid-message">
@@ -113,24 +113,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <form class="profile-form" method="post">
                 <div class="input-box">
-                    <input type="password" placeholder="Old Password" name="old_password" id="old_password" required>
+                    <input type="password" placeholder="Stara lozinka" name="old_password" id="old_password" required>
                     <i class="bx bxs-lock-alt"></i>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" placeholder="New Password" name="new_password" id="new_password" required>
+                    <input type="password" placeholder="Nova lozinka" name="new_password" id="new_password" required>
                     <i class="bx bxs-lock-alt"></i>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" placeholder="Confirm New Password" name="confirm_password" id="confirm_password" required>
+                    <input type="password" placeholder="Potvrdi novu lozinku" name="confirm_password" id="confirm_password" required>
                     <i class="bx bxs-lock-alt"></i>
                 </div>
 
-                <button class="submit-button">Change Password</button>
+                <button class="submit-button">Promjeni lozinku</button>
             </form>
 
-            <a href="logout.php" class="logout-button">Logout</a>
+            <a href="logout.php" class="logout-button">Odjava</a>
         </div>
     </div>
 

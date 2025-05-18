@@ -148,9 +148,9 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             <table class="popup-items">
                 <thead>
                     <tr>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
+                        <th>Artikal</th>
+                        <th>Količina</th>
+                        <th>Cijena</th>
                     </tr>
                 </thead>
                 <tbody>

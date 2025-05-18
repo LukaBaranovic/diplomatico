@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const popup = document.querySelector("#receiptPopup");
         popup.querySelector(
           ".popup-header"
-        ).textContent = `Receipt ID: ${data.receipt.receipt_id} | Table Number: ${data.receipt.table_number}`;
+        ).textContent = `ID: ${data.receipt.receipt_id} | Broj stola: ${data.receipt.table_number}`;
 
         const itemsTable = popup.querySelector(".popup-items tbody");
         itemsTable.innerHTML = ""; // Clear previous items
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const totalReceiptPrice = parseFloat(data.receipt.total_price); // Ensure total_price is a number
-        popup.querySelector(".popup-total").textContent = `Total Price: ${
+        popup.querySelector(".popup-total").textContent = `Ukupna cijena: ${
           isNaN(totalReceiptPrice) ? "0.00" : totalReceiptPrice.toFixed(2)
         }`;
 
