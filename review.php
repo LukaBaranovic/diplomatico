@@ -77,14 +77,19 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
 </head>
 
 <body>
+  
     <!-- Navigation Bar -->
     <header class="navbar">
-        <a href="index.php" class="navbar-logo">
+        <a href="review.php" class="navbar-logo">
             <span>ZukaMaster</span>
         </a>
-        <a href="http://localhost/diplomatico/user.php" class="navbar-user">
-            <?= htmlspecialchars($users['name'] ?? 'Guest') ?>
-        </a>
+        <nav class="navbar-links">
+            <a href="analyse.php" class="navbar-link">Analiza</a>
+            <a href="review.php" class="navbar-link">Promet</a>
+            <a href="user.php" class="navbar-link">
+                <?= htmlspecialchars($users['name']) ?>
+            </a>
+        </nav>
     </header>
 
     <div class="container">

@@ -15,6 +15,17 @@ if (isset($_SESSION["user_id"])) {
 }
 //Dohvaća koji user je prijavljen, koji je potreban da znamo za koju firmu user moze raditi promjene.
 
+// Fetch user data
+$users = [];
+if (isset($_SESSION["user_id"])) {
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $users = $result->fetch_assoc();
+}
+
 $sql = "SELECT * FROM users WHERE id = ?";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -67,6 +78,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
+
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <a href="review.php" class="navbar-logo">
+            <span>ZukaMaster</span>
+        </a>
+        <nav class="navbar-links">
+            <a href="analyse.php" class="navbar-link">Analiza</a>
+            <a href="review.php" class="navbar-link">Promet</a>
+            <a href="user.php" class="navbar-link">
+                <?= htmlspecialchars($users['name']) ?>
+            </a>
+        </nav>
+    </header>
 
     <div class="profile-wrapper">
         <div class="profile-form-container">

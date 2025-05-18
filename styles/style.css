@@ -29,43 +29,55 @@ body {
 
 /* Navigation Bar Styles */
 .navbar {
-  background-color: #007bff; /* Blue background */
+  background-color: #007bff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 20px;
   color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-  position: sticky; /* Sticks to the top during scrolling */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+/* Left logo styling */
 .navbar-logo {
-  text-decoration: none; /* Removes underline from the text */
+  text-decoration: none;
   color: white;
 }
 
 .navbar-logo span {
   font-size: 20px;
-  font-weight: 400; /* Normal font weight */
-  letter-spacing: 1.5px; /* Adds spacing between letters */
-  transition: color 0.3s ease; /* Smooth transition on hover */
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease;
 }
 
 .navbar-logo span:hover {
-  color: #ffc107; /* Golden color on hover */
+  color: #ffc107;
 }
 
-.navbar-user {
+/* Right links container */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 20px; /* spacing between the links */
+}
+
+/* Right links styling: same for all */
+.navbar-link {
   font-size: 16px;
   text-decoration: none;
   color: white;
   transition: color 0.3s ease;
+  font-weight: 400;
+  letter-spacing: 1.5px;
 }
 
-.navbar-user:hover {
-  color: #ffc107; /* Golden color on hover */
+.navbar-link:hover {
+  color: #ffc107;
 }
 
 /* Footer Styles */

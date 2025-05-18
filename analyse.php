@@ -37,15 +37,20 @@ if (isset($company_id)) {
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<header class="navbar">
-  <a href="review.php" class="navbar-logo">
-      <span>ZukaMaster</span>
-  </a>
-  <a href="http://localhost/diplomatico/user.php" class="navbar-user">
-      <?= htmlspecialchars($users['name']) ?>
-  </a>
-</header>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+      <a href="review.php" class="navbar-logo">
+          <span>ZukaMaster</span>
+      </a>
+      <nav class="navbar-links">
+          <a href="analyse.php" class="navbar-link">Analiza</a>
+          <a href="review.php" class="navbar-link">Promet</a>
+          <a href="user.php" class="navbar-link">
+              <?= htmlspecialchars($users['name']) ?>
+          </a>
+      </nav>
+  </header>
 
 <div class="main-container">
   <div class="date-selection">
