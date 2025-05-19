@@ -1,126 +1,110 @@
-/* Main container styling */
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+/* Main container (like .container in index.css) */
 .main-container {
-  margin-top: 20px; /* Add space above the main container */
-  margin-bottom: 20px; /* Add space below the main container */
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center elements horizontally */
-  justify-content: flex-start; /* Start at the top of the page */
-  min-height: 100vh; /* Full viewport height */
-  background-color: #f8f9fa; /* Light gray background */
-  padding: 20px; /* Add padding around the container */
-  box-sizing: border-box; /* Include padding in the element's total width/height */
+  width: 80%;
+  margin: 20px auto;
+  padding: 30px 20px 30px 20px;
+  box-sizing: border-box;
 }
 
-/* Styling for the date selection section */
+/* Date selection styling */
 .date-selection {
   display: flex;
-  flex-direction: column; /* Stack the labels and inputs vertically */
-  align-items: center; /* Center the labels and inputs */
-  margin-bottom: 20px; /* Add spacing below the date selection */
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
 }
 
 .date-selection label {
-  margin: 5px 0; /* Add some spacing between labels and inputs */
-  font-weight: bold; /* Make labels stand out */
+  font-weight: bold;
+  margin-right: 5px;
 }
 
 .date-selection input[type="date"] {
-  padding: 5px;
+  padding: 7px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
-/* Styling for the action buttons */
+/* Actions button area */
 .actions {
-  margin-bottom: 20px; /* Add spacing below the buttons */
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 .actions button {
-  padding: 10px 20px; /* Larger padding for a better feel */
-  margin: 0 10px; /* Space between buttons */
+  padding: 10px 20px;
+  margin: 0 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  background-color: #007bff; /* Default button color (blue) */
+  background-color: #007bff;
   color: white;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  font-size: 16px;
+  transition: background-color 0.2s;
 }
 
 .actions button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
-/* Results container styling */
+/* Results styling */
 #results {
   width: 100%;
-  max-width: 900px; /* Limit the width of the results */
-  margin-top: 20px; /* Add some space above the results */
-  padding: 10px; /* Add some padding inside the results container */
-  background-color: #ffffff; /* Ensure the background is white */
-  border: 1px solid #ddd; /* Add a border to differentiate the container */
-  border-radius: 8px; /* Add rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visibility */
-}
-
-/* General styling for the table */
-table {
-  width: 100%; /* Use full width of the results container */
-  max-width: 900px; /* Limit maximum width for readability */
-  margin: 0 auto; /* Center the table horizontally */
-  border-collapse: collapse;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 20px;
   background-color: #fff;
-  text-align: center; /* Center all text inside the table */
 }
 
-/* Borders for table, headers, and cells */
-table,
-th,
-td {
+/* Table styles (if you ever load tables in results) */
+#results table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  background: #fff;
+}
+
+#results th,
+#results td {
   border: 1px solid #ddd;
-  text-align: center; /* Center align text in headers and cells */
-  vertical-align: middle; /* Vertically center the content */
-}
-
-/* Padding and alignment for table cells */
-th,
-td {
   padding: 10px;
+  text-align: left;
 }
 
-/* Header row background color */
-th {
+#results th {
   background-color: #007bff;
-  color: white;
-  font-weight: bold; /* Make header text bold */
+  color: #fff;
 }
 
-/* Alternating row colors */
-tr:nth-child(even) {
+#results tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Hover effect on table rows */
-tr:hover {
+#results tr:hover {
   background-color: #e9ecef;
 }
 
-/* Style for the dropdown to hide text and only show an arrow */
 .minimal-dropdown {
-  appearance: none; /* Remove default styling */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="black" d="M2 0L0 2h4z"/></svg>')
-    no-repeat right center;
-  background-size: 0.8em; /* Size of the arrow */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 4px; /* Rounded corners */
-  padding: 5px 30px 5px 10px; /* Padding with space for the arrow */
-  font-size: 14px; /* Font size */
-  color: transparent; /* Make text transparent */
-}
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-.minimal-dropdown option {
-  color: black; /* Ensure options are visible when the dropdown is opened */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px;
+  height: 32px;
+  font-size: 16px;
+  color: #333;
+  text-align: center; /* Horizontal centering */
+  line-height: 32px; /* Vertical centering */
 }

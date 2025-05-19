@@ -67,8 +67,8 @@ if ($result->num_rows > 0) {
             Količina
             <label for="sort-order" style="margin-left: 10px;"></label>
             <select id="sort-order" onchange="updateItemSortOrder()" class="minimal-dropdown">
-                <option value="DESC"' . ($sort_order === 'DESC' ? ' selected' : '') . '>Descending</option>
-                <option value="ASC"' . ($sort_order === 'ASC' ? ' selected' : '') . '>Ascending</option>
+                <option value="DESC"' . ($sort_order === 'DESC' ? ' selected' : '') . '>-</option>
+                <option value="ASC"' . ($sort_order === 'ASC' ? ' selected' : '') . '>+</option>
             </select>
           </th>';
     echo '<th>Promet</th>';

@@ -72,6 +72,13 @@ $(document).ready(function () {
     return true;
   }
 
+  // --- DATE PICKER AUTO-CLOSE ---
+  // This will close the date picker after a date is selected
+  $("#start-date, #end-date").on("change", function () {
+    $(this).blur();
+    validateDateFields(); // Validate dates whenever they change
+  });
+
   // Default behavior: Fetch items on page load
   const defaultStartDate = $("#start-date").val();
   const defaultEndDate = $("#end-date").val();
@@ -105,9 +112,4 @@ $(document).ready(function () {
 
   // Attach onchange event listener for category sort order dropdown
   $(document).on("change", "#category-sort-order", updateCategorySortOrder);
-
-  // Ensure the date fields retain their values across operations
-  $(document).on("change", "#start-date, #end-date", function () {
-    validateDateFields(); // Validate dates whenever they change
-  });
 });
