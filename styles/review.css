@@ -11,12 +11,30 @@
   margin-bottom: 20px;
 }
 
+/* Space below the Računi header */
+.table-container h1 {
+  margin-bottom: 24px; /* Creates a gap below "Računi" */
+}
+
 /* Center the date picker and label */
 .date-picker-container {
   display: flex;
   flex-direction: column; /* Stack the elements vertically */
   align-items: center; /* Center-align elements horizontally */
   margin-bottom: 20px;
+}
+
+/* Gaps between label, date input, and button */
+.date-picker-container label {
+  margin-bottom: 12px;
+}
+
+.date-picker-container input[type="date"] {
+  margin-bottom: 12px;
+}
+
+.date-picker-container button[type="submit"] {
+  margin-top: 4px;
 }
 
 /* Date picker styling */

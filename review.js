@@ -61,4 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#popupCancel").addEventListener("click", () => {
     document.querySelector("#receiptPopup").style.display = "none";
   });
+
+  // ---- NEW: Auto-close date picker when date is selected ----
+  const dateInput = document.getElementById("dateSelector");
+  if (dateInput) {
+    dateInput.addEventListener("change", function () {
+      dateInput.blur(); // This closes the date picker on most browsers
+
+      // Uncomment the next line if you want to auto-submit the form as well:
+      // dateInput.form.submit();
+    });
+  }
 });
