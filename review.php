@@ -106,10 +106,10 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             <table id="receiptsTable">
                 <thead>
                     <tr>
-                        <th>Receipt ID</th>
-                        <th>Table Number</th>
-                        <th>Total Price</th>
-                        <th>Timestamp</th>
+                        <th>ID Računa</th>
+                        <th>Broj Stola</th>
+                        <th>Ukupno</th>
+                        <th>Vrijeme</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,7 +118,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
                             <td><?= htmlspecialchars($row['receipt_id']) ?></td>
                             <td><?= htmlspecialchars($row['table_number']) ?></td>
                             <td><?= htmlspecialchars($row['total_price']) ?></td>
-                            <td><?= htmlspecialchars($row['timestamp']) ?></td>
+                            <td><?= htmlspecialchars(date('H:i', strtotime($row['timestamp']))) ?></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -139,10 +139,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             <span id="popupClose" class="close-btn">&times;</span>
 
             <!-- ID and Table Number Section -->
-            <div class="popup-header">
-                <p><strong>ID:</strong> <span class="receipt-id"></span></p>
-                <p><strong>Broj Stola:</strong> <span class="table-number"></span></p>
-            </div>
+            <div class="popup-header"></div>
 
             <!-- Items Table -->
             <table class="popup-items">

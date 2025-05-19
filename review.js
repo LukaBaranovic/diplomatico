@@ -20,9 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Populate the popup with receipt details
         const popup = document.querySelector("#receiptPopup");
-        popup.querySelector(
-          ".popup-header"
-        ).textContent = `ID: ${data.receipt.receipt_id} | Broj stola: ${data.receipt.table_number}`;
+        popup.querySelector(".popup-header").innerHTML = `
+          <p><strong>ID:</strong> ${data.receipt.receipt_id}</p>
+          <p><strong>Broj stola:</strong> ${data.receipt.table_number}</p>
+        `;
 
         const itemsTable = popup.querySelector(".popup-items tbody");
         itemsTable.innerHTML = ""; // Clear previous items
