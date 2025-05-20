@@ -72,7 +72,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/review.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Receipts - Diplomatico</title>
+    <title>Diplomatico - Promet</title>
     <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
 </head>
 
