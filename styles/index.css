@@ -29,7 +29,7 @@ p {
 /* Toggle buttons container */
 .view-toggle {
   text-align: center;
-  margin: 20px 0; /* 20px on top and bottom for even spacing */
+  margin: 20px 0;
 }
 
 /* Toggle buttons styling */
@@ -51,55 +51,50 @@ p {
 
 /* Container for search bar and table */
 .table-container {
-  width: 80%; /* Set the width to 80% of the page */
-  margin: 0 auto; /* Center the container horizontally */
-  margin-bottom: 20px; /* Keep spacing below the container */
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 /* Search bar styling */
 .table-container input[type="text"] {
-  width: 100%; /* Ensures the search bar matches the table width */
+  width: 100%;
   padding: 10px;
-  margin: 10px 0; /* Spacing below the search bar */
+  margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-sizing: border-box; /* Includes padding and border in width calculations */
+  box-sizing: border-box;
 }
 
 /* Table styling */
 table {
-  width: 100%; /* Matches the search bar width */
+  width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #fff;
 }
 
-/* Borders for table, headers, and cells */
 table,
 th,
 td {
   border: 1px solid #ddd;
 }
 
-/* Padding and alignment for table cells */
 th,
 td {
   padding: 10px;
-  text-align: center; /* Center all table headers and cells */
+  text-align: center;
 }
 
-/* Header row background color */
 th {
   background-color: #007bff;
   color: white;
 }
 
-/* Alternating row colors */
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Hover effect on table rows */
 tr:hover {
   background-color: #e9ecef;
 }
@@ -113,7 +108,6 @@ button {
   cursor: pointer;
 }
 
-/* Edit button styling */
 .edit-btn {
   background-color: #ffc107;
   color: white;
@@ -123,7 +117,6 @@ button {
   background-color: #e0a800;
 }
 
-/* Delete button styling */
 .delete-btn {
   background-color: #dc3545;
   color: white;
@@ -133,7 +126,6 @@ button {
   background-color: #c82333;
 }
 
-/* Confirm button styling for all confirm buttons (modals, add, edit) */
 .confirm-btn {
   background-color: #28a745;
   color: white;
@@ -143,7 +135,6 @@ button {
   background-color: #218838;
 }
 
-/* Cancel button styling for all cancel buttons */
 .cancel-btn {
   background-color: #6c757d;
   color: white;
@@ -153,24 +144,23 @@ button {
   background-color: #5a6268;
 }
 
-/* Modal background */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 999; /* Sit on top */
-  left: 0;
+  position: fixed;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-/* Modal content */
 .modal-content {
   background-color: #fff; /* White background */
   margin: 10% auto; /* Centered vertically and horizontally */
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
   width: 50%; /* Set a width for the modal */
@@ -179,30 +169,38 @@ button {
   text-align: center; /* Center-align text inside the modal */
 }
 
-/* Modal input fields and selects area */
-.modal-fields {
-  width: 70%;
-  margin: 0 auto 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Modal header/title styles */
+.modal-header-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 28px 16px 16px 16px;
+  width: 100%;
+  margin: 0;
+  background: none;
 }
 
-@media (max-width: 600px) {
-  .modal-fields {
-    width: 98%;
-  }
+.modal-header-divider {
+  height: 1px;
+  width: 90%;
+  margin: 0 auto 14px auto;
+  background: #e9ecef;
+  border: none;
 }
 
 /* Close button */
 .close-btn {
+  position: absolute;
+  right: 18px;
+  top: 14px;
   color: #aaa;
-  float: right; /* Position it to the top-right corner */
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 2;
 }
-
 .close-btn:hover,
 .close-btn:focus {
   color: #000;
@@ -210,78 +208,97 @@ button {
   cursor: pointer;
 }
 
-/* Form styles for modal */
 .modal form {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Space between form elements */
+  align-items: center;
+  width: 100%;
+  padding-bottom: 18px;
 }
 
-/* Place modal action buttons in a row and center them */
-.modal form .modal-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-/* Make modal form buttons only as wide as their content */
-.modal form .modal-buttons button,
-.modal form button {
-  width: auto;
-  align-self: center;
-}
-
-.modal form .form-group {
+.modal-fields {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  margin: 8px auto 24px auto;
 }
 
-.modal form .form-group label {
-  font-size: 14px;
+/* Center form-group, limit width */
+.modal .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.modal .form-group label {
+  font-size: 15px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  align-self: flex-start;
 }
 
-.modal form .form-group input,
-.modal form .form-group select {
+.modal .form-group input,
+.modal .form-group select {
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
-  box-sizing: border-box; /* Include padding and border in width */
+  box-sizing: border-box;
 }
 
-/* Buttons in the modal */
+.modal .form-group select {
+  font-size: 16px; /* Slightly larger text */
+  height: 40px; /* <-- ADD THIS for a taller dropdown */
+}
+
+#successMessage,
+#itemSuccessMessage,
+#addCategorySuccessMessage,
+#addItemSuccessMessage {
+  color: #28a745;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+#errorMessage,
+#itemErrorMessage,
+#addCategoryErrorMessage,
+#addItemErrorMessage {
+  color: #dc3545;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.modal form .modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.modal form .modal-buttons button {
+  width: auto;
+  align-self: center;
+  min-width: 90px;
+}
+
 .modal-content button {
-  display: inline-block; /* Ensure buttons are treated as inline elements */
-  margin: 10px 5px; /* Add spacing between buttons */
+  display: inline-block;
+  margin: 10px 5px;
 }
 
-/* Optional: slight shadow for main action buttons for accessibility */
 .confirm-btn,
 .delete-btn {
   box-shadow: 0 2px 4px rgba(40, 167, 69, 0.1);
-}
-
-/* Footer styles */
-.footer {
-  width: 100%;
-  text-align: center;
-  padding: 15px 0;
-  background: #f1f1f1;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-
-.footer-company-name {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.footer-rights {
-  font-size: 13px;
-  color: #666;
 }

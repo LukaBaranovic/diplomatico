@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
           row.innerHTML = `
             <td>${item.item_name}</td>
             <td>${item.quantity}</td>
-            <td>${isNaN(totalPrice) ? "0.00" : totalPrice.toFixed(2)}</td>
+            <td>${isNaN(totalPrice) ? "0.00" : totalPrice.toFixed(2)} €</td>
           `;
           itemsTable.appendChild(row);
         });
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalReceiptPrice = parseFloat(data.receipt.total_price); // Ensure total_price is a number
         popup.querySelector(".popup-total").textContent = `Ukupna cijena: ${
           isNaN(totalReceiptPrice) ? "0.00" : totalReceiptPrice.toFixed(2)
-        }`;
+        } €`;
 
         // Show the popup
         popup.style.display = "block";

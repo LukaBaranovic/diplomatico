@@ -83,7 +83,7 @@ if ($result->num_rows > 0) {
         echo '<tr>';
         echo '<td>' . htmlspecialchars($row['category_name']) . '</td>';
         echo '<td>' . htmlspecialchars($row['total_quantity']) . '</td>';
-        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . '</td>'; // Format total price
+        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . ' €</td>'; // Format total price with euro symbol
         echo '</tr>';
     }
     echo '</tbody>';

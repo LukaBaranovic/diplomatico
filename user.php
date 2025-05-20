@@ -26,6 +26,17 @@ if (isset($_SESSION["user_id"])) {
     $users = $result->fetch_assoc();
 }
 
+$company_name = '';
+if (isset($company_id)) {
+  $sql_company = "SELECT company_name FROM company WHERE company_id = {$company_id}";
+  $result_company = $mysqli->query($sql_company);
+
+  if ($result_company && $result_company->num_rows > 0) {
+      $company_data = $result_company->fetch_assoc();
+      $company_name = $company_data['company_name'];
+  }
+}
+
 $sql = "SELECT * FROM users WHERE id = ?";
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -134,7 +145,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 
-
+<footer class="footer">
+  <div class="footer-company-name">
+      <?= htmlspecialchars($company_name) ?>
+  </div>
+  <div class="footer-rights">
+      All rights reserved 2025
+  </div>
+</footer>
 
 </body>
 </html>

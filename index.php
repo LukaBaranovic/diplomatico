@@ -174,7 +174,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                             <tr>
                                 <td><?= htmlspecialchars($item['item_id']) ?></td>
                                 <td><?= htmlspecialchars($item['item_name']) ?></td>
-                                <td><?= htmlspecialchars($item['item_price']) ?></td>
+                                <td><?= htmlspecialchars($item['item_price']) ?> €</td>
                                 <td data-category-id="<?= $item['category_id'] ?>"><?= htmlspecialchars($item['category_name']) ?></td>
                                 <td>
                                     <button class="edit-btn" data-id="<?= $item['item_id'] ?>" data-name="<?= htmlspecialchars($item['item_name']) ?>" data-price="<?= htmlspecialchars($item['item_price']) ?>" data-category-id="<?= $item['category_id'] ?>">Uredi</button>
@@ -189,8 +189,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <!-- Edit Category Modal -->
         <div id="editCategoryModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Uredi kategoriju</h2>
+                <button class="close-btn" type="button">&times;</button>
+                <div class="modal-header-title">Uredi kategoriju</div>
+                <hr class="modal-header-divider" />
                 <form id="editCategoryForm">
                     <div class="modal-fields">
                         <input type="hidden" id="categoryId" name="category_id">
@@ -206,9 +207,10 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div id="errorMessage" style="color: red; display: none;"></div>
-                        <div id="successMessage" style="color: green; display: none;"></div>
+                        <div id="errorMessage" style="display: none;"></div>
+                        <div id="successMessage" style="display: none;"></div>
                     </div>
+                    <hr class="modal-header-divider modal-fields-divider" />
                     <div class="modal-buttons">
                         <button type="button" id="confirmEdit" class="confirm-btn">Potvrdi</button>
                         <button type="button" id="deleteCategoryBtn" class="delete-btn">Izbriši</button>
@@ -221,8 +223,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <!-- Edit Item Modal -->
         <div id="editItemModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Uredi artikal</h2>
+                <button class="close-btn" type="button">&times;</button>
+                <div class="modal-header-title">Uredi artikal</div>
+                <hr class="modal-header-divider" />
                 <form id="editItemForm">
                     <div class="modal-fields">
                         <input type="hidden" id="itemId" name="item_id">
@@ -242,9 +245,10 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div id="itemErrorMessage" style="color: red; display: none;"></div>
-                        <div id="itemSuccessMessage" style="color: green; display: none;"></div>
+                        <div id="itemErrorMessage" style="display: none;"></div>
+                        <div id="itemSuccessMessage" style="display: none;"></div>
                     </div>
+                    <hr class="modal-header-divider modal-fields-divider" />
                     <div class="modal-buttons">
                         <button type="button" id="confirmEditItem" class="confirm-btn">Potvrdi</button>
                         <button type="button" id="deleteItemBtn" class="delete-btn">Izbriši</button>
@@ -257,8 +261,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <!-- Add Category Modal -->
         <div id="addCategoryModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Dodaj Kategoriju</h2>
+                <button class="close-btn" type="button">&times;</button>
+                <div class="modal-header-title">Dodaj kategoriju</div>
+                <hr class="modal-header-divider" />
                 <form id="addCategoryForm">
                     <div class="modal-fields">
                         <div class="form-group">
@@ -273,9 +278,10 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div id="addCategoryErrorMessage" style="color: red; display: none;"></div>
-                        <div id="addCategorySuccessMessage" style="color: green; display: none;"></div>
+                        <div id="addCategoryErrorMessage" style="display: none;"></div>
+                        <div id="addCategorySuccessMessage" style="display: none;"></div>
                     </div>
+                    <hr class="modal-header-divider modal-fields-divider" />
                     <div class="modal-buttons">
                         <button type="button" id="confirmAddCategory" class="confirm-btn">Dodaj kategoriju</button>
                         <button type="button" class="cancel-btn">Otkaži</button>
@@ -287,8 +293,9 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
         <!-- Add Item Modal -->
         <div id="addItemModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Dodaj Artikal</h2>
+                <button class="close-btn" type="button">&times;</button>
+                <div class="modal-header-title">Dodaj artikal</div>
+                <hr class="modal-header-divider" />
                 <form id="addItemForm">
                     <div class="modal-fields">
                         <div class="form-group">
@@ -307,9 +314,10 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div id="addItemErrorMessage" style="color: red; display: none;"></div>
-                        <div id="addItemSuccessMessage" style="color: green; display: none;"></div>
+                        <div id="addItemErrorMessage" style="display: none;"></div>
+                        <div id="addItemSuccessMessage" style="display: none;"></div>
                     </div>
+                    <hr class="modal-header-divider modal-fields-divider" />
                     <div class="modal-buttons">
                         <button type="submit" class="confirm-btn">Dodaj artikal</button>
                         <button type="button" class="cancel-btn">Otkaži</button>

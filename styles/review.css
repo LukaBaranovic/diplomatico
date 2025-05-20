@@ -13,7 +13,7 @@
 
 /* Space below the Računi header */
 .table-container h1 {
-  margin-bottom: 24px; /* Creates a gap below "Računi" */
+  margin-bottom: 12px; /* Creates a gap below "Računi" */
 }
 
 /* Center the date picker and label */
@@ -200,4 +200,20 @@ tr:hover {
   font-size: 18px;
   font-weight: bold;
   text-align: center; /* Center-align the total price */
+}
+
+.show-button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.show-button:hover {
+  background-color: #0056b3;
 }

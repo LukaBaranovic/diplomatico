@@ -99,7 +99,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             <form method="GET" action="review.php" class="date-picker-container">
                 <label for="dateSelector">Odaberite datum:</label>
                 <input type="date" id="dateSelector" name="date" value="<?= htmlspecialchars($selected_date) ?>">
-                <button type="submit">Prikaži</button>
+                <button class="show-button" type="submit">Prikaži</button>
             </form>
 
             <!-- Receipts Table -->
@@ -117,7 +117,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
                         <tr data-receipt-id="<?= htmlspecialchars($row['receipt_id']) ?>">
                             <td><?= htmlspecialchars($row['receipt_id']) ?></td>
                             <td><?= htmlspecialchars($row['table_number']) ?></td>
-                            <td><?= htmlspecialchars($row['total_price']) ?></td>
+                            <td><?= htmlspecialchars($row['total_price']) ?> €</td>
                             <td><?= htmlspecialchars(date('H:i', strtotime($row['timestamp']))) ?></td>
                         </tr>
                     <?php endwhile; ?>
@@ -128,7 +128,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
         <!-- Total Sum Section -->
         <div id="totalSumContainer">
             <h3>Ukupni iznos:</h3>
-            <p id="totalSum"><?= number_format($total_sum, 2) ?></p>
+            <p id="totalSum"><?= number_format($total_sum, 2) ?> €</p>
         </div>
     </div>
 

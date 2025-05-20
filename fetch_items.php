@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
         echo '<tr>';
         echo '<td>' . htmlspecialchars($row['item_name']) . '</td>';
         echo '<td>' . htmlspecialchars($row['total_quantity']) . '</td>';
-        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . '</td>';
+        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . ' €</td>';
         echo '</tr>';
     }
     echo '</tbody>';
