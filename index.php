@@ -192,23 +192,28 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 <span class="close-btn">&times;</span>
                 <h2>Uredi kategoriju</h2>
                 <form id="editCategoryForm">
-                    <input type="hidden" id="categoryId" name="category_id">
-                    <div class="form-group">
-                        <label for="categoryName">Naziv kategorije:</label>
-                        <input type="text" id="categoryName" name="category_name" required>
+                    <div class="modal-fields">
+                        <input type="hidden" id="categoryId" name="category_id">
+                        <div class="form-group">
+                            <label for="categoryName">Naziv kategorije:</label>
+                            <input type="text" id="categoryName" name="category_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeName">Tip:</label>
+                            <select id="typeName" name="type_name" required>
+                                <?php foreach ($types as $type): ?>
+                                    <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div id="errorMessage" style="color: red; display: none;"></div>
+                        <div id="successMessage" style="color: green; display: none;"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="typeName">Tip:</label>
-                        <select id="typeName" name="type_name" required>
-                            <?php foreach ($types as $type): ?>
-                                <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="modal-buttons">
+                        <button type="button" id="confirmEdit" class="confirm-btn">Potvrdi</button>
+                        <button type="button" id="deleteCategoryBtn" class="delete-btn">Izbriši</button>
+                        <button type="button" class="cancel-btn">Otkaži</button>
                     </div>
-                    <div id="errorMessage" style="color: red; display: none;"></div>
-                    <button type="button" id="confirmEdit">Potvrdi</button>
-                    <button type="button" id="deleteCategoryBtn" class="delete-btn">Izbriši</button>
-                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>
@@ -219,27 +224,32 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 <span class="close-btn">&times;</span>
                 <h2>Uredi artikal</h2>
                 <form id="editItemForm">
-                    <input type="hidden" id="itemId" name="item_id">
-                    <div class="form-group">
-                        <label for="itemName">Naziv artikla:</label>
-                        <input type="text" id="itemName" name="item_name" required>
+                    <div class="modal-fields">
+                        <input type="hidden" id="itemId" name="item_id">
+                        <div class="form-group">
+                            <label for="itemName">Naziv artikla:</label>
+                            <input type="text" id="itemName" name="item_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemPrice">Cijena artikla:</label>
+                            <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemCategory">Kategorija:</label>
+                            <select id="itemCategory" name="category_id" required>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div id="itemErrorMessage" style="color: red; display: none;"></div>
+                        <div id="itemSuccessMessage" style="color: green; display: none;"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="itemPrice">Cijena artikla:</label>
-                        <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
+                    <div class="modal-buttons">
+                        <button type="button" id="confirmEditItem" class="confirm-btn">Potvrdi</button>
+                        <button type="button" id="deleteItemBtn" class="delete-btn">Izbriši</button>
+                        <button type="button" class="cancel-btn">Otkaži</button>
                     </div>
-                    <div class="form-group">
-                        <label for="itemCategory">Kategorija:</label>
-                        <select id="itemCategory" name="category_id" required>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div id="itemErrorMessage" style="color: red; display: none;"></div>
-                    <button type="button" id="confirmEditItem">Potvrdi</button>
-                    <button type="button" id="deleteItemBtn" class="delete-btn">Izbriši</button>
-                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>
@@ -250,22 +260,26 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 <span class="close-btn">&times;</span>
                 <h2>Dodaj Kategoriju</h2>
                 <form id="addCategoryForm">
-                    <div class="form-group">
-                        <label for="newCategoryName">Naziv kategorije:</label>
-                        <input type="text" id="newCategoryName" name="category_name" required>
+                    <div class="modal-fields">
+                        <div class="form-group">
+                            <label for="newCategoryName">Naziv kategorije:</label>
+                            <input type="text" id="newCategoryName" name="category_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newType">Tip:</label>
+                            <select id="newType" name="type_id" required>
+                                <?php foreach ($types as $type): ?>
+                                    <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div id="addCategoryErrorMessage" style="color: red; display: none;"></div>
+                        <div id="addCategorySuccessMessage" style="color: green; display: none;"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="newType">Tip:</label>
-                        <select id="newType" name="type_id" required>
-                            <?php foreach ($types as $type): ?>
-                                <option value="<?= htmlspecialchars($type['type_name']) ?>"><?= htmlspecialchars($type['type_name']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="modal-buttons">
+                        <button type="button" id="confirmAddCategory" class="confirm-btn">Dodaj kategoriju</button>
+                        <button type="button" class="cancel-btn">Otkaži</button>
                     </div>
-                    <div id="addCategoryErrorMessage" style="color: red; display: none;"></div>
-                    <div id="addCategorySuccessMessage" style="color: green; display: none;"></div>
-                    <button type="button" id="confirmAddCategory">Dodaj kategoriju</button>
-                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>
@@ -276,26 +290,30 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                 <span class="close-btn">&times;</span>
                 <h2>Dodaj Artikal</h2>
                 <form id="addItemForm">
-                    <div class="form-group">
-                        <label for="itemName">Naziv artikla:</label>
-                        <input type="text" id="itemName" name="item_name" required>
+                    <div class="modal-fields">
+                        <div class="form-group">
+                            <label for="itemName">Naziv artikla:</label>
+                            <input type="text" id="itemName" name="item_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemPrice">Cijena artikla:</label>
+                            <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemCategory">Kategorija:</label>
+                            <select id="itemCategory" name="category_id" required>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div id="addItemErrorMessage" style="color: red; display: none;"></div>
+                        <div id="addItemSuccessMessage" style="color: green; display: none;"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="itemPrice">Cijena artikla:</label>
-                        <input type="number" id="itemPrice" name="item_price" step="0.1" min="0.1" required>
+                    <div class="modal-buttons">
+                        <button type="submit" class="confirm-btn">Dodaj artikal</button>
+                        <button type="button" class="cancel-btn">Otkaži</button>
                     </div>
-                    <div class="form-group">
-                        <label for="itemCategory">Kategorija:</label>
-                        <select id="itemCategory" name="category_id" required>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category['category_id'] ?>"><?= htmlspecialchars($category['category_name']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div id="addItemErrorMessage" style="color: red; display: none;"></div>
-                    <div id="addItemSuccessMessage" style="color: green; display: none;"></div>
-                    <button type="submit" class="confirm-btn">Dodaj artikal</button>
-                    <button type="button" class="cancel-btn">Otkaži</button>
                 </form>
             </div>
         </div>

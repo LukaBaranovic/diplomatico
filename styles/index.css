@@ -119,10 +119,38 @@ button {
   color: white;
 }
 
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
 /* Delete button styling */
 .delete-btn {
   background-color: #dc3545;
   color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Confirm button styling for all confirm buttons (modals, add, edit) */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* Cancel button styling for all cancel buttons */
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
 }
 
 /* Modal background */
@@ -151,6 +179,21 @@ button {
   text-align: center; /* Center-align text inside the modal */
 }
 
+/* Modal input fields and selects area */
+.modal-fields {
+  width: 70%;
+  margin: 0 auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 600px) {
+  .modal-fields {
+    width: 98%;
+  }
+}
+
 /* Close button */
 .close-btn {
   color: #aaa;
@@ -172,6 +215,21 @@ button {
   display: flex;
   flex-direction: column;
   gap: 15px; /* Space between form elements */
+}
+
+/* Place modal action buttons in a row and center them */
+.modal form .modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Make modal form buttons only as wide as their content */
+.modal form .modal-buttons button,
+.modal form button {
+  width: auto;
+  align-self: center;
 }
 
 .modal form .form-group {
@@ -196,61 +254,34 @@ button {
 }
 
 /* Buttons in the modal */
-.modal form button {
-  padding: 10px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-}
-
-.modal form #confirmEdit {
-  background-color: #28a745; /* Blue for confirm button */
-  color: white;
-}
-
-.modal form #confirmEdit:hover {
-  background-color: #218838; /* Darker blue on hover */
-}
-
-.modal form #confirmEditItem {
-  background-color: #28a745; /* Green for confirm item button */
-  color: white;
-}
-
-.modal form #confirmEditItem:hover {
-  background-color: #218838; /* Darker blue on hover */
-}
-
-.modal form #confirmAddCategory {
-  background-color: #28a745; /* Green for confirm category button */
-  color: white;
-}
-
-.modal form #confirmAddCategory:hover {
-  background-color: #218838; /* Darker green on hover */
-}
-
-.modal form .confirm-btn {
-  background-color: #28a745; /* Blue for confirm button */
-  color: white;
-}
-
-.modal form .confirm-btn:hover {
-  background-color: #218838; /* Darker blue on hover */
-}
-
-.modal form .cancel-btn {
-  background-color: #6c757d; /* Gray for cancel button */
-  color: white;
-}
-
-.modal form .cancel-btn:hover {
-  background-color: #5a6268; /* Darker gray on hover */
-}
-
-/* Buttons in the modal */
 .modal-content button {
   display: inline-block; /* Ensure buttons are treated as inline elements */
   margin: 10px 5px; /* Add spacing between buttons */
+}
+
+/* Optional: slight shadow for main action buttons for accessibility */
+.confirm-btn,
+.delete-btn {
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.1);
+}
+
+/* Footer styles */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  background: #f1f1f1;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-company-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.footer-rights {
+  font-size: 13px;
+  color: #666;
 }
