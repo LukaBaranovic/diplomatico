@@ -38,7 +38,6 @@ $sql = "
         total_quantity $sort_order
 ";
 
-// Prepare and execute the query
 $stmt = $mysqli->prepare($sql);
 
 if (!$stmt) {
@@ -50,7 +49,6 @@ $stmt->bind_param("iss", $company_id, $start_date, $end_date);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Display the results in table format
 if ($result->num_rows > 0) {
     echo '<div class="table-container">';
     echo '<table>';
