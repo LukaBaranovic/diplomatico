@@ -5,7 +5,7 @@ $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
 
 if (!isset($_SESSION["user_id"])) {
-    die("Neautiriziran pristup.");
+    die("Neautiriziran pristup!");
 }
 
 $mysqli = require_once __DIR__ . "/database.php";

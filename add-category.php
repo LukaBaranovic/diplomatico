@@ -4,11 +4,11 @@ require_once "database.php";
 
 header("Content-Type: application/json");
 
-$response = ["status" => "error", "message" => "An error occurred."];
+$response = ["status" => "error", "message" => "Greška!"];
 
 $data = json_decode(file_get_contents("php://input"), true);
 if (!isset($data["category_name"], $data["type_name"])) {
-    $response["message"] = "Invalid input.";
+    $response["message"] = "Neispravan unos!";
     echo json_encode($response);
     exit;
 }
@@ -17,7 +17,7 @@ $category_name = trim($data["category_name"]);
 $type_name = trim($data["type_name"]);
 
 if (empty($category_name) || empty($type_name)) {
-    $response["message"] = "Popunite sva polja.";
+    $response["message"] = "Popunite sva polja!";
     echo json_encode($response);
     exit;
 }
@@ -66,7 +66,7 @@ if ($stmt->execute()) {
     $response["message"] = "Kategorija dodana uspješno!";
     $response["category_id"] = $stmt->insert_id;
 } else {
-    $response["message"] = "Greška pri dodavanju kategorije.";
+    $response["message"] = "Greška pri dodavanju kategorije!";
 }
 
 $stmt->close();

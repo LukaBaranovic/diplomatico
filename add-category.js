@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typeName = document.getElementById("newType").value;
 
     if (!categoryName || !typeName) {
-      alert("Popunite sva polja.");
+      alert("Popunite sva polja!.");
       return;
     }
 
@@ -58,12 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
           addCategoryModal.style.display = "none";
         } else {
-          alert(data.message || "Greška pri dodavanju kategorije.");
+          alert(data.message || "Greška pri dodavanju kategorije!");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Greška, pokušajte ponovno.");
+        alert("Greška, pokušajte ponovno!");
       });
   });
 });

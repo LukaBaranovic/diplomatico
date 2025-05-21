@@ -33,7 +33,7 @@ if (isset($company_id)) {
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/analyse.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <title>Diplomatico</title>
+  <title>Diplomatico - Analiza</title>
 </head>
 <body>
 

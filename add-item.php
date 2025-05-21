@@ -7,7 +7,7 @@ header("Content-Type: application/json");
 $response = ["success" => false, "message" => ""];
 
 if (!isset($_POST["item_name"], $_POST["item_price"], $_POST["category_id"])) {
-    $response["message"] = "Popunite sva polja.";
+    $response["message"] = "Popunite sva polja!";
     echo json_encode($response);
     exit;
 }
@@ -18,7 +18,7 @@ $category_id = intval($_POST["category_id"]);
 $company_id = $_SESSION["company_id"];
 
 if (empty($item_name) || $item_price <= 0 || $category_id <= 0) {
-    $response["message"] = "Neispravan unos.";
+    $response["message"] = "Neispravan unos!";
     echo json_encode($response);
     exit;
 }
@@ -63,7 +63,7 @@ $stmt_category->fetch();
 $stmt_category->close();
 
 if (empty($category_name)) {
-    $response["message"] = "Neispravan ID kategorije.";
+    $response["message"] = "Neispravan ID kategorije!";
     echo json_encode($response);
     exit;
 }
@@ -88,7 +88,7 @@ if ($stmt->execute()) {
     $response["category_name"] = $category_name;
     $response["category_id"] = $category_id;
 } else {
-    $response["message"] = "Greška pri dodavanju artikla.";
+    $response["message"] = "Greška pri dodavanju artikla!";
 }
 
 $stmt->close();

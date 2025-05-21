@@ -4,7 +4,7 @@ session_start();
 $mysqli = require_once __DIR__ . "/database.php";
 
 if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['status' => 'error', 'message' => 'Neautiriziran']);
+    echo json_encode(['status' => 'error', 'message' => 'Neautiriziran pristup!']);
     exit;
 }
 
@@ -14,7 +14,7 @@ $new_category_name = trim($_POST['category_name']);
 $new_type_name = trim($_POST['type_name']);
 
 if (empty($new_category_name) || empty($new_type_name)) {
-    echo json_encode(['status' => 'error', 'message' => 'Unesite sva polja']);
+    echo json_encode(['status' => 'error', 'message' => 'Unesite sva polja!']);
     exit;
 }
 
@@ -30,7 +30,7 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    echo json_encode(['status' => 'error', 'message' => 'Kategorija već postoji']);
+    echo json_encode(['status' => 'error', 'message' => 'Kategorija već postoji!']);
     exit;
 }
 
@@ -43,8 +43,8 @@ $stmt_update = $mysqli->prepare($sql_update);
 $stmt_update->bind_param("ssii", $new_category_name, $new_type_name, $category_id, $company_id);
 
 if ($stmt_update->execute()) {
-    echo json_encode(['status' => 'success', 'message' => 'Kategorija ažurirana uspješno']);
+    echo json_encode(['status' => 'success', 'message' => 'Kategorija ažurirana uspješno!']);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Greška pri ažuriranju kategorije']);
+    echo json_encode(['status' => 'error', 'message' => 'Greška pri ažuriranju kategorije!']);
 }
 ?>

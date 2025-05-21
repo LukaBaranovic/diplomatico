@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             const errorMessage = document.getElementById("itemErrorMessage");
             errorMessage.textContent =
-              data.message || "Greška pri brisanju artikla.";
+              data.message || "Greška pri brisanju artikla!";
             errorMessage.style.display = "block";
           }
         })
         .catch((error) => {
           console.error("Error:", error);
-          alert("Greška pri brisanju artikla.");
+          alert("Greška pri brisanju artikla!");
         });
     }
   });

@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (!isset($_SESSION['company_id'])) {
-    echo "ID firme nije dohvaćen.";
+    echo "ID firme nije dohvaćen!";
     exit;
 }
 
@@ -78,5 +78,5 @@ if ($result->num_rows > 0) {
     echo '</table>';
     echo '</div>';
 } else {
-    echo "Nema artikala u ovom vremenskom periodu.";
+    echo "Nema artikala u ovom vremenskom periodu!";
 }

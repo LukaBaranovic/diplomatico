@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
           `getReceiptDetails.php?receipt_id=${receiptId}`
         );
         if (!response.ok) {
-          throw new Error("Greška pri dohvaćanja detalja računa.");
+          throw new Error("Greška pri dohvaćanja detalja računa!");
         }
 
         const data = await response.json();

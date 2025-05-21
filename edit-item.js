@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemPrice = parseFloat(formData.get("item_price"));
     if (isNaN(itemPrice) || itemPrice <= 0) {
       document.getElementById("itemErrorMessage").textContent =
-        "Cijena mora biti pozitivan broj";
+        "Cijena mora biti pozitivan broj!";
       document.getElementById("itemErrorMessage").style.display = "block";
       return;
     }

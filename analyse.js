@@ -9,7 +9,7 @@ $(document).ready(function () {
         $("#results").html(response);
       },
       error: function () {
-        alert("Greška pri dohvaćanju artikala.");
+        alert("Greška pri dohvaćanju artikala!");
       },
     });
   }
@@ -24,7 +24,7 @@ $(document).ready(function () {
         $("#results").html(response);
       },
       error: function () {
-        alert("Greška pri dohvaćanju kategorija.");
+        alert("Greška pri dohvaćanju kategorija!");
       },
     });
   }
