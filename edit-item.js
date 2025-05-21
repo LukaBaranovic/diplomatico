@@ -3,17 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
   itemEditButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const row = event.target.closest("tr");
-      const itemId = row.querySelector("td:first-child").textContent.trim();
-      const itemName = row.querySelector("td:nth-child(2)").textContent.trim();
-      const itemPrice = row.querySelector("td:nth-child(3)").textContent.trim();
-      const categoryId =
-        row.querySelector("td:nth-child(4)").dataset.categoryId;
+      const itemId = button.dataset.id; // Use data- attributes for reliable values
+      const itemName = button.dataset.name;
+      const itemPrice = button.dataset.price;
+      const categoryId = button.dataset["categoryId"]; // This is already a number as string
 
       document.getElementById("itemId").value = itemId;
       document.getElementById("itemName").value = itemName;
       document.getElementById("itemPrice").value = itemPrice;
       document.getElementById("itemCategory").value = categoryId;
 
+      // Hide any previous error messages
+      document.getElementById("itemErrorMessage").style.display = "none";
       document.getElementById("editItemModal").style.display = "block";
     });
   });
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".cancel-btn, .close-btn").forEach((button) => {
     button.addEventListener("click", () => {
       document.getElementById("editItemModal").style.display = "none";
+      document.getElementById("itemErrorMessage").style.display = "none";
     });
   });
 
@@ -44,20 +46,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.status === "success") {
           alert(data.message);
 
+          // Update the row in the table with the new values
+          const editedId = formData.get("item_id");
           const row = document
-            .querySelector(
-              `#itemTable .edit-btn[data-id="${formData.get("item_id")}"]`
-            )
+            .querySelector(`#itemTable .edit-btn[data-id="${editedId}"]`)
             .closest("tr");
           row.querySelector("td:nth-child(2)").textContent =
             formData.get("item_name");
-          row.querySelector("td:nth-child(3)").textContent = parseFloat(
-            formData.get("item_price")
-          ).toFixed(2);
+          row.querySelector("td:nth-child(3)").textContent =
+            parseFloat(formData.get("item_price")).toFixed(2) + " €";
           row.querySelector("td:nth-child(4)").textContent =
             document.querySelector(
               `#itemCategory option[value="${formData.get("category_id")}"]`
             ).textContent;
+
+          // Also update the button's data attributes for next edit!
+          const editBtn = row.querySelector(".edit-btn");
+          editBtn.dataset.name = formData.get("item_name");
+          editBtn.dataset.price = formData.get("item_price");
+          editBtn.dataset.categoryId = formData.get("category_id");
 
           document.getElementById("editItemModal").style.display = "none";
         } else {

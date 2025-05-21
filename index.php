@@ -171,7 +171,7 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
                             <tr>
                                 <td><?= htmlspecialchars($item['item_id']) ?></td>
                                 <td><?= htmlspecialchars($item['item_name']) ?></td>
-                                <td><?= htmlspecialchars($item['item_price']) ?> €</td>
+                                <td><?= number_format((float)$item['item_price'], 2, '.', '') ?> €</td>
                                 <td data-category-id="<?= $item['category_id'] ?>"><?= htmlspecialchars($item['category_name']) ?></td>
                                 <td>
                                     <button class="edit-btn" data-id="<?= $item['item_id'] ?>" data-name="<?= htmlspecialchars($item['item_name']) ?>" data-price="<?= htmlspecialchars($item['item_price']) ?>" data-category-id="<?= $item['category_id'] ?>">Uredi</button>
