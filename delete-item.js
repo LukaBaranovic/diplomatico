@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteButton.addEventListener("click", () => {
     const itemId = document.getElementById("itemId").value;
 
-    if (confirm("Are you sure you want to delete this item?")) {
+    if (confirm("Jeste li sigurni da želite obrisati ovaj artikal?")) {
       fetch("delete-item.php", {
         method: "POST",
         headers: {
@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             const errorMessage = document.getElementById("itemErrorMessage");
             errorMessage.textContent =
-              data.message || "Failed to delete the item.";
+              data.message || "Greška pri brisanju artikla.";
             errorMessage.style.display = "block";
           }
         })
         .catch((error) => {
           console.error("Error:", error);
-          alert("An error occurred while deleting the item.");
+          alert("Greška pri brisanju artikla.");
         });
     }
   });

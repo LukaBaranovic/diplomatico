@@ -1,30 +1,25 @@
-/* Container for main content */
 .container {
   width: 65%;
   margin: 20px auto;
-  text-align: center; /* Center-align everything inside the container */
+  text-align: center;
 }
 
-/* Table container */
 .table-container {
   margin: 0 auto;
   margin-bottom: 20px;
 }
 
-/* Space below the Računi header */
 .table-container h1 {
-  margin-bottom: 12px; /* Creates a gap below "Računi" */
+  margin-bottom: 12px;
 }
 
-/* Center the date picker and label */
 .date-picker-container {
   display: flex;
-  flex-direction: column; /* Stack the elements vertically */
-  align-items: center; /* Center-align elements horizontally */
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-/* Gaps between label, date input, and button */
 .date-picker-container label {
   margin-bottom: 12px;
 }
@@ -37,7 +32,6 @@
   margin-top: 4px;
 }
 
-/* Date picker styling */
 #dateSelector {
   padding: 8px;
   font-size: 16px;
@@ -46,7 +40,6 @@
   background-color: #f9f9f9;
 }
 
-/* Total sum container */
 #totalSumContainer {
   margin-top: 20px;
   text-align: center;
@@ -60,17 +53,16 @@
   margin: 0;
   font-size: 20px;
   color: #007bff;
-  text-align: center; /* Center-align the total label */
+  text-align: center;
 }
 
 #totalSum {
   font-size: 24px;
   font-weight: bold;
   color: #333;
-  text-align: center; /* Center-align the total value */
+  text-align: center;
 }
 
-/* Table styling */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -78,62 +70,55 @@ table {
   background-color: #fff;
 }
 
-/* Borders for table, headers, and cells */
 table,
 th,
 td {
   border: 1px solid #ddd;
 }
 
-/* Padding and alignment for table cells */
 th,
 td {
   padding: 10px;
-  text-align: center; /* Center-align table headers and cells */
+  text-align: center;
 }
 
-/* Header row background color */
 th {
   background-color: #007bff;
   color: white;
 }
 
-/* Alternating row colors */
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Hover effect on table rows */
 tr:hover {
   background-color: #e9ecef;
 }
 
-/* Popup styling */
 .popup {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
 }
 
 .popup-content {
-  background-color: #fff; /* White background */
+  background-color: #fff;
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #ddd;
-  border-radius: 10px; /* Rounded corners */
-  width: 50%; /* Set width for the popup */
+  border-radius: 10px;
+  width: 50%;
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  text-align: center; /* Center-align text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-/* ID and Table Number Styling */
 .popup-header p {
   font-size: 18px;
   margin: 5px 0;
@@ -143,7 +128,6 @@ tr:hover {
   margin-bottom: 20px;
 }
 
-/* Close button at the top-right corner */
 .close-btn {
   color: #aaa;
   position: absolute;
@@ -160,9 +144,8 @@ tr:hover {
   text-decoration: none;
 }
 
-/* Cancel button styling */
 .cancel-btn {
-  background-color: #6c757d; /* Gray */
+  background-color: #6c757d;
   color: white;
   padding: 10px 15px;
   font-size: 14px;
@@ -173,10 +156,9 @@ tr:hover {
 }
 
 .cancel-btn:hover {
-  background-color: #5a6268; /* Darker gray */
+  background-color: #5a6268;
 }
 
-/* Popup items table */
 .popup-items {
   width: 100%;
   border-collapse: collapse;
@@ -187,7 +169,7 @@ tr:hover {
 .popup-items td {
   border: 1px solid #ddd;
   padding: 10px;
-  text-align: center; /* Center-align popup table contents */
+  text-align: center;
 }
 
 .popup-items th {
@@ -195,11 +177,10 @@ tr:hover {
   color: white;
 }
 
-/* Popup total price section */
 .popup-total {
   font-size: 18px;
   font-weight: bold;
-  text-align: center; /* Center-align the total price */
+  text-align: center;
 }
 
 .show-button {

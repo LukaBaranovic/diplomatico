@@ -37,7 +37,6 @@ if (isset($company_id)) {
 </head>
 <body>
 
-
   <!-- Navigation Bar -->
   <header class="navbar">
       <a href="index.php" class="navbar-logo">
@@ -54,23 +53,22 @@ if (isset($company_id)) {
 
 <div class="main-container">
   <div class="date-selection">
-    <label for="start-date">Start Date:</label>
+    <label for="start-date">Početni datum:</label>
     <input type="date" id="start-date" value="<?php echo date('Y-m-d', strtotime('-7 days')); ?>">
 
-    <label for="end-date">End Date:</label>
+    <label for="end-date">Završni datum:</label>
     <input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>">
   </div>
 
   <div class="actions">
-    <button id="fetch-items">Fetch Items</button>
-    <button id="fetch-categories">Fetch Categories</button>
+    <button id="fetch-items">Dohvati Artikle</button>
+    <button id="fetch-categories">Dohvati Kategorije</button>
   </div>
 
   <div id="results">
-    <!-- Results from fetch_items.php or fetch_categories.php will be injected here -->
+    <!-- fetch_items.php ili fetch_categories.php -->
   </div>
 </div>
-
 
 <footer class="footer">
   <div class="footer-company-name">

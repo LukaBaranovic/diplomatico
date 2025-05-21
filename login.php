@@ -1,6 +1,4 @@
 <?php
-// PHP kod koji služio za autentikaciju korisnika 
-
 $is_invalid = false; 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -35,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/login.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <title>Diplomatico</title>
+  <title>Diplomatico - Prijava</title>
   <link rel="icon" type="image/x-icon" href="photo/company-favicon.png">
 </head>
 
@@ -44,20 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <div class="login-wrapper">
     <div class="login-form-container">
 
-    <div class="login-logo">
-      <img src="photo/zukam.png" alt="company logo">
-
-    </div>
-
-<!-- Dio koda koji se aktivira kada je prijava neuspješna/kriva -->
+      <div class="login-logo">
+        <img src="photo/zukam.png" alt="company logo">
+      </div>
 
       <div class="invalid-login">
           <?php if ($is_invalid): ?>
-            <em>Invalid login</em>
+            <em>Neuspješna prijava</em>
           <?php endif; ?>
       </div>
 
-<!-- Obrazac za prijavu, pri krivoj prijavi pamti korisničko ime, a lozinku ne -->
       <form class="login-form" method="post">
         <div class="login-input-box">
           <input type="text" placeholder="Korisničko ime" name="username" id="username" 

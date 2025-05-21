@@ -5,13 +5,11 @@ $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
 
 if (!isset($_SESSION["user_id"])) {
-    die("Unauthorized access.");
+    die("Neautiriziran pristup.");
 }
 
-// Include the database connection
 $mysqli = require_once __DIR__ . "/database.php";
 
-// Fetch user data
 $users = [];
 if (isset($_SESSION["user_id"])) {
     $sql = "SELECT * FROM users WHERE id = ?";
@@ -22,7 +20,6 @@ if (isset($_SESSION["user_id"])) {
     $users = $result->fetch_assoc();
 }
 
-// Fetch company name
 $company_name = '';
 if (isset($company_id)) {
     $sql_company = "SELECT company_name FROM company WHERE company_id = ?";
@@ -37,10 +34,8 @@ if (isset($company_id)) {
     }
 }
 
-// Handle the selected date from the form submission
-$selected_date = $_GET['date'] ?? date('Y-m-d'); // Default to today's date if no date is selected
+$selected_date = $_GET['date'] ?? date('Y-m-d'); 
 
-// Query to fetch receipts for the selected date and company
 $sql = "SELECT receipt_id, table_number, total_price, timestamp 
         FROM receipts 
         WHERE company_id = ? AND DATE(timestamp) = ?
@@ -51,7 +46,6 @@ $stmt->bind_param("is", $company_id, $selected_date);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Query to calculate the total sum for the selected date
 $sql_total = "SELECT SUM(total_price) AS total_sum 
               FROM receipts 
               WHERE company_id = ? AND DATE(timestamp) = ?";
@@ -59,7 +53,7 @@ $stmt_total = $mysqli->prepare($sql_total);
 $stmt_total->bind_param("is", $company_id, $selected_date);
 $stmt_total->execute();
 $result_total = $stmt_total->get_result();
-$total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if no receipts
+$total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; 
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +72,6 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
 
 <body>
   
-    <!-- Navigation Bar -->
     <header class="navbar">
         <a href="index.php" class="navbar-logo">
             <span>ZukaMaster</span>
@@ -95,14 +88,13 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
     <div class="container">
         <div class="table-container">
             <h1>Računi</h1>
-            <!-- Date Selector -->
+          
             <form method="GET" action="review.php" class="date-picker-container">
                 <label for="dateSelector">Odaberite datum:</label>
                 <input type="date" id="dateSelector" name="date" value="<?= htmlspecialchars($selected_date) ?>">
                 <button class="show-button" type="submit">Prikaži</button>
             </form>
 
-            <!-- Receipts Table -->
             <table id="receiptsTable">
                 <thead>
                     <tr>
@@ -125,23 +117,19 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
             </table>
         </div>
 
-        <!-- Total Sum Section -->
         <div id="totalSumContainer">
             <h3>Ukupni iznos:</h3>
             <p id="totalSum"><?= number_format($total_sum, 2) ?> €</p>
         </div>
     </div>
 
-    <!-- Popup for receipt details -->
     <div id="receiptPopup" class="popup">
         <div class="popup-content">
-            <!-- Close Button -->
+           
             <span id="popupClose" class="close-btn">&times;</span>
 
-            <!-- ID and Table Number Section -->
             <div class="popup-header"></div>
 
-            <!-- Items Table -->
             <table class="popup-items">
                 <thead>
                     <tr>
@@ -151,16 +139,15 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0; // Default to 0 if 
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Items will be dynamically inserted here -->
+                    <!--  -->
                 </tbody>
             </table>
             <p class="popup-total"></p>
-            <!-- Bottom Cancel Button -->
+         
             <button id="popupCancel" class="cancel-btn">Otkaži</button>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-company-name">
             <?= htmlspecialchars($company_name) ?>

@@ -9,7 +9,7 @@ $(document).ready(function () {
         $("#results").html(response);
       },
       error: function () {
-        alert("An error occurred while fetching items.");
+        alert("Greška pri dohvaćanju artikala.");
       },
     });
   }
@@ -24,7 +24,7 @@ $(document).ready(function () {
         $("#results").html(response);
       },
       error: function () {
-        alert("An error occurred while fetching categories.");
+        alert("Greška pri dohvaćanju kategorija.");
       },
     });
   }
@@ -36,7 +36,7 @@ $(document).ready(function () {
     const sortOrder = $("#category-sort-order").val();
 
     if (new Date(startDate) > new Date(endDate)) {
-      alert("Start date cannot be later than end date!");
+      alert("Početni datum ne može biti kasnije od završnog!");
       return;
     }
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
     const sortOrder = $("#sort-order").val();
 
     if (new Date(startDate) > new Date(endDate)) {
-      alert("Start date cannot be later than end date!");
+      alert("Početni datum ne može biti kasnije od završnog!");
       return;
     }
 
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
     // Ensure valid date range
     if (new Date(startDate) > new Date(endDate)) {
-      alert("Start date cannot be later than end date!");
+      alert("Početni datum ne može biti kasnije od završnog!");
       return false;
     }
     return true;

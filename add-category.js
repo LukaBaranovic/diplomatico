@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typeName = document.getElementById("newType").value;
 
     if (!categoryName || !typeName) {
-      alert("Please fill in all fields.");
+      alert("Popunite sva polja.");
       return;
     }
 
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          alert(data.message || "Category added successfully!");
+          alert(data.message || "Kategorija dodana uspješno!");
 
           const newRow = document.createElement("tr");
           newRow.innerHTML = `
@@ -58,12 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
           addCategoryModal.style.display = "none";
         } else {
-          alert(data.message || "Failed to add category.");
+          alert(data.message || "Greška pri dodavanju kategorije.");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("An error occurred. Please try again.");
+        alert("Greška, pokušajte ponovno.");
       });
   });
 });

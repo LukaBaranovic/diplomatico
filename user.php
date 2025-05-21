@@ -2,8 +2,6 @@
 
 session_start();
 
-// print_r($_SESSION);
-
 $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
 
@@ -13,9 +11,7 @@ if (isset($_SESSION["user_id"])) {
   $result = $mysqli->query($sql);
   $users = $result->fetch_assoc();
 }
-//Dohvaća koji user je prijavljen, koji je potreban da znamo za koju firmu user moze raditi promjene.
 
-// Fetch user data
 $users = [];
 if (isset($_SESSION["user_id"])) {
     $sql = "SELECT * FROM users WHERE id = ?";
@@ -60,10 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $is_success = true;
             }
         } else {
-            $is_invalid = "New passwords do not match!";
+            $is_invalid = "Lozinke se ne podudaraju!";
         }
     } else {
-        $is_invalid = "Old password is incorrect!";
+        $is_invalid = "Stara lozinka je netočna!";
     }
 }
 

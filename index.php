@@ -118,7 +118,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
 
     <div class="container">
 
-        <!-- View Toggle Buttons -->
         <div class="view-toggle">
             <button id="btnCategories" class="toggle-btn active">Prikaz kategorija</button>
             <button id="btnItems" class="toggle-btn">Prikaz Artikala</button>
@@ -126,7 +125,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             <button id="btnAddItem" class="toggle-btn">Dodaj artikal</button>
         </div>
 
-        <!-- Categories Section -->
         <div id="categoriesSection">
             <div class="table-container">
                 <input type="text" id="searchBarCategories" placeholder="Pretraži kategorije..." onkeyup="filterTable('categoryTable', 'searchBarCategories')">
@@ -155,7 +153,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Items Section -->
         <div id="itemsSection" style="display: none;">
             <div class="table-container">
                 <input type="text" id="searchBarItems" placeholder="Pretraži artikle..." onkeyup="filterTable('itemTable', 'searchBarItems')">
@@ -186,7 +183,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Edit Category Modal -->
         <div id="editCategoryModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <button class="close-btn" type="button">&times;</button>
@@ -220,7 +216,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Edit Item Modal -->
         <div id="editItemModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <button class="close-btn" type="button">&times;</button>
@@ -258,7 +253,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Add Category Modal -->
         <div id="addCategoryModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <button class="close-btn" type="button">&times;</button>
@@ -290,7 +284,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
 
-        <!-- Add Item Modal -->
         <div id="addItemModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <button class="close-btn" type="button">&times;</button>

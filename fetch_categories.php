@@ -1,32 +1,26 @@
 <?php
 session_start();
 
-// Enable error reporting to debug errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Check if company_id is set in the session
 if (!isset($_SESSION['company_id'])) {
-    echo "Company ID is not set.";
+    echo "ID firme nije dohvaćen.";
     exit;
 }
 
-// Retrieve company_id, date range, and sorting order
 $company_id = (int)$_SESSION['company_id'];
-$start_date = $_POST['start_date'] ?? date('Y-m-01'); // Default: Start of the current month
-$end_date = $_POST['end_date'] ?? date('Y-m-d');      // Default: Today
-$sort_order = strtoupper($_POST['sort_order'] ?? 'DESC'); // Default to DESC
+$start_date = $_POST['start_date'] ?? date('Y-m-01'); 
+$end_date = $_POST['end_date'] ?? date('Y-m-d');      
+$sort_order = strtoupper($_POST['sort_order'] ?? 'DESC'); 
 
-// Validate sort order (only ASC or DESC are allowed)
 if (!in_array($sort_order, ['ASC', 'DESC'])) {
     $sort_order = 'DESC';
 }
 
-// Connect to the database
 $mysqli = require_once __DIR__ . "/database.php";
 
-// SQL Query to Fetch Categories, Total Quantity, and Total Price
 $sql = "
     SELECT 
         c.category_name, 
@@ -48,7 +42,6 @@ $sql = "
         total_quantity $sort_order
 ";
 
-// Prepare and execute the query
 $stmt = $mysqli->prepare($sql);
 
 if (!$stmt) {
@@ -60,7 +53,6 @@ $stmt->bind_param("iss", $company_id, $start_date, $end_date);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Display the results in table format
 if ($result->num_rows > 0) {
     echo '<div class="table-container">';
     echo '<table>';
@@ -75,7 +67,7 @@ if ($result->num_rows > 0) {
                 <option value="ASC"' . ($sort_order === 'ASC' ? ' selected' : '') . '>+</option>
             </select>
           </th>';
-    echo '<th>Promet</th>'; // Total Price Column
+    echo '<th>Promet</th>'; 
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -83,7 +75,7 @@ if ($result->num_rows > 0) {
         echo '<tr>';
         echo '<td>' . htmlspecialchars($row['category_name']) . '</td>';
         echo '<td>' . htmlspecialchars($row['total_quantity']) . '</td>';
-        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . ' €</td>'; // Format total price with euro symbol
+        echo '<td>' . htmlspecialchars(number_format($row['total_price'], 2)) . ' €</td>'; 
         echo '</tr>';
     }
     echo '</tbody>';

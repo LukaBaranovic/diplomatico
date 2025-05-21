@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", (event) => {
       const row = event.target.closest("tr");
       const itemId = row.querySelector("td:first-child").textContent;
-      if (confirm(`Are you sure you want to delete Item ID: ${itemId}?`)) {
+      if (confirm(`Je li želite obrisati ovaj artikal: ${itemId}?`)) {
         alert(
           `Delete feature for Item ID: ${itemId} will be implemented here.`
         );

@@ -5,7 +5,7 @@ $mysqli = require_once __DIR__ . "/database.php";
 
 if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(401); 
-    echo json_encode(['status' => 'error', 'message' => 'Unauthorized request']);
+    echo json_encode(['status' => 'error', 'message' => 'Neautiriziran pristup']);
     exit;
 }
 
@@ -19,7 +19,7 @@ $stmt_check->execute();
 $stmt_check->store_result();
 
 if ($stmt_check->num_rows === 0) {
-    echo json_encode(['status' => 'error', 'message' => 'Item not found.']);
+    echo json_encode(['status' => 'error', 'message' => 'Artikal nije pronađen.']);
     exit;
 }
 
@@ -28,8 +28,8 @@ $stmt_delete = $mysqli->prepare($sql_delete);
 $stmt_delete->bind_param("i", $item_id);
 
 if ($stmt_delete->execute()) {
-    echo json_encode(['status' => 'success', 'message' => 'Item deleted successfully.']);
+    echo json_encode(['status' => 'success', 'message' => 'Artikal izbrisan uspješno.']);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Failed to delete item.']);
+    echo json_encode(['status' => 'error', 'message' => 'Greška pri brisanju artikla.']);
 }
 ?>

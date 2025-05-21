@@ -17,7 +17,7 @@ $category_name = trim($data["category_name"]);
 $type_name = trim($data["type_name"]);
 
 if (empty($category_name) || empty($type_name)) {
-    $response["message"] = "All fields are required.";
+    $response["message"] = "Popunite sva polja.";
     echo json_encode($response);
     exit;
 }
@@ -31,7 +31,7 @@ $sql_check = "
 ";
 $stmt_check = $mysqli->prepare($sql_check);
 if (!$stmt_check) {
-    $response["message"] = "Database error: " . $mysqli->error;
+    $response["message"] = "Greška u bazi podataka: " . $mysqli->error;
     echo json_encode($response);
     exit;
 }
@@ -41,7 +41,7 @@ $stmt_check->execute();
 $stmt_check->store_result();
 
 if ($stmt_check->num_rows > 0) {
-    $response["message"] = "Category already exists!";
+    $response["message"] = "Kategorija već postoji!";
     echo json_encode($response);
     $stmt_check->close();
     exit;
@@ -55,7 +55,7 @@ $sql = "INSERT INTO CATEGORY (category_name, type_id, company_id)
 $stmt = $mysqli->prepare($sql);
 
 if (!$stmt) {
-    $response["message"] = "Database error: " . $mysqli->error;
+    $response["message"] = "Greška u bazi podataka: " . $mysqli->error;
     echo json_encode($response);
     exit;
 }
@@ -63,10 +63,10 @@ if (!$stmt) {
 $stmt->bind_param("sis", $category_name, $company_id, $type_name);
 if ($stmt->execute()) {
     $response["status"] = "success";
-    $response["message"] = "Category added successfully!";
+    $response["message"] = "Kategorija dodana uspješno!";
     $response["category_id"] = $stmt->insert_id;
 } else {
-    $response["message"] = "Failed to add category.";
+    $response["message"] = "Greška pri dodavanju kategorije.";
 }
 
 $stmt->close();

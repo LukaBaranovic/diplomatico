@@ -15,19 +15,17 @@ body {
 
 html,
 body {
-  height: 100%; /* Ensure html and body take up the full height of the viewport */
+  height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* Make the body a flex container */
+  flex-direction: column;
 }
 
-/* Make the main content area grow to fill available space */
 .container {
-  flex: 1; /* This allows the content to expand and push the footer to the bottom */
+  flex: 1;
 }
 
-/* Navigation Bar Styles */
 .navbar {
   background-color: #007bff;
   display: flex;
@@ -41,7 +39,6 @@ body {
   z-index: 1000;
 }
 
-/* Left logo styling */
 .navbar-logo {
   text-decoration: none;
   color: white;
@@ -58,15 +55,13 @@ body {
   color: #ffc107;
 }
 
-/* Right links container */
 .navbar-links {
   display: flex;
   align-items: center;
   margin-left: auto;
-  gap: 20px; /* spacing between the links */
+  gap: 20px;
 }
 
-/* Right links styling: same for all */
 .navbar-link {
   font-size: 16px;
   text-decoration: none;
@@ -80,26 +75,25 @@ body {
   color: #ffc107;
 }
 
-/* Footer Styles */
 .footer {
-  background-color: #007bff; /* Same blue as the header */
+  background-color: #007bff;
   color: white;
   text-align: center;
   padding: 20px 10px;
   margin-top: 20px;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow above the footer */
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .footer-company-name {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px; /* Space between company name and rights text */
+  margin-bottom: 5px;
 }
 
 .footer-rights {
   font-size: 14px;
   font-weight: normal;
-  color: #e0e0e0; /* A lighter shade for the rights text */
+  color: #e0e0e0;
 }
 
 img {

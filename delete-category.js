@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteButton.addEventListener("click", () => {
     const categoryId = document.getElementById("categoryId").value;
 
-    if (confirm("Are you sure you want to delete this category?")) {
+    if (confirm("Jeste li sigurni da želite obrisati ovu kategoriju?")) {
       fetch("delete-category.php", {
         method: "POST",
         headers: {

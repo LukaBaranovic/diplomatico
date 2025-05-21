@@ -1,24 +1,20 @@
-// Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
   const tableRows = document.querySelectorAll("#receiptsTable tbody tr");
 
-  // Add click event for each table row
   tableRows.forEach((row) => {
     row.addEventListener("click", async () => {
       const receiptId = row.getAttribute("data-receipt-id");
 
       try {
-        // Fetch receipt details from the server
         const response = await fetch(
           `getReceiptDetails.php?receipt_id=${receiptId}`
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch receipt details.");
+          throw new Error("Greška pri dohvaćanja detalja računa.");
         }
 
         const data = await response.json();
 
-        // Populate the popup with receipt details
         const popup = document.querySelector("#receiptPopup");
         popup.querySelector(".popup-header").innerHTML = `
           <p><strong>ID:</strong> ${data.receipt.receipt_id}</p>
@@ -26,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         const itemsTable = popup.querySelector(".popup-items tbody");
-        itemsTable.innerHTML = ""; // Clear previous items
+        itemsTable.innerHTML = "";
 
         data.items.forEach((item) => {
           const row = document.createElement("tr");
-          const totalPrice = parseFloat(item.total_price); // Ensure total_price is a number
+          const totalPrice = parseFloat(item.total_price);
           row.innerHTML = `
             <td>${item.item_name}</td>
             <td>${item.quantity}</td>
@@ -39,12 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
           itemsTable.appendChild(row);
         });
 
-        const totalReceiptPrice = parseFloat(data.receipt.total_price); // Ensure total_price is a number
+        const totalReceiptPrice = parseFloat(data.receipt.total_price);
         popup.querySelector(".popup-total").textContent = `Ukupna cijena: ${
           isNaN(totalReceiptPrice) ? "0.00" : totalReceiptPrice.toFixed(2)
         } €`;
 
-        // Show the popup
         popup.style.display = "block";
       } catch (error) {
         alert(error.message);
@@ -52,21 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close popup handler for the "X" button
   document.querySelector("#popupClose").addEventListener("click", () => {
     document.querySelector("#receiptPopup").style.display = "none";
   });
 
-  // Close popup handler for the "Otkaži" button
   document.querySelector("#popupCancel").addEventListener("click", () => {
     document.querySelector("#receiptPopup").style.display = "none";
   });
 
-  // ---- NEW: Auto-close date picker when date is selected ----
   const dateInput = document.getElementById("dateSelector");
   if (dateInput) {
     dateInput.addEventListener("change", function () {
-      dateInput.blur(); // This closes the date picker on most browsers
+      dateInput.blur();
 
       // Uncomment the next line if you want to auto-submit the form as well:
       // dateInput.form.submit();

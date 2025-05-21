@@ -1,32 +1,26 @@
 <?php
 session_start();
 
-// Enable error reporting to debug errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Check if company_id is set in the session
 if (!isset($_SESSION['company_id'])) {
-    echo "Company ID is not set.";
+    echo "ID firme nije dohvaćen.";
     exit;
 }
 
-// Retrieve company_id, date range, and sorting order
 $company_id = (int)$_SESSION['company_id'];
 $start_date = $_POST['start_date'] ?? date('Y-m-d', strtotime('-7 days'));
 $end_date = $_POST['end_date'] ?? date('Y-m-d');
-$sort_order = strtoupper($_POST['sort_order'] ?? 'DESC'); // Default to DESC
+$sort_order = strtoupper($_POST['sort_order'] ?? 'DESC'); 
 
-// Validate sort order (only ASC or DESC are allowed)
 if (!in_array($sort_order, ['ASC', 'DESC'])) {
     $sort_order = 'DESC';
 }
 
-// Connect to the database
 $mysqli = require_once __DIR__ . "/database.php";
 
-// SQL Query to Fetch Items and Aggregate Quantities and Prices
 $sql = "
     SELECT 
         ri.item_name, 

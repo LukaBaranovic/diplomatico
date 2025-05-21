@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const categoryId = formData.get("category_id");
 
     if (!itemName || !itemPrice || !categoryId) {
-      alert("All fields are required.");
+      alert("Popunite sva polja.");
       return false;
     }
 
     const price = parseFloat(itemPrice);
     if (isNaN(price) || price <= 0) {
-      alert("Item price must be a valid positive number.");
+      alert("Cijena mora biti pozitivan broj.");
       return false;
     }
 
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch((error) => {
-        alert("An error occurred. Please try again.");
+        alert("Greška, pokušajte ponovno.");
       });
   });
 });

@@ -7,7 +7,7 @@ header("Content-Type: application/json");
 $response = ["success" => false, "message" => ""];
 
 if (!isset($_POST["item_name"], $_POST["item_price"], $_POST["category_id"])) {
-    $response["message"] = "All fields are required.";
+    $response["message"] = "Popunite sva polja.";
     echo json_encode($response);
     exit;
 }
@@ -18,7 +18,7 @@ $category_id = intval($_POST["category_id"]);
 $company_id = $_SESSION["company_id"];
 
 if (empty($item_name) || $item_price <= 0 || $category_id <= 0) {
-    $response["message"] = "Invalid inputs.";
+    $response["message"] = "Neispravan unos.";
     echo json_encode($response);
     exit;
 }
@@ -30,7 +30,7 @@ $sql_check = "
 ";
 $stmt_check = $mysqli->prepare($sql_check);
 if (!$stmt_check) {
-    $response["message"] = "Database error: " . $mysqli->error;
+    $response["message"] = "Greška u bazi podataka: " . $mysqli->error;
     echo json_encode($response);
     exit;
 }
@@ -40,7 +40,7 @@ $stmt_check->execute();
 $stmt_check->store_result();
 
 if ($stmt_check->num_rows > 0) {
-    $response["message"] = "Item already exists!";
+    $response["message"] = "Artikal već postoji!";
     echo json_encode($response);
     $stmt_check->close();
     exit;
@@ -51,7 +51,7 @@ $sql_category = "SELECT category_name FROM CATEGORY WHERE category_id = ? AND co
 $stmt_category = $mysqli->prepare($sql_category);
 
 if (!$stmt_category) {
-    $response["message"] = "Database error: " . $mysqli->error;
+    $response["message"] = "Greška u bazi podataka: " . $mysqli->error;
     echo json_encode($response);
     exit;
 }
@@ -63,7 +63,7 @@ $stmt_category->fetch();
 $stmt_category->close();
 
 if (empty($category_name)) {
-    $response["message"] = "Invalid category ID.";
+    $response["message"] = "Neispravan ID kategorije.";
     echo json_encode($response);
     exit;
 }
@@ -72,7 +72,7 @@ $sql = "INSERT INTO ITEM (item_name, item_price, category_id, company_id) VALUES
 $stmt = $mysqli->prepare($sql);
 
 if (!$stmt) {
-    $response["message"] = "Database error: " . $mysqli->error;
+    $response["message"] = "Greška u bazi podataka: " . $mysqli->error;
     echo json_encode($response);
     exit;
 }
@@ -81,14 +81,14 @@ $stmt->bind_param("sdii", $item_name, $item_price, $category_id, $company_id);
 
 if ($stmt->execute()) {
     $response["success"] = true;
-    $response["message"] = "Item added successfully!";
+    $response["message"] = "Artikal dodan uspješno!";
     $response["item_id"] = $stmt->insert_id;
     $response["item_name"] = $item_name;
     $response["item_price"] = $item_price;
     $response["category_name"] = $category_name;
     $response["category_id"] = $category_id;
 } else {
-    $response["message"] = "Failed to add item.";
+    $response["message"] = "Greška pri dodavanju artikla.";
 }
 
 $stmt->close();
