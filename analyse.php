@@ -54,7 +54,7 @@ if (isset($company_id)) {
 <div class="main-container">
   <div class="date-selection">
     <label for="start-date">Početni datum:</label>
-    <input type="date" id="start-date" value="<?php echo date('Y-m-d', strtotime('-7 days')); ?>">
+    <input type="date" id="start-date" value="<?php echo date('Y-m-01'); ?>">
 
     <label for="end-date">Završni datum:</label>
     <input type="date" id="end-date" value="<?php echo date('Y-m-d'); ?>">

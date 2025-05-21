@@ -11,7 +11,7 @@ if (!isset($_SESSION['company_id'])) {
 }
 
 $company_id = (int)$_SESSION['company_id'];
-$start_date = $_POST['start_date'] ?? date('Y-m-d', strtotime('-7 days'));
+$start_date = $_POST['start_date'] ?? date('Y-m-01');
 $end_date = $_POST['end_date'] ?? date('Y-m-d');
 $sort_order = strtoupper($_POST['sort_order'] ?? 'DESC'); 
 
