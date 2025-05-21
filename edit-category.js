@@ -34,6 +34,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.querySelector(".cancel-btn").addEventListener("click", () => {
+    document.getElementById("editCategoryModal").style.display = "none";
+    // Optionally clear messages on close, too:
+    document.getElementById("errorMessage").textContent = "";
+    document.getElementById("errorMessage").style.display = "none";
+    document.getElementById("successMessage").textContent = "";
+    document.getElementById("successMessage").style.display = "none";
+  });
+
+  document.querySelector(".close-btn").addEventListener("click", () => {
+    document.getElementById("editCategoryModal").style.display = "none";
+    // Optionally clear messages on close, too:
+    document.getElementById("errorMessage").textContent = "";
+    document.getElementById("errorMessage").style.display = "none";
+    document.getElementById("successMessage").textContent = "";
+    document.getElementById("successMessage").style.display = "none";
+  });
+
   document.getElementById("confirmEdit").addEventListener("click", () => {
     const formData = new FormData(document.getElementById("editCategoryForm"));
 
