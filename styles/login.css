@@ -4,6 +4,7 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  background: #f8f9fa;
 }
 
 .login-form-container {
@@ -12,11 +13,13 @@
   flex-direction: column;
   justify-content: center;
   width: 30%;
+  min-width: 320px;
+  max-width: 400px;
   font-size: 2rem;
   border-radius: 10px;
   background-color: #fff;
-  padding: 5px;
-  box-shadow: 0 0 20px rgb(0, 0, 0, 0.3);
+  padding: 2rem 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .login-form {
@@ -24,51 +27,127 @@
 }
 
 .invalid-login {
-  color: red;
-  font-size: 24px;
-  margin-top: 15px;
+  color: #dc3545;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 .login-input-box {
   position: relative;
   width: 100%;
   height: 50px;
-  margin: 30px 0;
+  margin: 1.5rem 0;
 }
 
 .login-input-box input {
   width: 100%;
   height: 100%;
-  background-color: rgb(227, 227, 227);
+  background-color: #e3e3e3;
   outline: none;
   border: 2px solid #f5f5f5;
   border-radius: 10px;
-  padding: 20px 45px 20px 20px;
+  padding: 0 45px 0 20px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.login-input-box input:focus {
+  border-color: #007bff;
 }
 
 .login-input-box i {
   position: absolute;
-  right: 10px;
-  top: 26%;
-  transform: relative(-50%);
-  font-size: 25px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: #888;
 }
 
 .login-submit-button {
   width: 100%;
-  height: 100%;
-  padding: 12px;
-  background: rgb(227, 227, 227);
+  padding: 0.75rem;
+  background: #007bff;
+  color: #fff;
   outline: none;
-  border: 2px solid #f5f5f5;
+  border: none;
   border-radius: 10px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   cursor: pointer;
   user-select: none;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
 }
 
 .login-submit-button:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
-  transform: translateY(-0.5px);
+  background: #0056b3;
+  box-shadow: rgba(45, 35, 66, 0.1) 0 4px 8px,
+    rgba(45, 35, 66, 0.08) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.login-logo {
+  padding-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-form-container {
+    width: 98%;
+    min-width: unset;
+    padding: 1.3rem 0.6rem;
+    font-size: 1.1rem;
+  }
+  .login-input-box input,
+  .login-submit-button {
+    font-size: 0.95rem;
+  }
+  .invalid-login {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-form-container {
+    width: 80%;
+    min-width: 260px;
+    padding: 1.7rem 1rem;
+    font-size: 1.35rem;
+  }
+  .login-input-box input,
+  .login-submit-button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-form-container {
+    width: 50%;
+    min-width: 300px;
+    padding: 1.9rem 1.3rem;
+    font-size: 1.7rem;
+  }
+  .login-input-box input,
+  .login-submit-button {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .login-form-container {
+    width: 30%;
+    min-width: 320px;
+    max-width: 400px;
+    padding: 2rem 1.5rem;
+    font-size: 2rem;
+  }
+  .login-input-box input,
+  .login-submit-button {
+    font-size: 1rem;
+  }
 }

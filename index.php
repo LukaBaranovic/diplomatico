@@ -119,12 +119,16 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
     <div class="container">
 
         <div class="view-toggle">
-            <button id="btnCategories" class="toggle-btn active">Prikaz kategorija</button>
-            <button id="btnItems" class="toggle-btn">Prikaz Artikala</button>
-            <button id="btnAddCategory" class="toggle-btn">Dodaj kategoriju</button>
-            <button id="btnAddItem" class="toggle-btn">Dodaj artikal</button>
+            <div class="view-toggle-row">
+                <button id="btnCategories" class="toggle-btn active">Prikaz kategorija</button>
+                <button id="btnItems" class="toggle-btn">Prikaz Artikala</button>
+            </div>
+            <div class="view-toggle-row">
+                <button id="btnAddCategory" class="toggle-btn">Dodaj kategoriju</button>
+                <button id="btnAddItem" class="toggle-btn">Dodaj artikal</button>
+            </div>
         </div>
-
+        
         <div id="categoriesSection">
             <div class="table-container">
                 <input type="text" id="searchBarCategories" placeholder="Pretraži kategorije..." onkeyup="filterTable('categoryTable', 'searchBarCategories')">

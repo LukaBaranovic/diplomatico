@@ -5,37 +5,51 @@ body {
   background-color: #f8f9fa;
 }
 
+html {
+  font-size: 20px;
+}
+
 .container {
   width: 80%;
-  margin: 20px auto;
+  margin: 1rem auto;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 p {
   text-align: center;
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
   font-weight: bold;
 }
 
+/* View Toggle Buttons Layout */
 .view-toggle {
-  text-align: center;
-  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 0.7rem;
+}
+
+.view-toggle-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7rem;
 }
 
 .toggle-btn {
-  padding: 10px 20px;
-  margin: 0 10px;
+  padding: 0.5rem 1rem;
+  margin: 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   background-color: #007bff;
   color: white;
-  font-size: 16px;
+  font-size: 0.8rem;
 }
 
 .toggle-btn.active {
@@ -45,22 +59,23 @@ p {
 .table-container {
   width: 80%;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .table-container input[type="text"] {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   background-color: #fff;
 }
 
@@ -72,7 +87,7 @@ td {
 
 th,
 td {
-  padding: 10px;
+  padding: 0.5rem;
   text-align: center;
 }
 
@@ -90,8 +105,8 @@ tr:hover {
 }
 
 button {
-  padding: 5px 10px;
-  margin: 0 5px;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.25rem;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -133,6 +148,7 @@ button {
   background-color: #5a6268;
 }
 
+/* DO NOT TOUCH - Modal overlay */
 .modal {
   position: fixed;
   top: 0;
@@ -149,7 +165,7 @@ button {
 .modal-content {
   background-color: #fff;
   margin: 10% auto;
-  padding: 10px;
+  padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 10px;
   width: 50%;
@@ -162,7 +178,7 @@ button {
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  padding: 28px 16px 16px 16px;
+  padding: 1.4rem 0.8rem 0.8rem 0.8rem;
   width: 100%;
   margin: 0;
   background: none;
@@ -171,17 +187,17 @@ button {
 .modal-header-divider {
   height: 1px;
   width: 90%;
-  margin: 0 auto 14px auto;
+  margin: 0 auto 0.7rem auto;
   background: #e9ecef;
   border: none;
 }
 
 .close-btn {
   position: absolute;
-  right: 18px;
-  top: 14px;
+  right: 1.1rem;
+  top: 0.7rem;
   color: #aaa;
-  font-size: 28px;
+  font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
   background: none;
@@ -200,7 +216,7 @@ button {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-bottom: 18px;
+  padding-bottom: 0.9rem;
 }
 
 .modal-fields {
@@ -208,8 +224,8 @@ button {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 16px;
-  margin: 8px auto 24px auto;
+  gap: 0.8rem;
+  margin: 0.4rem auto 1.2rem auto;
 }
 
 .modal .form-group {
@@ -222,16 +238,16 @@ button {
 }
 
 .modal .form-group label {
-  font-size: 15px;
+  font-size: 0.75rem;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 0.3rem;
   align-self: flex-start;
 }
 
 .modal .form-group input,
 .modal .form-group select {
-  padding: 10px;
-  font-size: 14px;
+  padding: 0.5rem;
+  font-size: 0.7rem;
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
@@ -239,8 +255,8 @@ button {
 }
 
 .modal .form-group select {
-  font-size: 16px;
-  height: 40px;
+  font-size: 0.8rem;
+  height: 2rem;
 }
 
 #successMessage,
@@ -250,7 +266,7 @@ button {
   color: #28a745;
   text-align: center;
   font-weight: bold;
-  margin-top: 4px;
+  margin-top: 0.2rem;
   margin-bottom: 0;
 }
 
@@ -261,30 +277,166 @@ button {
   color: #dc3545;
   text-align: center;
   font-weight: bold;
-  margin-top: 4px;
+  margin-top: 0.2rem;
   margin-bottom: 0;
 }
 
 .modal form .modal-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 0.5rem;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 
 .modal form .modal-buttons button {
   width: auto;
   align-self: center;
-  min-width: 90px;
+  min-width: 4.5rem;
 }
 
 .modal-content button {
   display: inline-block;
-  margin: 10px 5px;
+  margin: 0.5rem 0.25rem;
 }
 
 .confirm-btn,
 .delete-btn {
   box-shadow: 0 2px 4px rgba(40, 167, 69, 0.1);
+}
+
+/* ============= 480px and below ============= */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  .container,
+  .table-container {
+    width: 98%;
+    margin: 0.5rem auto;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 0.75rem;
+  }
+  .modal-content {
+    width: 98%;
+    padding: 0.3rem;
+  }
+  .table-container input[type="text"] {
+    font-size: 1rem;
+  }
+  /* Table buttons */
+  table button,
+  .edit-btn,
+  .delete-btn,
+  .confirm-btn,
+  .cancel-btn {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* ============= 481px to 768px ============= */
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  .container,
+  .table-container {
+    width: 95%;
+    margin: 0.7rem auto;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+  .modal-content {
+    width: 80%;
+    padding: 0.4rem;
+  }
+  .table-container input[type="text"] {
+    font-size: 1rem;
+  }
+  /* Table buttons */
+  table button,
+  .edit-btn,
+  .delete-btn,
+  .confirm-btn,
+  .cancel-btn {
+    font-size: 0.95rem;
+    padding: 0.42rem 0.9rem;
+  }
+}
+
+/* ============= 769px to 1024px ============= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+  .container,
+  .table-container {
+    width: 90%;
+    margin: 1rem auto;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  p {
+    font-size: 0.85rem;
+  }
+  .modal-content {
+    width: 65%;
+    padding: 0.5rem;
+  }
+  .table-container input[type="text"] {
+    font-size: 1rem;
+  }
+  /* Table buttons - smaller for this range */
+  table button,
+  .edit-btn,
+  .delete-btn,
+  .confirm-btn,
+  .cancel-btn {
+    font-size: 0.98rem;
+    padding: 0.38rem 0.8rem;
+  }
+}
+
+/* ============= 1025px and above ============= */
+@media (min-width: 1025px) {
+  html {
+    font-size: 20px;
+  }
+  .container,
+  .table-container {
+    width: 80%;
+    margin: 1rem auto;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  .modal-content {
+    width: 50%;
+    padding: 0.5rem;
+  }
+  .table-container input[type="text"] {
+    font-size: 1rem;
+  }
+  /* Table buttons - slightly smaller for big screens */
+  table button,
+  .edit-btn,
+  .delete-btn,
+  .confirm-btn,
+  .cancel-btn {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.75rem;
+  }
 }

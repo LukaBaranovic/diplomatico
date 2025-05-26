@@ -198,3 +198,156 @@ tr:hover {
 .show-button:hover {
   background-color: #0056b3;
 }
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    width: 99%;
+    padding: 4px;
+    margin: 8px auto;
+  }
+  .table-container h1 {
+    font-size: 1.2rem;
+  }
+  th,
+  td {
+    font-size: 12px;
+    padding: 6px;
+  }
+  #totalSumContainer,
+  .popup-content {
+    padding: 8px;
+    font-size: 13px;
+  }
+  #totalSumContainer h3,
+  .popup-header p,
+  .popup-total {
+    font-size: 15px;
+  }
+  #totalSum {
+    font-size: 18px;
+  }
+  .show-button,
+  .cancel-btn {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  .popup-content {
+    width: 96%;
+    margin: 12% auto;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 8px;
+    margin: 12px auto;
+  }
+  .table-container h1 {
+    font-size: 1.3rem;
+  }
+  th,
+  td {
+    font-size: 14px;
+    padding: 8px;
+  }
+  #totalSumContainer,
+  .popup-content {
+    padding: 12px;
+    font-size: 14px;
+  }
+  #totalSumContainer h3,
+  .popup-header p,
+  .popup-total {
+    font-size: 17px;
+  }
+  #totalSum {
+    font-size: 20px;
+  }
+  .show-button,
+  .cancel-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  .popup-content {
+    width: 88%;
+    margin: 11% auto;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 85%;
+    padding: 12px;
+    margin: 16px auto;
+  }
+  .table-container h1 {
+    font-size: 1.5rem;
+  }
+  th,
+  td {
+    font-size: 15px;
+    padding: 10px;
+  }
+  #totalSumContainer,
+  .popup-content {
+    padding: 16px;
+    font-size: 15px;
+  }
+  #totalSumContainer h3,
+  .popup-header p,
+  .popup-total {
+    font-size: 18px;
+  }
+  #totalSum {
+    font-size: 22px;
+  }
+  .show-button,
+  .cancel-btn {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+  .popup-content {
+    width: 65%;
+    margin: 10% auto;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    width: 65%;
+    padding: 20px;
+    margin: 20px auto;
+  }
+  .table-container h1 {
+    font-size: 2rem;
+  }
+  th,
+  td {
+    font-size: 18px;
+    padding: 12px;
+  }
+  #totalSumContainer,
+  .popup-content {
+    padding: 20px;
+    font-size: 17px;
+  }
+  #totalSumContainer h3,
+  .popup-header p,
+  .popup-total {
+    font-size: 22px;
+  }
+  #totalSum {
+    font-size: 26px;
+  }
+  .show-button,
+  .cancel-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+  .popup-content {
+    width: 50%;
+    margin: 10% auto;
+  }
+}

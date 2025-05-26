@@ -121,17 +121,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <form class="profile-form" method="post">
                 <div class="input-box">
                     <input type="password" placeholder="Stara lozinka" name="old_password" id="old_password" required>
-                    <i class="bx bxs-lock-alt"></i>
                 </div>
 
                 <div class="input-box">
                     <input type="password" placeholder="Nova lozinka" name="new_password" id="new_password" required>
-                    <i class="bx bxs-lock-alt"></i>
                 </div>
 
                 <div class="input-box">
                     <input type="password" placeholder="Potvrdi novu lozinku" name="confirm_password" id="confirm_password" required>
-                    <i class="bx bxs-lock-alt"></i>
                 </div>
 
                 <button class="submit-button">Promjeni lozinku</button>
