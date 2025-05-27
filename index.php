@@ -101,7 +101,6 @@ $types = $result_types->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <header class="navbar">
         <a href="index.php" class="navbar-logo">
             <span>ZukaMaster</span>

@@ -95,7 +95,6 @@
   padding-top: 20px;
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
   .login-form-container {
     width: 98%;

@@ -26,7 +26,6 @@ p {
   font-weight: bold;
 }
 
-/* View Toggle Buttons Layout */
 .view-toggle {
   display: flex;
   flex-direction: column;
@@ -41,7 +40,6 @@ p {
   gap: 0.4rem;
 }
 
-/* Modern Login Button Style for Toggle Buttons - SMALLER VERSION */
 .toggle-btn {
   width: 100%;
   max-width: 150px;
@@ -108,7 +106,7 @@ th,
 td {
   padding: 0.5rem;
   text-align: center;
-  font-size: 18px; /* Match analys.css default */
+  font-size: 18px;
 }
 
 th {
@@ -168,7 +166,6 @@ button {
   background-color: #5a6268;
 }
 
-/* DO NOT TOUCH - Modal overlay */
 .modal {
   position: fixed;
   top: 0;
@@ -325,7 +322,6 @@ button {
   box-shadow: 0 2px 4px rgba(40, 167, 69, 0.1);
 }
 
-/* ============= 480px and below ============= */
 @media (max-width: 480px) {
   html {
     font-size: 14px;
@@ -348,7 +344,7 @@ button {
   .table-container input[type="text"] {
     font-size: 1rem;
   }
-  /* Table buttons */
+
   table button,
   .edit-btn,
   .delete-btn,
@@ -359,7 +355,7 @@ button {
   }
   th,
   td {
-    font-size: 12px; /* Match analys.css mobile */
+    font-size: 12px;
     padding: 6px;
   }
   .toggle-btn {
@@ -375,7 +371,6 @@ button {
   }
 }
 
-/* ============= 481px to 768px ============= */
 @media (min-width: 481px) and (max-width: 768px) {
   html {
     font-size: 16px;
@@ -398,7 +393,7 @@ button {
   .table-container input[type="text"] {
     font-size: 1rem;
   }
-  /* Table buttons */
+
   table button,
   .edit-btn,
   .delete-btn,
@@ -425,7 +420,6 @@ button {
   }
 }
 
-/* ============= 769px to 1024px ============= */
 @media (min-width: 769px) and (max-width: 1024px) {
   html {
     font-size: 18px;
@@ -448,7 +442,7 @@ button {
   .table-container input[type="text"] {
     font-size: 1rem;
   }
-  /* Table buttons - smaller for this range */
+
   table button,
   .edit-btn,
   .delete-btn,
@@ -475,7 +469,6 @@ button {
   }
 }
 
-/* ============= 1025px and above ============= */
 @media (min-width: 1025px) {
   html {
     font-size: 20px;
@@ -498,7 +491,7 @@ button {
   .table-container input[type="text"] {
     font-size: 1rem;
   }
-  /* Table buttons - slightly smaller for big screens */
+
   table button,
   .edit-btn,
   .delete-btn,
@@ -509,7 +502,7 @@ button {
   }
   th,
   td {
-    font-size: 18px; /* Match analys.css desktop */
+    font-size: 18px;
     padding: 12px;
   }
   .toggle-btn {

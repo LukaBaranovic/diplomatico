@@ -3,17 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   itemEditButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const row = event.target.closest("tr");
-      const itemId = button.dataset.id; // Use data- attributes for reliable values
+      const itemId = button.dataset.id;
       const itemName = button.dataset.name;
       const itemPrice = button.dataset.price;
-      const categoryId = button.dataset["categoryId"]; // This is already a number as string
+      const categoryId = button.dataset["categoryId"];
 
       document.getElementById("itemId").value = itemId;
       document.getElementById("itemName").value = itemName;
       document.getElementById("itemPrice").value = itemPrice;
       document.getElementById("itemCategory").value = categoryId;
-
-      // Hide any previous error messages
       document.getElementById("itemErrorMessage").style.display = "none";
       document.getElementById("editItemModal").style.display = "block";
     });
@@ -46,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.status === "success") {
           alert(data.message);
 
-          // Update the row in the table with the new values
           const editedId = formData.get("item_id");
           const row = document
             .querySelector(`#itemTable .edit-btn[data-id="${editedId}"]`)
@@ -60,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
               `#itemCategory option[value="${formData.get("category_id")}"]`
             ).textContent;
 
-          // Also update the button's data attributes for next edit!
           const editBtn = row.querySelector(".edit-btn");
           editBtn.dataset.name = formData.get("item_name");
           editBtn.dataset.price = formData.get("item_price");

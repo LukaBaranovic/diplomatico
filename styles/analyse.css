@@ -41,7 +41,6 @@ body {
   margin-bottom: 25px;
 }
 
-/* --- Modern Toggle Button Design for .actions button --- */
 .actions button {
   width: 100%;
   max-width: 150px;
@@ -124,7 +123,6 @@ body {
   line-height: 32px;
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
   .main-container {
     width: 98%;
@@ -263,7 +261,7 @@ body {
 
   #results th,
   #results td {
-    font-size: 18px; /* Bigger font size for large screens */
+    font-size: 18px;
     padding: 12px;
   }
 

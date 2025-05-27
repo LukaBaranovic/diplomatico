@@ -37,7 +37,6 @@ if (isset($company_id)) {
 </head>
 <body>
 
-  <!-- Navigation Bar -->
   <header class="navbar">
       <a href="index.php" class="navbar-logo">
           <span>ZukaMaster</span>

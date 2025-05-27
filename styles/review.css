@@ -2,7 +2,7 @@
   width: 65%;
   margin: 20px auto;
   text-align: center;
-  flex: 1; /* Make container grow to push footer down */
+  flex: 1;
 }
 
 .table-container {
@@ -185,7 +185,6 @@ tr:hover {
   text-align: center;
 }
 
-/* --- Modern Toggle Button Design for show-button --- */
 .show-button {
   width: 100%;
   max-width: 150px;
@@ -219,7 +218,6 @@ tr:hover {
   transform: translateY(-1px);
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
   .container {
     width: 99%;

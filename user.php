@@ -86,8 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-
-    <!-- Navigation Bar -->
     <header class="navbar">
         <a href="index.php" class="navbar-logo">
             <span>ZukaMaster</span>

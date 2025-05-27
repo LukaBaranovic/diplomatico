@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
     dateInput.addEventListener("change", function () {
       dateInput.blur();
 
-      // Uncomment the next line if you want to auto-submit the form as well:
-      // dateInput.form.submit();
+      // ovo doli se koristi da bi se forma poslala
+      dateInput.form.submit();
     });
   }
 });

@@ -39,12 +39,11 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    http_response_code(409); // Conflict
+    http_response_code(409); 
     echo json_encode(['status' => 'error', 'message' => 'Artikal već postoji!']);
     exit;
 }
 
-// Ensure the category ID exists
 $sql_category_check = "
     SELECT 1 
     FROM CATEGORY 
@@ -57,12 +56,11 @@ $stmt_category_check->execute();
 $stmt_category_check->store_result();
 
 if ($stmt_category_check->num_rows === 0) {
-    http_response_code(404); // Not Found
+    http_response_code(404); 
     echo json_encode(['status' => 'error', 'message' => 'Kategorija nije pronađena!']);
     exit;
 }
 
-// Update the item in the database
 $sql_update = "
     UPDATE ITEM
     SET item_name = ?, item_price = ?, category_id = ?
@@ -72,11 +70,11 @@ $stmt_update = $mysqli->prepare($sql_update);
 $stmt_update->bind_param("sdiii", $new_item_name, $new_price, $new_category_id, $item_id, $company_id);
 
 if ($stmt_update->execute()) {
-    http_response_code(200); // OK
+    http_response_code(200); 
     echo json_encode(['status' => 'success', 'message' => 'Artikal ažuriran uspješno!']);
 } else {
     error_log("Database error: " . $mysqli->error);
-    http_response_code(500); // Internal Server Error
+    http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => 'Greška pri ažuriranju artikla!']);
 }
 ?>
