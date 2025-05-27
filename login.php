@@ -56,12 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="login-input-box">
           <input type="text" placeholder="Korisničko ime" name="username" id="username" 
           value="<?= htmlspecialchars($_POST["username"]) ?? "" ?>">
-          <!-- <i class="bx bxs-user"></i> -->
         </div>
 
         <div class="login-input-box">
           <input type="password" placeholder="Lozinka" name="password" id="password">
-          <!-- <i class="bx bxs-lock-alt"></i> -->
         </div>
 
         <button class="login-submit-button">Prijavi se</button>

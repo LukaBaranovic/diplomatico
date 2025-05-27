@@ -4,6 +4,9 @@
 /* Responsive root font size */
 html {
   font-size: 20px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -13,19 +16,24 @@ html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Only body is flex! */
 body {
   background-color: #f7f7f7;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
+/* Main content should grow to fill space, pushing footer down */
+.container,
+.main-container {
+  flex: 1;
+}
+
+/* Navbar styles */
 .navbar {
   background-color: #007bff;
   display: flex;
@@ -75,6 +83,7 @@ body {
   color: #ffc107;
 }
 
+/* Footer styles */
 .footer {
   background-color: #007bff;
   color: white;

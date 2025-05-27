@@ -2,6 +2,7 @@
   width: 65%;
   margin: 20px auto;
   text-align: center;
+  flex: 1; /* Make container grow to push footer down */
 }
 
 .table-container {
@@ -153,6 +154,7 @@ tr:hover {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+  transition: background 0.2s;
 }
 
 .cancel-btn:hover {
@@ -183,20 +185,38 @@ tr:hover {
   text-align: center;
 }
 
+/* --- Modern Toggle Button Design for show-button --- */
 .show-button {
-  padding: 10px 20px;
-  margin: 0 10px;
+  width: 100%;
+  max-width: 150px;
+  padding: 0.55rem 0.5rem;
+  background: #007bff;
+  color: #fff;
+  outline: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  font-size: 16px;
-  transition: background-color 0.2s;
+  user-select: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0 10px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  display: inline-block;
+}
+
+.show-button.active,
+.show-button:focus,
+.show-button:active {
+  background: #0056b3;
 }
 
 .show-button:hover {
-  background-color: #0056b3;
+  background: #0056b3;
+  box-shadow: rgba(45, 35, 66, 0.09) 0 3px 6px,
+    rgba(45, 35, 66, 0.06) 0 5px 8px -2px, #d6d6e7 0 -2px 0 inset;
+  transform: translateY(-1px);
 }
 
 /* Responsive Design */
@@ -231,6 +251,7 @@ tr:hover {
   .cancel-btn {
     font-size: 12px;
     padding: 7px 10px;
+    max-width: 100%;
   }
   .popup-content {
     width: 96%;
@@ -269,6 +290,7 @@ tr:hover {
   .cancel-btn {
     font-size: 13px;
     padding: 8px 12px;
+    max-width: 110px;
   }
   .popup-content {
     width: 88%;
@@ -307,6 +329,7 @@ tr:hover {
   .cancel-btn {
     font-size: 15px;
     padding: 10px 14px;
+    max-width: 125px;
   }
   .popup-content {
     width: 65%;
@@ -345,6 +368,7 @@ tr:hover {
   .cancel-btn {
     font-size: 16px;
     padding: 12px 20px;
+    max-width: 150px;
   }
   .popup-content {
     width: 50%;
