@@ -1,6 +1,6 @@
 <?php
-session_start();
 
+session_start();
 $user_id = (int)$_SESSION['user_id'];
 $company_id = (int)$_SESSION['company_id'];
 
