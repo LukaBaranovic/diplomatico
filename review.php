@@ -92,7 +92,7 @@ $total_sum = $result_total->fetch_assoc()['total_sum'] ?? 0;
             <form method="GET" action="review.php" class="date-picker-container">
                 <label for="dateSelector">Odaberite datum:</label>
                 <input type="date" id="dateSelector" name="date" value="<?= htmlspecialchars($selected_date) ?>">
-                <button class="show-button" type="submit">Prikaži</button>
+                <!-- Removed "Prikaži" button -->
             </form>
 
             <table id="receiptsTable">

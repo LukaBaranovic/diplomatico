@@ -42,8 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          alert(data.message);
-
+          // No confirmation message
           const editedId = formData.get("item_id");
           const row = document
             .querySelector(`#itemTable .edit-btn[data-id="${editedId}"]`)

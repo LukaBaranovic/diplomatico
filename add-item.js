@@ -51,8 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert(data.message);
-
+          // No alert on success!
           const itemTable = document
             .getElementById("itemTable")
             .getElementsByTagName("tbody")[0];

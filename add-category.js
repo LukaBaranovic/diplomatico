@@ -43,8 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          alert(data.message || "Kategorija dodana uspješno!");
-
           const newRow = document.createElement("tr");
           newRow.innerHTML = `
             <td>${data.category_id}</td>

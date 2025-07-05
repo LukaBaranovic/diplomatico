@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          alert(data.message);
+          document.getElementById("editCategoryModal").style.display = "none";
           location.reload();
         } else {
           document.getElementById("errorMessage").textContent = data.message;
